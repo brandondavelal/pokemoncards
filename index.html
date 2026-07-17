@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Binder — Pokemon Card Collection</title>
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Fraunces:ital,opsz,wght@1,9..144,500;1,9..144,600;0,9..144,600&display=swap" rel="stylesheet">
+<script src="data.js"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --f: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --top:  40px;
+  /* desk + page */
+  --desk1: #1c1c1c;
+  --desk2: #000000;
+  --ink:   #23180b;
+  --paper: #eae5d8;
+  --paper-dim: #a9a297;
+  /* card foil gold */
+  --g1: #fbe6a0; --g2: #e8c25a; --g3: #c99a2e; --g4: #a97c20;
+  --binder-pad: 44px;
+}
+@media (max-width: 600px) { :root { --binder-pad: 24px; } }
+
+html { height: 100%; }
+body { min-height: 100%; overflow-x: clip; }
+body {
+  font-family: var(--f); color: var(--paper); font-size: 14px; line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  background:
+    radial-gradient(60% 45% at 50% 8%, rgba(255,255,255,0.05), transparent 70%),
+    radial-gradient(120% 90% at 50% -10%, var(--desk1) 0%, #0c0c0c 45%, var(--desk2) 100%) fixed;
+}
+/* faint grain over the desk */
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+}
+
+#view-gallery { min-height: 100vh; position: relative; z-index: 1; padding: 40px; }
+
+/* ---------- full-screen preloader: fetches every card image before the binder is shown ---------- */
+#preloader {
+  position: fixed; inset: 0; z-index: 2000;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px;
+  background: radial-gradient(120% 90% at 50% -10%, var(--desk1) 0%, #0c0c0c 45%, var(--desk2) 100%);
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+#preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+
+/* a foil pack, torn open at the top, with cards continuously bursting out of the tear
+   and fading as they fly — loops until the real assets are ready */
+.pl-pack {
+  position: relative; width: 92px; height: 122px; margin-top: 40px;
+  border-radius: 8px 8px 5px 5px;
+  background: linear-gradient(160deg, #3a3a3a 0%, #201f1d 55%, #0c0b0a 100%);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1), inset 0 -14px 20px -14px rgba(0,0,0,0.6), 0 25px 50px -12px rgba(0,0,0,0.65);
+}
+/* jagged torn edge cut into the top of the pack */
+.pl-pack::before {
+  content: ""; position: absolute; top: -1px; left: 0; right: 0; height: 16px;
+  background: inherit;
+  clip-path: polygon(0% 100%,6% 35%,13% 78%,20% 20%,28% 68%,36% 10%,44% 60%,52% 5%,60% 55%,
+                      68% 15%,76% 65%,84% 22%,92% 72%,100% 30%,100% 100%);
+  filter: brightness(1.25);
+}
+.pl-cards { position: absolute; inset: 0; overflow: visible; pointer-events: none; }
+.pl-flycard {
+  position: absolute; left: 50%; top: 4px; width: 26px; height: 36px; margin-left: -13px;
+  border-radius: 3px;
+  background: linear-gradient(150deg, var(--g1) 0%, var(--g2) 42%, var(--g3) 72%, var(--g4) 100%);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.45), 0 6px 14px rgba(0,0,0,0.35);
+  opacity: 0;
+  animation-name: flyOut; animation-timing-function: cubic-bezier(.19,.8,.35,1); animation-iteration-count: infinite;
+}
+@keyframes flyOut {
+  0%   { transform: translate(0, 0) rotate(var(--r0)); opacity: 0; }
+  10%  { opacity: 1; }
+  70%  { opacity: 0.85; }
+  100% { transform: translate(var(--tx), -175px) rotate(var(--r1)); opacity: 0; }
+}
+.pl-flycard:nth-child(1) { --r0: -6deg;  --r1: -36deg; --tx: -68px;  animation-duration: 2.1s; animation-delay: 0s; }
+.pl-flycard:nth-child(2) { --r0: 5deg;   --r1: 26deg;  --tx: 52px;   animation-duration: 2.4s; animation-delay: 0.4s; }
+.pl-flycard:nth-child(3) { --r0: -2deg;  --r1: -14deg; --tx: -14px;  animation-duration: 1.9s; animation-delay: 0.8s; }
+.pl-flycard:nth-child(4) { --r0: 9deg;   --r1: 42deg;  --tx: 92px;   animation-duration: 2.3s; animation-delay: 1.2s; }
+.pl-flycard:nth-child(5) { --r0: -11deg; --r1: -48deg; --tx: -104px; animation-duration: 2.0s; animation-delay: 1.6s; }
+.pl-flycard:nth-child(6) { --r0: 2deg;   --r1: 9deg;   --tx: 10px;   animation-duration: 2.2s; animation-delay: 2.0s; }
+.pl-text { font-style: italic; font-size: 14px; color: var(--paper-dim); letter-spacing: 0.02em; }
+@media (prefers-reduced-motion: reduce) {
+  .pl-flycard { animation: none; opacity: 0.9; }
+}
+
+/* ---------- binder: felt album cover, lit like a product photo on the desk ---------- */
+.binder {
+  position: relative;
+  max-width: 1230px; margin: 0 auto;
+  /* no left padding here — #grid owns that inset itself (below), so its bleed's plain
+     right:100% lands exactly on this edge with no extra offset math needed */
+  padding: var(--binder-pad) var(--binder-pad) var(--binder-pad) 0;
+  border-radius: 0 18px 18px 0;
+  background: radial-gradient(140% 100% at 50% 0%, #322f2b 0%, #201e1b 55%, #131211 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.05),
+    inset 0 0 50px rgba(0,0,0,0.55),
+    inset 0 0 0 1px rgba(0,0,0,0.6),
+    0 2px 2px rgba(0,0,0,0.4),
+    0 3px 40px rgba(0,0,0,0.4),
+    0 50px 90px -20px rgba(0,0,0,0.85),
+    0 80px 130px -40px rgba(0,0,0,0.9);
+}
+/* fibrous felt texture across the cover — matte, no gloss */
+.binder::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0.8; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23f)' opacity='0.4'/%3E%3C/svg%3E");
+}
+/* spine: bound edge running flat off the left side, all the way to the edge of the
+   viewport (not just a fixed bleed) — width is deliberately oversized and clipped by
+   body's overflow-x so it always reaches the browser edge regardless of screen size */
+.binder::after {
+  content: ""; position: absolute; right: 100%; top: 0; bottom: 0; width: 100vw; border-radius: 0;
+  /* same flat felt tone as the main cover (its middle gradient stop), flush with its
+     top/bottom edges so the two read as one continuous piece of material */
+  background-color: #201e1b;
+  background-image: linear-gradient(90deg, rgba(255,255,255,0.07), transparent 40%);
+  box-shadow: inset -10px 0 28px rgba(0,0,0,0.45), inset 10px 0 28px rgba(0,0,0,0.45), inset 0 12px 24px -10px rgba(255,255,255,0.05);
+}
+
+/* ---------- binder page: one continuous sheet of tinted vinyl, quilted into pockets ---------- */
+.grid {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px;
+  /* left padding = the grout margin (5px) plus the binder's own inset, since the binder
+     no longer carries any left padding itself */
+  padding: 5px 5px 5px calc(5px + var(--binder-pad));
+  border-radius: 0 6px 6px 0;
+  /* the seams between pockets are the same tinted plastic as the pockets themselves —
+     one continuous welded sheet, not a different backing material */
+  background:
+    linear-gradient(180deg, rgba(168,180,189,0.62), rgba(105,114,123,0.34) 55%, rgba(72,80,88,0.5)),
+    #050607;
+  box-shadow: inset -10px 0 28px rgba(0,0,0,0.45), inset 10px 0 28px rgba(0,0,0,0.45), inset 0 12px 24px -10px rgba(255,255,255,0.05);
+}
+/* the plastic sheet itself keeps running left, past the spine, out to the viewport edge —
+   same welded vinyl the pockets sit in. Since #grid's own left padding now carries the
+   binder's inset, a plain right:100% here lands exactly on the binder's edge — same
+   place the felt spine's edge always was — with no extra offset math needed. */
+.grid::before {
+  content: ""; position: absolute; right: 100%; top: 0; bottom: 0; width: 100vw;
+  background-color: #050607;
+  /* same tint + the same diagonal sheen the main sheet gets — mirrored, since this
+     side of the fold catches the light from the opposite direction — blended the
+     same way (screen, over the tint) so the two halves read as one material */
+  background-image:
+    linear-gradient(245deg, transparent 16%, rgba(255,255,255,0.24) 42%, rgba(255,255,255,0.05) 56%, transparent 80%),
+    linear-gradient(245deg, transparent 55%, rgba(255,255,255,0.09) 78%, transparent 98%),
+    linear-gradient(0deg, rgba(0,0,0,0.18), transparent 30%),
+    linear-gradient(180deg, rgba(168,180,189,0.62), rgba(105,114,123,0.34) 55%, rgba(72,80,88,0.5));
+  background-blend-mode: screen, screen, screen, normal;
+  box-shadow: inset -10px 0 28px rgba(0,0,0,0.45), inset 10px 0 28px rgba(0,0,0,0.45), inset 0 12px 24px -10px rgba(255,255,255,0.05);
+}
+/* diagonal sheen sweeping across the whole sheet, as one piece of plastic */
+.grid::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 3;
+  background:
+    linear-gradient(115deg, transparent 16%, rgba(255,255,255,0.24) 42%, rgba(255,255,255,0.05) 56%, transparent 80%),
+    linear-gradient(115deg, transparent 55%, rgba(255,255,255,0.09) 78%, transparent 98%),
+    linear-gradient(0deg, rgba(0,0,0,0.18), transparent 30%);
+  mix-blend-mode: screen;
+}
+/* ultrasonically welded edge of the whole page — same dashed stitch as each pocket,
+   open on the left where the sheet is seamless with its own bleed/extension */
+.grid-stitch {
+  position: absolute; z-index: 4; pointer-events: none;
+  top: var(--binder-pad); bottom: var(--binder-pad); left: 0;
+  border-left: 1.5px dashed rgba(8,9,10,0.3);
+}
+@media (max-width: 900px)  { .grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* ---------- card pocket: a single quilted cell in the sheet, plastic layered in front of the card ---------- */
+.card {
+  position: relative;
+  padding: 12px 8px 8px;
+  background: linear-gradient(165deg, rgba(168,180,189,0.62), rgba(105,114,123,0.34) 55%, rgba(72,80,88,0.5));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.32),
+    inset 0 -22px 28px -16px rgba(0,0,0,0.6),
+    inset 0 14px 20px -12px rgba(0,0,0,0.45),
+    inset 8px 0 16px -12px rgba(0,0,0,0.45),
+    inset -8px 0 16px -12px rgba(0,0,0,0.45);
+  transition: box-shadow 0.3s, z-index 0s;
+}
+.card:hover { z-index: 5; }
+/* the card slides/fades into its (already-visible) pocket on load — the sleeve itself never animates */
+@keyframes cardIn { from { opacity: 0; translate: 0 -14px; } to { opacity: 1; translate: 0 0; } }
+
+/* ultrasonically welded stitch outline around each pocket — open at the top, since that's
+   where a card would actually slide in and out of the sleeve */
+.card::before {
+  content: ""; position: absolute; inset: 3px; z-index: 0; pointer-events: none; border-radius: 0 0 4px 4px;
+  border-left: 1.5px dashed rgba(8,9,10,0.55);
+  border-right: 1.5px dashed rgba(8,9,10,0.55);
+  border-bottom: 1.5px dashed rgba(8,9,10,0.55);
+}
+/* the stitch always sits exactly one layer below the card, at rest or hovered */
+.card:hover::before { z-index: 3; }
+
+/* the pocket's own front plastic layer — sits over the card at rest, catching light across the whole cell */
+.pocket-glare {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none; border-radius: 4px;
+  background:
+    radial-gradient(130% 90% at 50% -10%, rgba(255,255,255,0.4), transparent 55%),
+    linear-gradient(122deg, transparent 14%, rgba(255,255,255,0.32) 38%, rgba(255,255,255,0.08) 50%, transparent 66%),
+    linear-gradient(165deg, rgba(210,220,226,0.22) 0%, transparent 40% 65%, rgba(60,66,73,0.32) 100%);
+  mix-blend-mode: screen;
+  transition: opacity 0.3s;
+}
+
+/* ---------- trading card: the artwork fills the whole face — no mat, just the
+   card's own standard corner radius (~1/8" on a 2.5x3.5" card) and an overlaid
+   edge stroke for a bit of embossed depth ---------- */
+.tcard {
+  position: relative; z-index: 1; border-radius: 5%/3.6%; overflow: hidden;
+  background: #16130f;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.28);
+  transform: perspective(950px) scale(var(--s,1)) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+  transform-style: preserve-3d; transition: transform 0.35s cubic-bezier(.2,.7,.2,1), box-shadow 0.35s;
+  opacity: 0; animation: cardIn 0.5s ease forwards; will-change: transform;
+}
+.tcard.tilt { transition: transform 0.08s linear, box-shadow 0.35s; }
+/* the card presses up through its plastic pocket and grows toward the viewer —
+   rising above both the pocket's front plastic layer and its stitched seam */
+.card:hover .tcard {
+  --s: 1.15;
+  z-index: 4;
+  box-shadow: 0 45px 80px -15px rgba(0,0,0,0.7), 0 16px 32px -6px rgba(0,0,0,0.5);
+}
+
+/* grading + current value, side by side below the card — revealed only on hover,
+   since the cards aren't clickable and this is the only place either shows */
+.tc-caption {
+  position: absolute; left: 50%; top: 100%; z-index: 6; pointer-events: none;
+  display: flex; gap: 5px; justify-content: center;
+  transform: translate(-50%, 8px);
+  opacity: 0; transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.card:hover .tc-caption { opacity: 1; transform: translate(-50%, 42px); }
+.tc-grade, .tc-price {
+  font-weight: 800; font-size: 12px; letter-spacing: 0.01em; color: #fff; white-space: nowrap;
+  background: linear-gradient(180deg, #322f2c, #080706);
+  padding: 5px 12px; border-radius: 20px;
+  box-shadow:
+    0 10px 20px rgba(0,0,0,0.4),
+    0 2px 4px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.3),
+    inset 0 -2px 3px rgba(0,0,0,0.4),
+    inset 0 0 0 1px rgba(255,255,255,0.06);
+}
+
+/* image window (kept as .card-img for JS reveal logic) — the photo IS the card, so this
+   window is the entire tcard face, masked to the card's real corner radius */
+.card-img.tc-window {
+  position: relative; width: 100%; aspect-ratio: 2.5/3.5; overflow: hidden; border-radius: inherit;
+  background: #d8cdb2;
+  transition: background-color 0.6s ease;
+}
+/* subtle stroke of light/depth overlaid on the artwork itself, not a colored frame */
+.card-img.tc-window::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.5),
+    inset 0 12px 22px -16px rgba(255,255,255,0.6),
+    inset 0 -20px 26px -18px rgba(0,0,0,0.45);
+}
+.card-img.skeleton { animation: skeletonPulse 1.2s ease-in-out infinite; animation-delay: inherit; }
+.card-img img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0; transition: opacity 0.6s ease; }
+.card-img img.loaded { opacity: 1; }
+@keyframes skeletonPulse { 0%, 100% { background-color: #d8cdb2; } 50% { background-color: #c7bb9c; } }
+
+/* holographic foil sweep */
+.tc-foil {
+  position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 4;
+  background:
+    linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.55) 46%, rgba(255,255,255,0.15) 52%, transparent 66%),
+    repeating-linear-gradient(115deg, rgba(255,0,90,0.10) 0 12px, rgba(255,196,0,0.10) 12px 24px, rgba(0,224,150,0.10) 24px 36px, rgba(0,150,255,0.10) 36px 48px, rgba(170,60,255,0.10) 48px 60px);
+  background-size: 220% 220%, 220% 220%;
+  background-position: var(--mx,50%) var(--my,50%), var(--mx,50%) var(--my,50%);
+  mix-blend-mode: color-dodge; opacity: 0; transition: opacity 0.35s;
+}
+.card:hover .tc-foil { opacity: 0.6; }
+
+.empty { grid-column: 1/-1; min-height: 40vh; display: flex; align-items: center; justify-content: center; }
+.empty-hed { font-style: italic; font-size: 16px; color: var(--paper-dim); }
+
+@media (max-width: 600px) {
+  #view-gallery { padding-left: 12px; padding-right: 12px; }
+  .grid { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tcard { opacity: 1; animation: none; transition: none; }
+}
+</style>
+</head>
+<body>
+
+<div id="preloader">
+  <div class="pl-card"></div>
+  <div class="pl-text">Loading collection...</div>
+</div>
+
+<main id="view-gallery">
+  <div class="binder">
+    <div class="grid-stitch"></div>
+    <div class="grid" id="grid"></div>
+  </div>
+</main>
+
+<script>
+var ph = function(c) { return 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect width="800" height="600" fill="' + c + '"/></svg>'); };
+var fillColors = ['#edebe7', '#d6cfc7', '#c9ddd4', '#e8d6c3'];
+var fillImgs = fillColors.map(ph);
+
+var S = { products: typeof GALLERY_DATA !== 'undefined' ? GALLERY_DATA : [] };
+
+// cards wait this long (from the moment the binder is rendered) before sliding into
+// their pockets, staggered left-to-right / top-to-bottom by CARD_INTRO_STEP each.
+var CARD_INTRO_DELAY = 1000;
+var CARD_INTRO_STEP = 80;
+
+function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function money(cents) { return '$' + (Number(cents||0) / 100).toFixed(2); }
+
+function renderGallery() {
+  var g = document.getElementById('grid');
+  // the 2s hold-before-intro only happens once, the first time the binder appears.
+  var introBase = S.renderedOnce ? 0 : CARD_INTRO_DELAY;
+  S.renderedOnce = true;
+  var list = S.products.filter(function(p) { return p.status !== 'Draft'; });
+  list.sort(function(a, b) { return (b.priceCents||0) - (a.priceCents||0); });
+  if (!list.length) { g.innerHTML = '<div class="empty"><div class="empty-hed">This page of the binder is empty.</div></div>'; return; }
+  g.innerHTML = list.map(function(p, i) {
+    var img = (p.images && p.images.length) ? p.images[0] : fillImgs[0];
+    var gradeLine = p.graded ? [p.gradingCompany, p.grade].filter(Boolean).join(' ') : 'Ungraded';
+    return '<div class="card" data-id="' + esc(p.id) + '">' +
+      '<div class="tcard" style="animation-delay:' + (introBase + i * CARD_INTRO_STEP) + 'ms">' +
+        '<div class="card-img skeleton tc-window">' +
+          '<img src="' + img + '" alt="' + esc(p.name) + '">' +
+        '</div>' +
+        '<div class="tc-foil"></div>' +
+      '</div>' +
+      '<div class="pocket-glare"></div>' +
+      '<div class="tc-caption">' +
+        '<span class="tc-grade">' + esc(gradeLine) + '</span>' +
+        '<span class="tc-price">' + esc(money(p.priceCents)) + '</span>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+  g.querySelectorAll('.card').forEach(function(card) {
+    var img = card.querySelector('.card-img img');
+    var reveal = function() {
+      if (img) img.classList.add('loaded');
+      card.querySelector('.card-img').classList.remove('skeleton');
+      card.classList.add('loaded');
+    };
+    if (!img || img.complete) reveal();
+    else { img.addEventListener('load', reveal); img.addEventListener('error', reveal); }
+  });
+  attachTilt(g);
+}
+
+// Pointer-tracked holographic tilt — the card stays in its pocket but still
+// catches the light like real foil as the cursor moves across it.
+function attachTilt(scope) {
+  if (!window.matchMedia || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  scope.querySelectorAll('.tcard').forEach(function(tc) {
+    tc.addEventListener('pointermove', function(e) {
+      var r = tc.getBoundingClientRect();
+      var px = (e.clientX - r.left) / r.width;
+      var py = (e.clientY - r.top) / r.height;
+      tc.style.setProperty('--ry', ((px - 0.5) * 12).toFixed(2) + 'deg');
+      tc.style.setProperty('--rx', ((0.5 - py) * 12).toFixed(2) + 'deg');
+      tc.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
+      tc.style.setProperty('--my', (py * 100).toFixed(1) + '%');
+      tc.classList.add('tilt');
+    });
+    tc.addEventListener('pointerleave', function() {
+      tc.classList.remove('tilt');
+      tc.style.setProperty('--rx', '0deg');
+      tc.style.setProperty('--ry', '0deg');
+      tc.style.setProperty('--mx', '50%');
+      tc.style.setProperty('--my', '50%');
+    });
+  });
+}
+
+// Preload every card image up front so nothing lazy-pops once the binder is visible.
+function preloadAllImages() {
+  var urls = [];
+  S.products.forEach(function(p) { (p.images || []).forEach(function(src) { urls.push(src); }); });
+  urls = urls.filter(function(u, i) { return urls.indexOf(u) === i; });
+  return new Promise(function(resolve) {
+    if (!urls.length) return resolve();
+    var remaining = urls.length;
+    urls.forEach(function(src) {
+      var img = new Image();
+      var settle = function() { if (--remaining <= 0) resolve(); };
+      img.onload = settle; img.onerror = settle;
+      img.src = src;
+    });
+  });
+}
+
+function hidePreloader() {
+  var el = document.getElementById('preloader');
+  if (!el) return;
+  el.classList.add('hidden');
+  setTimeout(function() { el.remove(); }, 700);
+}
+
+// DEBUG: forcing the preloader to stay up for 10s so it can be inspected visually.
+// Remove this Promise.all/setTimeout wrapper (just await preloadAllImages() directly)
+// once you're done looking at it.
+var DEBUG_MIN_PRELOADER_MS = 5000;
+Promise.all([
+  preloadAllImages(),
+  new Promise(function(resolve) { setTimeout(resolve, DEBUG_MIN_PRELOADER_MS); })
+]).then(function() {
+  renderGallery();
+  hidePreloader();
+});
+</script>
+</body>
+</html>
