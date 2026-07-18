@@ -240,6 +240,22 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
+    "id": "502556",
+    "name": "Charmander",
+    "number": "168/165",
+    "set": "SV: 151",
+    "priceCents": 12732,
+    "wear": "NM",
+    "rarity": "Illustration Rare",
+    "graded": true,
+    "grade": "9",
+    "gradingCompany": "PSA",
+    "images": [
+      "images/pokemon/502556.jpg"
+    ],
+    "status": "Public"
+  },
+  {
     "id": "106520",
     "name": "Dragonite",
     "number": "4",
@@ -268,22 +284,6 @@ var GALLERY_DATA = [
     "gradingCompany": "PSA",
     "images": [
       "images/pokemon/513721.jpg"
-    ],
-    "status": "Public"
-  },
-  {
-    "id": "502556",
-    "name": "Charmander",
-    "number": "168/165",
-    "set": "SV: 151",
-    "priceCents": 12374,
-    "wear": "NM",
-    "rarity": "Illustration Rare",
-    "graded": true,
-    "grade": "9",
-    "gradingCompany": "PSA",
-    "images": [
-      "images/pokemon/502556.jpg"
     ],
     "status": "Public"
   },
@@ -388,7 +388,7 @@ var GALLERY_DATA = [
     "name": "Mew ex",
     "number": "053",
     "set": "Scarlet & Violet Promo",
-    "priceCents": 11604,
+    "priceCents": 11695,
     "wear": "NM",
     "rarity": "Promo",
     "graded": true,
@@ -624,22 +624,6 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
-    "id": "42425",
-    "name": "Machamp",
-    "number": "008/102",
-    "set": "Deck Exclusives",
-    "priceCents": 5612,
-    "wear": "NM",
-    "rarity": "Holo Rare",
-    "graded": true,
-    "grade": "6",
-    "gradingCompany": "PSA",
-    "images": [
-      "images/pokemon/42425.jpg"
-    ],
-    "status": "Public"
-  },
-  {
     "id": "45126",
     "name": "Vileplume",
     "number": "15",
@@ -764,6 +748,22 @@ var GALLERY_DATA = [
     "gradingCompany": "PSA",
     "images": [
       "images/pokemon/42371.jpg"
+    ],
+    "status": "Public"
+  },
+  {
+    "id": "42425",
+    "name": "Machamp",
+    "number": "008/102",
+    "set": "Deck Exclusives",
+    "priceCents": 4493,
+    "wear": "NM",
+    "rarity": "Holo Rare",
+    "graded": true,
+    "grade": "6",
+    "gradingCompany": "PSA",
+    "images": [
+      "images/pokemon/42425.jpg"
     ],
     "status": "Public"
   },
