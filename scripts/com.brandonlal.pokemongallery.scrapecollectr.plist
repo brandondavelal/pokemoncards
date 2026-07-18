@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.brandonlal.pokemongallery.scrapecollectr</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Users/brandon/Desktop/pokemon-gallery-cms/scripts/run-scrape.sh</string>
+  </array>
+
+  <!-- runs once as soon as it's loaded, then every 6 hours after that while
+       you're logged in (LaunchAgents don't run when logged out / machine off,
+       so this is "as fresh as your Mac being awake and logged in", not truly
+       every 6 hours on the dot if the machine sleeps through one) -->
+  <key>RunAtLoad</key>
+  <true/>
+  <key>StartInterval</key>
+  <integer>21600</integer>
+
+  <key>StandardOutPath</key>
+  <string>/Users/brandon/Desktop/pokemon-gallery-cms/scripts/logs/scrape.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/brandon/Desktop/pokemon-gallery-cms/scripts/logs/scrape.err.log</string>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/brandon/Desktop/pokemon-gallery-cms/scripts</string>
+</dict>
+</plist>

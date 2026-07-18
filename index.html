@@ -3,120 +3,298 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Canucks Jerseys</title>
+<title>The Binder — Pokemon Card Collection</title>
 <link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Fraunces:ital,opsz,wght@1,9..144,500;1,9..144,600;0,9..144,600&display=swap" rel="stylesheet">
+<script src="data.js"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --black:  #000;
-  --white:  #fff;
-  --grey:   #999;
-  --lgrey:  #bbb;
-  --bg:     #fff;
-  --f: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --hdr1: 80px;
-  --top:  80px;
+  --f: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --top:  40px;
+  /* desk + page */
+  --desk1: #1c1c1c;
+  --desk2: #000000;
+  --ink:   #23180b;
+  --paper: #eae5d8;
+  --paper-dim: #a9a297;
+  /* card foil gold */
+  --g1: #fbe6a0; --g2: #e8c25a; --g3: #c99a2e; --g4: #a97c20;
+  --binder-pad: 44px;
+}
+@media (max-width: 600px) { :root { --binder-pad: 24px; } }
+
+html { height: 100%; }
+body { min-height: 100%; overflow-x: clip; }
+body {
+  font-family: var(--f); color: var(--paper); font-size: 14px; line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  background:
+    radial-gradient(60% 45% at 50% 8%, rgba(255,255,255,0.05), transparent 70%),
+    radial-gradient(120% 90% at 50% -10%, var(--desk1) 0%, #0c0c0c 45%, var(--desk2) 100%) fixed;
+}
+/* faint grain over the desk */
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
 }
 
-html, body { height: 100%; }
-body { font-family: var(--f); background: var(--white); color: var(--black); font-size: 14px; line-height: 1.4; -webkit-font-smoothing: antialiased; }
+#view-gallery { min-height: 100vh; position: relative; z-index: 1; padding: 40px; }
 
-header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.8); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); }
-.hdr-top { height: var(--hdr1); display: flex; align-items: center; justify-content: center; padding: 0 48px; position: relative; }
-.hdr-left { display: flex; align-items: center; }
-.logo { height: 36px; cursor: pointer; }
-.hdr-back { font-family: var(--f); font-size: 10px; text-transform: uppercase; line-height: 1; color: #000000; background: none; border: none; cursor: pointer; padding: 0; transition: color 0.15s; display: none; align-items: center; gap: 4px; letter-spacing: 0.04em; position: absolute; left: 48px; top: 50%; transform: translateY(-50%); }
-.hdr-back-chevron { font-size: 24px; line-height: 1; display: inline-block; transform: translateY(-2px); }
-.hdr-left.detail .hdr-back { display: flex; }
-.hdr-back:hover { color: #999999; }
+/* ---------- loading scrim: the binder is visible and empty underneath, dimmed with
+   a vignette, with a small modal (spinner + text) while images preload ---------- */
+body.loading { overflow-y: hidden; }
+#loading-scrim {
+  position: fixed; inset: 0; z-index: 2000;
+  display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 55%, rgba(0,0,0,0.82) 100%);
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+#loading-scrim.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.ld-modal {
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  background: rgba(0,0,0,0.55); padding: 26px 34px; border-radius: 14px;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+.ld-spinner {
+  width: 26px; height: 26px; border-radius: 50%;
+  border: 3px solid rgba(255,255,255,0.2); border-top-color: var(--g2);
+  animation: ldSpin 0.8s linear infinite;
+}
+@keyframes ldSpin { to { transform: rotate(360deg); } }
+.ld-text { font-size: 13px; color: var(--paper-dim); letter-spacing: 0.02em; }
+@media (prefers-reduced-motion: reduce) { .ld-spinner { animation-duration: 2.4s; } }
 
-.view { display: none; padding-top: var(--top); min-height: 100vh; }
-.view.on { display: block; }
-#view-gallery { padding: var(--top) 48px 48px; }
-#view-detail .detail-wrap { padding: 0 48px; }
-#view-detail { padding-bottom: 48px; }
+/* ---------- binder: felt album cover, lit like a product photo on the desk ---------- */
+.binder {
+  position: relative;
+  max-width: 1230px; margin: 0 auto;
+  /* no left padding here — #grid owns that inset itself (below), so its bleed's plain
+     right:100% lands exactly on this edge with no extra offset math needed */
+  padding: var(--binder-pad) var(--binder-pad) var(--binder-pad) 0;
+  border-radius: 0 18px 18px 0;
+  background: radial-gradient(140% 100% at 50% 0%, #322f2b 0%, #201e1b 55%, #131211 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.05),
+    inset 0 0 50px rgba(0,0,0,0.55),
+    inset 0 0 0 1px rgba(0,0,0,0.6),
+    0 2px 2px rgba(0,0,0,0.4),
+    0 3px 40px rgba(0,0,0,0.4),
+    0 50px 90px -20px rgba(0,0,0,0.85),
+    0 80px 130px -40px rgba(0,0,0,0.9);
+}
+/* fibrous felt texture across the cover — matte, no gloss */
+.binder::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0.8; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23f)' opacity='0.4'/%3E%3C/svg%3E");
+}
+/* spine: bound edge running flat off the left side, all the way to the edge of the
+   viewport (not just a fixed bleed) — width is deliberately oversized and clipped by
+   body's overflow-x so it always reaches the browser edge regardless of screen size */
+.binder::after {
+  content: ""; position: absolute; right: 100%; top: 0; bottom: 0; width: 100vw; border-radius: 0;
+  /* same flat felt tone as the main cover (its middle gradient stop), flush with its
+     top/bottom edges so the two read as one continuous piece of material */
+  background-color: #201e1b;
+  background-image: linear-gradient(90deg, rgba(255,255,255,0.07), transparent 40%);
+  box-shadow: inset -10px 0 28px rgba(0,0,0,0.45), inset 10px 0 28px rgba(0,0,0,0.45), inset 0 12px 24px -10px rgba(255,255,255,0.05);
+}
 
-.hdr-sort { position: absolute; right: 48px; font-family: var(--f); font-size: 10px; text-transform: uppercase; letter-spacing: 0.04em; color: #000000; background: transparent url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Cpath fill=%22none%22 stroke=%22%23000000%22 stroke-width=%221.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 d=%22M4 6l4 4 4-4%22/%3E%3C/svg%3E') no-repeat right 0 center / 14px; border: none; padding: 6px 18px 6px 0; cursor: pointer; -webkit-appearance: none; appearance: none; border-radius: 4px; }
-.hdr-sort:focus { outline: none; }
-.hdr-sort:hover { box-shadow: 0 1px 0 0 #000000; border-radius: 0; }
-.hdr-left.detail ~ .hdr-sort { display: none; }
+/* ---------- binder page: one continuous sheet of tinted vinyl, quilted into pockets ---------- */
+.grid {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px;
+  /* left padding = the grout margin (5px) plus the binder's own inset, since the binder
+     no longer carries any left padding itself */
+  padding: 5px 5px 5px calc(5px + var(--binder-pad));
+  border-radius: 0 6px 6px 0;
+  /* the seams between pockets are the same tinted plastic as the pockets themselves —
+     one continuous welded sheet, not a different backing material */
+  background:
+    linear-gradient(180deg, rgba(168,180,189,0.62), rgba(105,114,123,0.34) 55%, rgba(72,80,88,0.5)),
+    #050607;
+  box-shadow: inset -10px 0 28px rgba(0,0,0,0.45), inset 10px 0 28px rgba(0,0,0,0.45), inset 0 12px 24px -10px rgba(255,255,255,0.05);
+}
+/* the plastic sheet itself keeps running left, past the spine, out to the viewport edge —
+   same welded vinyl the pockets sit in. Since #grid's own left padding now carries the
+   binder's inset, a plain right:100% here lands exactly on the binder's edge — same
+   place the felt spine's edge always was — with no extra offset math needed. */
+.grid::before {
+  content: ""; position: absolute; right: 100%; top: 0; bottom: 0; width: 100vw;
+  background-color: #050607;
+  /* same tint + the same diagonal sheen the main sheet gets — mirrored, since this
+     side of the fold catches the light from the opposite direction — blended the
+     same way (screen, over the tint) so the two halves read as one material */
+  background-image:
+    linear-gradient(245deg, transparent 16%, rgba(255,255,255,0.24) 42%, rgba(255,255,255,0.05) 56%, transparent 80%),
+    linear-gradient(245deg, transparent 55%, rgba(255,255,255,0.09) 78%, transparent 98%),
+    linear-gradient(0deg, rgba(0,0,0,0.18), transparent 30%),
+    linear-gradient(180deg, rgba(168,180,189,0.62), rgba(105,114,123,0.34) 55%, rgba(72,80,88,0.5));
+  background-blend-mode: screen, screen, screen, normal;
+  box-shadow: inset -10px 0 28px rgba(0,0,0,0.45), inset 10px 0 28px rgba(0,0,0,0.45), inset 0 12px 24px -10px rgba(255,255,255,0.05);
+}
+/* diagonal sheen sweeping across the whole sheet, as one piece of plastic */
+.grid::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 3;
+  background:
+    linear-gradient(115deg, transparent 16%, rgba(255,255,255,0.24) 42%, rgba(255,255,255,0.05) 56%, transparent 80%),
+    linear-gradient(115deg, transparent 55%, rgba(255,255,255,0.09) 78%, transparent 98%),
+    linear-gradient(0deg, rgba(0,0,0,0.18), transparent 30%);
+  mix-blend-mode: screen;
+}
+/* ultrasonically welded edge of the whole page — same dashed stitch as each pocket,
+   open on the left where the sheet is seamless with its own bleed/extension */
+.grid-stitch {
+  position: absolute; z-index: 4; pointer-events: none;
+  top: var(--binder-pad); bottom: var(--binder-pad); left: 0;
+  border-left: 1.5px dashed rgba(8,9,10,0.3);
+}
+@media (max-width: 900px)  { .grid { grid-template-columns: repeat(2, 1fr); } }
 
-.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 48px 16px; }
-@media (max-width: 900px)  { .grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 700px)  { .grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 420px)  { .grid { grid-template-columns: 1fr; } }
+/* ---------- card pocket: a single quilted cell in the sheet, plastic layered in front of the card ---------- */
+.card {
+  position: relative;
+  padding: 12px 8px 8px;
+  background: linear-gradient(165deg, rgba(168,180,189,0.62), rgba(105,114,123,0.34) 55%, rgba(72,80,88,0.5));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.32),
+    inset 0 -22px 28px -16px rgba(0,0,0,0.6),
+    inset 0 14px 20px -12px rgba(0,0,0,0.45),
+    inset 8px 0 16px -12px rgba(0,0,0,0.45),
+    inset -8px 0 16px -12px rgba(0,0,0,0.45);
+  transition: box-shadow 0.3s, z-index 0s;
+}
+.card:hover { z-index: 5; }
+/* the card slides/fades into its (already-visible) pocket on load — the sleeve itself never animates */
+@keyframes cardIn { from { opacity: 0; translate: 0 -14px; } to { opacity: 1; translate: 0 0; } }
 
-.card { background: #f7f7f7; border-radius: 2px; overflow: hidden; cursor: pointer; opacity: 0; animation: cardIn 0.4s ease forwards; }
-@keyframes cardIn { to { opacity: 1; } }
-.card-img { width: 100%; aspect-ratio: 4/3; overflow: hidden; background: #f7f7f7; position: relative; }
-.card-img { transition: background-color 0.6s ease; }
+/* ultrasonically welded stitch outline around each pocket — open at the top, since that's
+   where a card would actually slide in and out of the sleeve */
+.card::before {
+  content: ""; position: absolute; inset: 3px; z-index: 0; pointer-events: none; border-radius: 0 0 4px 4px;
+  border-left: 1.5px dashed rgba(8,9,10,0.55);
+  border-right: 1.5px dashed rgba(8,9,10,0.55);
+  border-bottom: 1.5px dashed rgba(8,9,10,0.55);
+}
+/* the stitch always sits exactly one layer below the card, at rest or hovered */
+.card:hover::before { z-index: 3; }
+
+/* the pocket's own front plastic layer — sits over the card at rest, catching light across the whole cell */
+.pocket-glare {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none; border-radius: 4px;
+  background:
+    radial-gradient(130% 90% at 50% -10%, rgba(255,255,255,0.4), transparent 55%),
+    linear-gradient(122deg, transparent 14%, rgba(255,255,255,0.32) 38%, rgba(255,255,255,0.08) 50%, transparent 66%),
+    linear-gradient(165deg, rgba(210,220,226,0.22) 0%, transparent 40% 65%, rgba(60,66,73,0.32) 100%);
+  mix-blend-mode: screen;
+  transition: opacity 0.3s;
+}
+
+/* ---------- trading card: the artwork fills the whole face — no mat, just the
+   card's own standard corner radius (~1/8" on a 2.5x3.5" card) and an overlaid
+   edge stroke for a bit of embossed depth ---------- */
+.tcard {
+  position: relative; z-index: 1; border-radius: 5%/3.6%; overflow: hidden;
+  background: #16130f;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.28);
+  transform: perspective(950px) scale(var(--s,1)) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+  transform-style: preserve-3d; transition: transform 0.35s cubic-bezier(.2,.7,.2,1), box-shadow 0.35s;
+  opacity: 0; will-change: transform;
+}
+/* the cards stay hidden (an empty binder) until the collection has actually loaded —
+   #grid only gets .intro added once, on a delay, from the boot script below */
+#grid.intro .tcard { animation: cardIn 0.5s ease forwards; }
+.tcard.tilt { transition: transform 0.08s linear, box-shadow 0.35s; }
+/* the card presses up through its plastic pocket and grows toward the viewer —
+   rising above both the pocket's front plastic layer and its stitched seam */
+.card:hover .tcard {
+  --s: 1.15;
+  z-index: 4;
+  box-shadow: 0 45px 80px -15px rgba(0,0,0,0.7), 0 16px 32px -6px rgba(0,0,0,0.5);
+}
+
+/* grading + current value, side by side below the card — revealed only on hover,
+   since the cards aren't clickable and this is the only place either shows */
+.tc-caption {
+  position: absolute; left: 50%; top: 100%; z-index: 6; pointer-events: none;
+  display: flex; gap: 5px; justify-content: center;
+  transform: translate(-50%, 8px);
+  opacity: 0; transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.card:hover .tc-caption { opacity: 1; transform: translate(-50%, 42px); }
+.tc-grade, .tc-price {
+  font-weight: 800; font-size: 12px; letter-spacing: 0.01em; color: #fff; white-space: nowrap;
+  background: linear-gradient(180deg, #322f2c, #080706);
+  padding: 5px 12px; border-radius: 20px;
+  box-shadow:
+    0 10px 20px rgba(0,0,0,0.4),
+    0 2px 4px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.3),
+    inset 0 -2px 3px rgba(0,0,0,0.4),
+    inset 0 0 0 1px rgba(255,255,255,0.06);
+}
+
+/* image window (kept as .card-img for JS reveal logic) — the photo IS the card, so this
+   window is the entire tcard face, masked to the card's real corner radius */
+.card-img.tc-window {
+  position: relative; width: 100%; aspect-ratio: 2.5/3.5; overflow: hidden; border-radius: inherit;
+  background: #d8cdb2;
+  transition: background-color 0.6s ease;
+}
+/* subtle stroke of light/depth overlaid on the artwork itself, not a colored frame */
+.card-img.tc-window::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.5),
+    inset 0 12px 22px -16px rgba(255,255,255,0.6),
+    inset 0 -20px 26px -18px rgba(0,0,0,0.45);
+}
 .card-img.skeleton { animation: skeletonPulse 1.2s ease-in-out infinite; animation-delay: inherit; }
 .card-img img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0; transition: opacity 0.6s ease; }
 .card-img img.loaded { opacity: 1; }
-.card-img img.card-img-alt { position: absolute; inset: 0; opacity: 0; transition: opacity 0.3s; }
-.card:hover .card-img:not(.skeleton) img.card-img-alt { opacity: 1; }
-@keyframes skeletonPulse { 0%, 100% { background-color: #f7f7f7; } 50% { background-color: #e8e8e8; } }
-.card-info   { padding: 20px 24px 52px 24px; opacity: 0; transition: opacity 0.6s ease; }
-.card.loaded .card-info { opacity: 1; }
-.card-team   { margin-bottom: 5px; }
-#grid > div > div.card-info > div.card-title  { margin-top: 9px; margin-bottom: 9px; font-weight: 600; line-height: 1.2; font-size: 13px; }
-.card-player { margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-#grid > div > div.card-info > div { font-size: 10px; font-weight: 400; line-height: 1; color: #0d0d0d; transition: color 0.2s; }
-#grid > div > div.card-info > div:last-child { margin-bottom: 0; }
+@keyframes skeletonPulse { 0%, 100% { background-color: #d8cdb2; } 50% { background-color: #c7bb9c; } }
 
-.empty { grid-column: 1/-1; min-height: 60vh; display: flex; align-items: center; justify-content: center; }
-.empty-hed { font-size: 15px; color: var(--lgrey); }
+/* holographic foil sweep */
+.tc-foil {
+  position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 4;
+  background:
+    linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.55) 46%, rgba(255,255,255,0.15) 52%, transparent 66%),
+    repeating-linear-gradient(115deg, rgba(255,0,90,0.10) 0 12px, rgba(255,196,0,0.10) 12px 24px, rgba(0,224,150,0.10) 24px 36px, rgba(0,150,255,0.10) 36px 48px, rgba(170,60,255,0.10) 48px 60px);
+  background-size: 220% 220%, 220% 220%;
+  background-position: var(--mx,50%) var(--my,50%), var(--mx,50%) var(--my,50%);
+  mix-blend-mode: color-dodge; opacity: 0; transition: opacity 0.35s;
+}
+.card:hover .tc-foil { opacity: 0.6; }
 
-.detail-wrap { display: flex; align-items: flex-start; gap: 48px; }
-.detail-imgs { width: 62%; flex-shrink: 0; position: sticky; top: 0; height: calc(100vh - 48px); margin-top: calc(-1 * var(--top)); padding-top: var(--top); overflow-y: auto; }
-.detail-imgs img { width: 100%; display: block; background: #ededed; border-radius: 4px; }
-.detail-imgs img + img { margin-top: 12px; }
-.detail-imgs::-webkit-scrollbar { display: none; }
-.detail-panel { width: 38%; min-height: calc(100vh - var(--top)); padding: 32px 0 48px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+.empty { grid-column: 1/-1; min-height: 40vh; display: flex; align-items: center; justify-content: center; }
+.empty-hed { font-style: italic; font-size: 16px; color: var(--paper-dim); }
 
-.dp-team, .dp-player, .dp-meta, .dp-extra { margin-bottom: 1px; }
-.dp-title  { line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 1px; }
-#detail-panel > div.dp-team, #detail-panel > div.dp-title, #detail-panel > div.dp-player, #detail-panel > div.dp-meta, #detail-panel > div.dp-extra { font-size: 11px; font-weight: 400; color: var(--black); }
-#detail-panel > div:last-child { margin-bottom: 0; }
-.dp-contact { margin-top: 16px; font-size: 11px; color: #999999; }
-.dp-contact a { color: inherit; text-decoration: underline; }
-.dp-rule { border: none; border-top: 1px solid #0000001a; margin: 0; }
-.gallery-contact { text-align: center; margin-top: 64px; margin-bottom: 12px; }
-
-@media (max-width: 768px) {
-  .detail-wrap { flex-direction: column; }
-  .detail-imgs { width: 100%; position: static; height: auto; margin-top: 0; padding-top: 0; }
-  .detail-panel { width: 100%; min-height: auto; padding: 24px 0 40px; }
+@media (max-width: 600px) {
+  #view-gallery { padding-left: 12px; padding-right: 12px; }
+  .grid { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tcard { opacity: 1; animation: none; transition: none; }
 }
 </style>
 </head>
-<body>
+<body class="loading">
 
-<header>
-  <div class="hdr-top">
-    <div class="hdr-left">
-      <img class="logo" id="logo" src="images/Frame 1.png" alt="Canucks Jerseys">
-      <button class="hdr-back" id="btn-back"><span class="hdr-back-chevron">‹</span> Back</button>
-    </div>
-    <select id="sort-select" class="hdr-sort">
-      <option value="default" selected>Default</option>
-      <option value="newest">Newest first</option>
-      <option value="oldest">Oldest first</option>
-      <option value="player">Player (A → Z)</option>
-    </select>
+<div id="loading-scrim">
+  <div class="ld-modal">
+    <div class="ld-spinner"></div>
+    <div class="ld-text">Collection loading...</div>
   </div>
-</header>
+</div>
 
-<main class="view on" id="view-gallery">
-  <div class="grid" id="grid"></div>
-  <div class="dp-contact gallery-contact">Interested in a jersey?<br><a href="mailto:brandondavelal@gmail.com">Contact</a> to inquire.</div>
-</main>
-
-<main class="view" id="view-detail">
-  <div class="detail-wrap">
-    <div class="detail-imgs" id="detail-imgs"></div>
-    <div class="detail-panel" id="detail-panel"></div>
+<main id="view-gallery">
+  <div class="binder">
+    <div class="grid-stitch"></div>
+    <div class="grid" id="grid"></div>
   </div>
 </main>
 
@@ -125,150 +303,115 @@ var ph = function(c) { return 'data:image/svg+xml,' + encodeURIComponent('<svg x
 var fillColors = ['#edebe7', '#d6cfc7', '#c9ddd4', '#e8d6c3'];
 var fillImgs = fillColors.map(ph);
 
-var _stored = (function() { try { var r = localStorage.getItem('coll_v8'); return r ? JSON.parse(r) : []; } catch(e) { return []; } })();
-var S = { products: _stored, view: 'gallery', sort: 'default' };
+var S = { products: typeof GALLERY_DATA !== 'undefined' ? GALLERY_DATA : [] };
+
+// cards are staggered left-to-right / top-to-bottom by CARD_INTRO_STEP each, once
+// the .intro class is added to #grid (see boot sequence below).
+var CARD_INTRO_STEP = 80;
 
 function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
-function latestYear(p) {
-  var years = String(p.year || '').match(/\d{4}/g);
-  if (!years) return null;
-  return Math.max.apply(null, years.map(Number));
-}
-
-function firstYear(p) {
-  var years = String(p.year || '').match(/\d{4}/g);
-  if (!years) return null;
-  return Math.min.apply(null, years.map(Number));
-}
-
-function playerName(p) {
-  var parts = String(p.player || '').trim().split(/\s+/).filter(Boolean);
-  if (!parts.length) return { first: '', last: '' };
-  var last = parts[parts.length - 1];
-  var first = parts.slice(0, -1).join(' ');
-  return { first: first, last: last };
-}
-
-function show(name) {
-  S.view = name;
-  document.querySelectorAll('.view').forEach(function(v) { v.classList.remove('on'); });
-  document.getElementById('view-' + name).classList.add('on');
-  var og = name === 'gallery';
-  document.querySelector('.hdr-left').classList.toggle('detail', !og);
-  window.scrollTo(0,0);
-}
+function money(cents) { return '$' + (Number(cents||0) / 100).toFixed(2); }
 
 function renderGallery() {
   var g = document.getElementById('grid');
   var list = S.products.filter(function(p) { return p.status !== 'Draft'; });
-  if (S.sort === 'newest' || S.sort === 'oldest') {
-    list = list.slice().sort(function(a, b) {
-      var ya = firstYear(a), yb = firstYear(b);
-      if (ya === null && yb === null) return 0;
-      if (ya === null) return 1;
-      if (yb === null) return -1;
-      return S.sort === 'newest' ? yb - ya : ya - yb;
-    });
-  } else if (S.sort === 'player') {
-    list = list.slice().sort(function(a, b) {
-      var na = playerName(a), nb = playerName(b);
-      if (!na.last && !nb.last) return 0;
-      if (!na.last) return 1;
-      if (!nb.last) return -1;
-      var c = na.last.localeCompare(nb.last);
-      if (c !== 0) return c;
-      c = na.first.localeCompare(nb.first);
-      if (c !== 0) return c;
-      var ya = latestYear(a), yb = latestYear(b);
-      if (ya === null && yb === null) return 0;
-      if (ya === null) return 1;
-      if (yb === null) return -1;
-      return ya - yb;
-    });
-  }
-  if (!list.length) { g.innerHTML = '<div class="empty"><div class="empty-hed">Nothing here yet.</div></div>'; return; }
+  list.sort(function(a, b) { return (b.priceCents||0) - (a.priceCents||0); });
+  if (!list.length) { g.innerHTML = '<div class="empty"><div class="empty-hed">This page of the binder is empty.</div></div>'; return; }
   g.innerHTML = list.map(function(p, i) {
     var img = (p.images && p.images.length) ? p.images[0] : fillImgs[0];
-    var img2 = (p.images && p.images.length > 1) ? p.images[1] : null;
-    var sub  = [p.manufacturer, p.year].filter(Boolean).join(' · ');
-    return '<div class="card" data-id="' + esc(p.id) + '" tabindex="0" role="button" style="animation-delay:' + (i * 40) + 'ms">' +
-      '<div class="card-img skeleton"><img src="' + img + '" alt="' + esc(p.player) + '" loading="lazy">' +
-      (img2 ? '<img class="card-img-alt" src="' + img2 + '" alt="' + esc(p.player) + '" loading="lazy">' : '') +
-      '</div><div class="card-info">' +
-      (p.team   ? '<div class="card-team">'   + esc(p.team)        + '</div>' : '') +
-      '<div class="card-title">' + esc(p.title||'—') + '</div>' +
-      (p.player ? '<div class="card-player">' + esc(p.player)      + '</div>' : '') +
-      (sub      ? '<div class="card-sub">'    + esc(sub)           + '</div>' : '') +
-      '</div></div>';
+    var gradeLine = p.graded ? [p.gradingCompany, p.grade].filter(Boolean).join(' ') : 'Ungraded';
+    return '<div class="card" data-id="' + esc(p.id) + '">' +
+      '<div class="tcard" style="animation-delay:' + (i * CARD_INTRO_STEP) + 'ms">' +
+        '<div class="card-img skeleton tc-window">' +
+          '<img src="' + img + '" alt="' + esc(p.name) + '">' +
+        '</div>' +
+        '<div class="tc-foil"></div>' +
+      '</div>' +
+      '<div class="pocket-glare"></div>' +
+      '<div class="tc-caption">' +
+        '<span class="tc-grade">' + esc(gradeLine) + '</span>' +
+        '<span class="tc-price">' + esc(money(p.priceCents)) + '</span>' +
+      '</div>' +
+    '</div>';
   }).join('');
-  g.querySelectorAll('.card').forEach(function(c) {
-    c.addEventListener('click', function() { openDetail(c.dataset.id); });
-    c.addEventListener('keydown', function(e) { if (e.key==='Enter'||e.key===' ') { e.preventDefault(); openDetail(c.dataset.id); } });
+  g.querySelectorAll('.card').forEach(function(card) {
+    var img = card.querySelector('.card-img img');
+    var reveal = function() {
+      if (img) img.classList.add('loaded');
+      card.querySelector('.card-img').classList.remove('skeleton');
+      card.classList.add('loaded');
+    };
+    if (!img || img.complete) reveal();
+    else { img.addEventListener('load', reveal); img.addEventListener('error', reveal); }
   });
-  var imgs = g.querySelectorAll('.card-img img');
-  var remaining = imgs.length;
-  var minDelay = 1000;
-  var startTime = Date.now();
-  var revealAll = function() {
-    var wait = Math.max(0, minDelay - (Date.now() - startTime));
-    setTimeout(function() {
-      imgs.forEach(function(img) {
-        img.classList.add('loaded');
-        img.parentElement.classList.remove('skeleton');
-        img.closest('.card').classList.add('loaded');
-      });
-    }, wait);
-  };
-  if (!remaining) revealAll();
-  imgs.forEach(function(img) {
-    var onDone = function() { if (--remaining <= 0) revealAll(); };
-    if (img.complete) onDone(); else { img.addEventListener('load', onDone); img.addEventListener('error', onDone); }
+  attachTilt(g);
+}
+
+// Pointer-tracked holographic tilt — the card stays in its pocket but still
+// catches the light like real foil as the cursor moves across it.
+function attachTilt(scope) {
+  if (!window.matchMedia || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  scope.querySelectorAll('.tcard').forEach(function(tc) {
+    tc.addEventListener('pointermove', function(e) {
+      var r = tc.getBoundingClientRect();
+      var px = (e.clientX - r.left) / r.width;
+      var py = (e.clientY - r.top) / r.height;
+      tc.style.setProperty('--ry', ((px - 0.5) * 12).toFixed(2) + 'deg');
+      tc.style.setProperty('--rx', ((0.5 - py) * 12).toFixed(2) + 'deg');
+      tc.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
+      tc.style.setProperty('--my', (py * 100).toFixed(1) + '%');
+      tc.classList.add('tilt');
+    });
+    tc.addEventListener('pointerleave', function() {
+      tc.classList.remove('tilt');
+      tc.style.setProperty('--rx', '0deg');
+      tc.style.setProperty('--ry', '0deg');
+      tc.style.setProperty('--mx', '50%');
+      tc.style.setProperty('--my', '50%');
+    });
   });
 }
 
-function openDetail(id, skipPush) {
-  var p = S.products.filter(function(x) { return x.id === id; })[0];
-  if (!p) return;
-  if (!skipPush) history.pushState({ id: id }, '', '#' + encodeURIComponent(id));
-  var imgs = (p.images && p.images.length) ? p.images : fillImgs;
-  document.getElementById('detail-imgs').innerHTML = imgs.map(function(src) { return '<img src="' + src + '" alt="' + esc(p.player) + '">'; }).join('');
-  var patches = [p.patch1, p.patch2, p.patch3].filter(Boolean);
-  var numDesig = [p.number ? '#' + p.number : '', p.designation && p.designation !== 'Blank' ? p.designation : ''].filter(Boolean).join(' · ');
-  var extras = [];
-  if (p.size)         extras.push(['Size', p.size]);
-  var mfr = [p.manufacturer, p.model, p.jerseyType].filter(Boolean).join(' · ');
-  var playerLine = [p.player||'', numDesig].filter(Boolean).join(' · ');
-  document.getElementById('detail-panel').innerHTML =
-    (p.team   ? '<div class="dp-team">'   + esc(p.team)     + '</div>' : '') +
-    (p.title  ? '<div class="dp-title">'  + esc(p.title)    + '</div>' : '') +
-    (playerLine ? '<div class="dp-player">' + esc(playerLine) + '</div>' : '') +
-    (p.year   ? '<div class="dp-meta">'   + esc(p.year)      + '</div>' : '') +
-    (patches.length ? '<div class="dp-extra">Patches: ' + esc(patches.join(' · ')) + '</div>' : '') +
-    (mfr  ? '<div class="dp-meta">'   + esc(mfr)     + '</div>' : '') +
-    extras.map(function(x) { return '<div class="dp-extra">' + esc(x[0]) + ': ' + esc(x[1]) + '</div>'; }).join('') +
-    (p.country ? '<div class="dp-extra">' + esc(p.country) + '</div>' : '') +
-    '<div class="dp-contact"><hr class="dp-rule"><br>Interested in this jersey?<br><a href="mailto:brandondavelal@gmail.com">Contact</a> to inquire.</div>';
-  show('detail');
+// Preload every card image up front so nothing lazy-pops once the binder is visible.
+function preloadAllImages() {
+  var urls = [];
+  S.products.forEach(function(p) { (p.images || []).forEach(function(src) { urls.push(src); }); });
+  urls = urls.filter(function(u, i) { return urls.indexOf(u) === i; });
+  return new Promise(function(resolve) {
+    if (!urls.length) return resolve();
+    var remaining = urls.length;
+    urls.forEach(function(src) {
+      var img = new Image();
+      var settle = function() { if (--remaining <= 0) resolve(); };
+      img.onload = settle; img.onerror = settle;
+      img.src = src;
+    });
+  });
 }
 
-document.getElementById('sort-select').addEventListener('change', function(e) { S.sort = e.target.value; renderGallery(); });
-
-document.getElementById('btn-back').addEventListener('click', function() { history.pushState({}, '', location.pathname + location.search); show('gallery'); renderGallery(); });
-document.getElementById('logo').addEventListener('click', function() { if (S.view !== 'gallery') { history.pushState({}, '', location.pathname + location.search); show('gallery'); renderGallery(); } });
-document.addEventListener('keydown', function(e) { if (e.key==='Escape' && S.view==='detail') { history.pushState({}, '', location.pathname + location.search); show('gallery'); renderGallery(); } });
-window.addEventListener('popstate', function() { route(); });
-
-function route() {
-  var id = decodeURIComponent(location.hash.slice(1));
-  if (id && S.products.some(function(p) { return p.id === id && p.status !== 'Draft'; })) {
-    openDetail(id, true);
-  } else {
-    show('gallery'); renderGallery();
-  }
+function hideLoadingScrim() {
+  var el = document.getElementById('loading-scrim');
+  document.body.classList.remove('loading');
+  if (!el) return;
+  el.classList.add('hidden');
+  setTimeout(function() { el.remove(); }, 600);
 }
 
-renderGallery(); route();
+// how long to wait, after the collection has actually finished loading, before the
+// cards animate into their (already-visible, empty) pockets.
+var CARD_INTRO_WAIT = 1000;
+
+// the binder itself — felt, plastic, pockets — renders immediately; only the card
+// artwork stays hidden until it's loaded.
+renderGallery();
+
+preloadAllImages().then(function() {
+  hideLoadingScrim();
+  setTimeout(function() {
+    document.getElementById('grid').classList.add('intro');
+  }, CARD_INTRO_WAIT);
+});
 </script>
 </body>
 </html>
