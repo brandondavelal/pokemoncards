@@ -10,6 +10,14 @@
     <string>/Users/brandon/Desktop/pokemon-gallery-cms/scripts/run-scrape.sh</string>
   </array>
 
+  <!-- AUTO_PUSH=1: each run commits + pushes data.js/images to the pokemoncards
+       repo (via the dedicated SSH key/config set up for this) if they changed. -->
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>AUTO_PUSH</key>
+    <string>1</string>
+  </dict>
+
   <!-- runs once as soon as it's loaded, then every 6 hours after that while
        you're logged in (LaunchAgents don't run when logged out / machine off,
        so this is "as fresh as your Mac being awake and logged in", not truly
