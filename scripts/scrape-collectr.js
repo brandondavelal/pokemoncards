@@ -118,11 +118,7 @@ async function scrape() {
     return {
       id: p.product_id,
       name: (p.product_name || "").replace(/\s+/g, " ").trim(),
-      number: p.card_number || "",
-      set: (p.catalog_group || "").trim(),
       priceCents: Math.round(parseFloat(p.market_price || 0) * 100),
-      wear: p.card_condition || "",
-      rarity: p.rarity || "",
       graded,
       grade: graded ? gradeInfo.grade_value : "",
       gradingCompany: graded ? gradeInfo.company_symbol : (p.grade_company || ""),
