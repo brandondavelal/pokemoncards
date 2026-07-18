@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pokemon Card Collection</title>
+<title>The Binder — Pokemon Card Collection</title>
 <link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,56 +44,29 @@ body::before {
 
 #view-gallery { min-height: 100vh; position: relative; z-index: 1; padding: 40px; }
 
-/* ---------- full-screen preloader: fetches every card image before the binder is shown ---------- */
-#preloader {
+/* ---------- loading scrim: the binder is visible and empty underneath, dimmed with
+   a vignette, with a small modal (spinner + text) while images preload ---------- */
+body.loading { overflow-y: hidden; }
+#loading-scrim {
   position: fixed; inset: 0; z-index: 2000;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px;
-  background: radial-gradient(120% 90% at 50% -10%, var(--desk1) 0%, #0c0c0c 45%, var(--desk2) 100%);
-  transition: opacity 0.6s ease, visibility 0.6s ease;
+  display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 55%, rgba(0,0,0,0.82) 100%);
+  transition: opacity 0.5s ease, visibility 0.5s ease;
 }
-#preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-
-/* a foil pack, torn open at the top, with cards continuously bursting out of the tear
-   and fading as they fly — loops until the real assets are ready */
-.pl-pack {
-  position: relative; width: 92px; height: 122px; margin-top: 40px;
-  border-radius: 8px 8px 5px 5px;
-  background: linear-gradient(160deg, #3a3a3a 0%, #201f1d 55%, #0c0b0a 100%);
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1), inset 0 -14px 20px -14px rgba(0,0,0,0.6), 0 25px 50px -12px rgba(0,0,0,0.65);
+#loading-scrim.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.ld-modal {
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  background: rgba(0,0,0,0.55); padding: 26px 34px; border-radius: 14px;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08);
 }
-/* jagged torn edge cut into the top of the pack */
-.pl-pack::before {
-  content: ""; position: absolute; top: -1px; left: 0; right: 0; height: 16px;
-  background: inherit;
-  clip-path: polygon(0% 100%,6% 35%,13% 78%,20% 20%,28% 68%,36% 10%,44% 60%,52% 5%,60% 55%,
-                      68% 15%,76% 65%,84% 22%,92% 72%,100% 30%,100% 100%);
-  filter: brightness(1.25);
+.ld-spinner {
+  width: 26px; height: 26px; border-radius: 50%;
+  border: 3px solid rgba(255,255,255,0.2); border-top-color: var(--g2);
+  animation: ldSpin 0.8s linear infinite;
 }
-.pl-cards { position: absolute; inset: 0; overflow: visible; pointer-events: none; }
-.pl-flycard {
-  position: absolute; left: 50%; top: 4px; width: 26px; height: 36px; margin-left: -13px;
-  border-radius: 3px;
-  background: linear-gradient(150deg, var(--g1) 0%, var(--g2) 42%, var(--g3) 72%, var(--g4) 100%);
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.45), 0 6px 14px rgba(0,0,0,0.35);
-  opacity: 0;
-  animation-name: flyOut; animation-timing-function: cubic-bezier(.19,.8,.35,1); animation-iteration-count: infinite;
-}
-@keyframes flyOut {
-  0%   { transform: translate(0, 0) rotate(var(--r0)); opacity: 0; }
-  10%  { opacity: 1; }
-  70%  { opacity: 0.85; }
-  100% { transform: translate(var(--tx), -175px) rotate(var(--r1)); opacity: 0; }
-}
-.pl-flycard:nth-child(1) { --r0: -6deg;  --r1: -36deg; --tx: -68px;  animation-duration: 2.1s; animation-delay: 0s; }
-.pl-flycard:nth-child(2) { --r0: 5deg;   --r1: 26deg;  --tx: 52px;   animation-duration: 2.4s; animation-delay: 0.4s; }
-.pl-flycard:nth-child(3) { --r0: -2deg;  --r1: -14deg; --tx: -14px;  animation-duration: 1.9s; animation-delay: 0.8s; }
-.pl-flycard:nth-child(4) { --r0: 9deg;   --r1: 42deg;  --tx: 92px;   animation-duration: 2.3s; animation-delay: 1.2s; }
-.pl-flycard:nth-child(5) { --r0: -11deg; --r1: -48deg; --tx: -104px; animation-duration: 2.0s; animation-delay: 1.6s; }
-.pl-flycard:nth-child(6) { --r0: 2deg;   --r1: 9deg;   --tx: 10px;   animation-duration: 2.2s; animation-delay: 2.0s; }
-.pl-text { font-style: italic; font-size: 14px; color: var(--paper-dim); letter-spacing: 0.02em; }
-@media (prefers-reduced-motion: reduce) {
-  .pl-flycard { animation: none; opacity: 0.9; }
-}
+@keyframes ldSpin { to { transform: rotate(360deg); } }
+.ld-text { font-size: 13px; color: var(--paper-dim); letter-spacing: 0.02em; }
+@media (prefers-reduced-motion: reduce) { .ld-spinner { animation-duration: 2.4s; } }
 
 /* ---------- binder: felt album cover, lit like a product photo on the desk ---------- */
 .binder {
@@ -229,8 +202,11 @@ body::before {
   box-shadow: 0 4px 10px rgba(0,0,0,0.28);
   transform: perspective(950px) scale(var(--s,1)) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
   transform-style: preserve-3d; transition: transform 0.35s cubic-bezier(.2,.7,.2,1), box-shadow 0.35s;
-  opacity: 0; animation: cardIn 0.5s ease forwards; will-change: transform;
+  opacity: 0; will-change: transform;
 }
+/* the cards stay hidden (an empty binder) until the collection has actually loaded —
+   #grid only gets .intro added once, on a delay, from the boot script below */
+#grid.intro .tcard { animation: cardIn 0.5s ease forwards; }
 .tcard.tilt { transition: transform 0.08s linear, box-shadow 0.35s; }
 /* the card presses up through its plastic pocket and grows toward the viewer —
    rising above both the pocket's front plastic layer and its stitched seam */
@@ -306,11 +282,13 @@ body::before {
 }
 </style>
 </head>
-<body>
+<body class="loading">
 
-<div id="preloader">
-  <div class="pl-card"></div>
-  <div class="pl-text">Loading collection...</div>
+<div id="loading-scrim">
+  <div class="ld-modal">
+    <div class="ld-spinner"></div>
+    <div class="ld-text">Collection loading...</div>
+  </div>
 </div>
 
 <main id="view-gallery">
@@ -327,9 +305,8 @@ var fillImgs = fillColors.map(ph);
 
 var S = { products: typeof GALLERY_DATA !== 'undefined' ? GALLERY_DATA : [] };
 
-// cards wait this long (from the moment the binder is rendered) before sliding into
-// their pockets, staggered left-to-right / top-to-bottom by CARD_INTRO_STEP each.
-var CARD_INTRO_DELAY = 1000;
+// cards are staggered left-to-right / top-to-bottom by CARD_INTRO_STEP each, once
+// the .intro class is added to #grid (see boot sequence below).
 var CARD_INTRO_STEP = 80;
 
 function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
@@ -338,9 +315,6 @@ function money(cents) { return '$' + (Number(cents||0) / 100).toFixed(2); }
 
 function renderGallery() {
   var g = document.getElementById('grid');
-  // the 2s hold-before-intro only happens once, the first time the binder appears.
-  var introBase = S.renderedOnce ? 0 : CARD_INTRO_DELAY;
-  S.renderedOnce = true;
   var list = S.products.filter(function(p) { return p.status !== 'Draft'; });
   list.sort(function(a, b) { return (b.priceCents||0) - (a.priceCents||0); });
   if (!list.length) { g.innerHTML = '<div class="empty"><div class="empty-hed">This page of the binder is empty.</div></div>'; return; }
@@ -348,7 +322,7 @@ function renderGallery() {
     var img = (p.images && p.images.length) ? p.images[0] : fillImgs[0];
     var gradeLine = p.graded ? [p.gradingCompany, p.grade].filter(Boolean).join(' ') : 'Ungraded';
     return '<div class="card" data-id="' + esc(p.id) + '">' +
-      '<div class="tcard" style="animation-delay:' + (introBase + i * CARD_INTRO_STEP) + 'ms">' +
+      '<div class="tcard" style="animation-delay:' + (i * CARD_INTRO_STEP) + 'ms">' +
         '<div class="card-img skeleton tc-window">' +
           '<img src="' + img + '" alt="' + esc(p.name) + '">' +
         '</div>' +
@@ -416,23 +390,27 @@ function preloadAllImages() {
   });
 }
 
-function hidePreloader() {
-  var el = document.getElementById('preloader');
+function hideLoadingScrim() {
+  var el = document.getElementById('loading-scrim');
+  document.body.classList.remove('loading');
   if (!el) return;
   el.classList.add('hidden');
-  setTimeout(function() { el.remove(); }, 700);
+  setTimeout(function() { el.remove(); }, 600);
 }
 
-// DEBUG: forcing the preloader to stay up for 10s so it can be inspected visually.
-// Remove this Promise.all/setTimeout wrapper (just await preloadAllImages() directly)
-// once you're done looking at it.
-var DEBUG_MIN_PRELOADER_MS = 5000;
-Promise.all([
-  preloadAllImages(),
-  new Promise(function(resolve) { setTimeout(resolve, DEBUG_MIN_PRELOADER_MS); })
-]).then(function() {
-  renderGallery();
-  hidePreloader();
+// how long to wait, after the collection has actually finished loading, before the
+// cards animate into their (already-visible, empty) pockets.
+var CARD_INTRO_WAIT = 1000;
+
+// the binder itself — felt, plastic, pockets — renders immediately; only the card
+// artwork stays hidden until it's loaded.
+renderGallery();
+
+preloadAllImages().then(function() {
+  hideLoadingScrim();
+  setTimeout(function() {
+    document.getElementById('grid').classList.add('intro');
+  }, CARD_INTRO_WAIT);
 });
 </script>
 </body>
