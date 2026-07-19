@@ -18,9 +18,14 @@
   --paper-dim: #a9a297;
   /* card foil gold */
   --g1: #fbe6a0; --g2: #e8c25a; --g3: #c99a2e; --g4: #a97c20;
+  /* --binder-pad: horizontal margin (right side of the cover + #grid's left inset).
+     --binder-pad-v: vertical margin (top/bottom of the cover). Same value normally —
+     split into two only so the single-column mobile view can shrink the top/bottom
+     margin without also narrowing the cover's visible width on the right. */
   --binder-pad: 44px;
+  --binder-pad-v: 44px;
 }
-@media (max-width: 600px) { :root { --binder-pad: 24px; } }
+@media (max-width: 600px) { :root { --binder-pad: 24px; --binder-pad-v: 16px; } }
 
 html { height: 100%; }
 body { min-height: 100%; overflow-x: clip; }
@@ -69,7 +74,7 @@ body.loading { overflow-y: hidden; }
   max-width: 1230px; margin: 0 auto;
   /* no left padding here — #grid owns that inset itself (below), so its bleed's plain
      right:100% lands exactly on this edge with no extra offset math needed */
-  padding: var(--binder-pad) var(--binder-pad) var(--binder-pad) 0;
+  padding: var(--binder-pad-v) var(--binder-pad) var(--binder-pad-v) 0;
   border-radius: 0 18px 18px 0;
   background: radial-gradient(140% 100% at 50% 0%, #322f2b 0%, #201e1b 55%, #131211 100%);
   /* the top-right-lit edge stroke itself lives on the .binder-edge sibling below
@@ -164,9 +169,9 @@ body.loading { overflow-y: hidden; }
   box-shadow: inset -10px 0 28px rgba(0,0,0,0.45), inset 10px 0 28px rgba(0,0,0,0.45), inset 0 12px 24px -10px rgba(255,255,255,0.05), 2px 3px 6px rgba(0,0,0,0.35);
   opacity: 0.65;
 }
-.grid-page-1 { top: calc(var(--binder-pad) - 2px); bottom: calc(var(--binder-pad) - 2px); right: calc(var(--binder-pad) - 6px); }
-.grid-page-2 { top: calc(var(--binder-pad) - 4px); bottom: calc(var(--binder-pad) - 4px); right: calc(var(--binder-pad) - 12px); }
-.grid-page-3 { top: calc(var(--binder-pad) - 6px); bottom: calc(var(--binder-pad) - 6px); right: calc(var(--binder-pad) - 18px); }
+.grid-page-1 { top: calc(var(--binder-pad-v) - 2px); bottom: calc(var(--binder-pad-v) - 2px); right: calc(var(--binder-pad) - 6px); }
+.grid-page-2 { top: calc(var(--binder-pad-v) - 4px); bottom: calc(var(--binder-pad-v) - 4px); right: calc(var(--binder-pad) - 12px); }
+.grid-page-3 { top: calc(var(--binder-pad-v) - 6px); bottom: calc(var(--binder-pad-v) - 6px); right: calc(var(--binder-pad) - 18px); }
 /* mirrored counterpart of the stacked pages: same width:100vw bleed as .grid::before/
    .binder::after (reaching the actual browser edge, not stopping at a fixed width),
    fanned out via height alone — each layer taller (top+bottom) than the one in front
@@ -183,9 +188,9 @@ body.loading { overflow-y: hidden; }
   box-shadow: inset -10px 0 28px rgba(0,0,0,0.45), inset 10px 0 28px rgba(0,0,0,0.45), inset 0 12px 24px -10px rgba(255,255,255,0.05), 2px 3px 6px rgba(0,0,0,0.35);
   opacity: 0.65;
 }
-.grid-page-bleed-1 { top: calc(var(--binder-pad) - 2px); bottom: calc(var(--binder-pad) - 2px); }
-.grid-page-bleed-2 { top: calc(var(--binder-pad) - 4px); bottom: calc(var(--binder-pad) - 4px); }
-.grid-page-bleed-3 { top: calc(var(--binder-pad) - 6px); bottom: calc(var(--binder-pad) - 6px); }
+.grid-page-bleed-1 { top: calc(var(--binder-pad-v) - 2px); bottom: calc(var(--binder-pad-v) - 2px); }
+.grid-page-bleed-2 { top: calc(var(--binder-pad-v) - 4px); bottom: calc(var(--binder-pad-v) - 4px); }
+.grid-page-bleed-3 { top: calc(var(--binder-pad-v) - 6px); bottom: calc(var(--binder-pad-v) - 6px); }
 .grid-page-bleed::before {
   /* top-only highlight — same reasoning as .binder-edge-bleed: this element's right
      edge is the seam and must stay open, not draw a highlight line across the fold */
@@ -225,7 +230,7 @@ body.loading { overflow-y: hidden; }
    exactly over #grid's own box */
 .grid-edge {
   position: absolute; z-index: 3; pointer-events: none;
-  top: var(--binder-pad); bottom: var(--binder-pad); left: 0; right: var(--binder-pad);
+  top: var(--binder-pad-v); bottom: var(--binder-pad-v); left: 0; right: var(--binder-pad);
   border-radius: 0 6px 6px 0;
   mix-blend-mode: overlay;
   box-shadow: inset -1px 1px 0 0 rgba(255,255,255,0.55), inset 0 -1px 0 0 rgba(0,0,0,0.6);
@@ -237,7 +242,7 @@ body.loading { overflow-y: hidden; }
   /* top-only highlight — same reasoning as .binder-edge-bleed: this element's right
      edge is the seam and must stay open, not draw a highlight line across the fold */
   position: absolute; z-index: 3; pointer-events: none;
-  top: var(--binder-pad); bottom: var(--binder-pad); right: 100%; width: 100vw;
+  top: var(--binder-pad-v); bottom: var(--binder-pad-v); right: 100%; width: 100vw;
   mix-blend-mode: overlay;
   box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.55), inset 0 -1px 0 0 rgba(0,0,0,0.6);
 }
@@ -374,33 +379,27 @@ body.loading { overflow-y: hidden; }
 .card-img img.loaded { opacity: 1; }
 @keyframes skeletonPulse { 0%, 100% { background-color: #d8cdb2; } 50% { background-color: #c7bb9c; } }
 
-/* holographic shine + glare — same two-layer technique as the reference pokemon-card
-   effect (codepen.io/simeydotme/pen/abYWJdX): a rainbow "shine" layer blended with
-   color-dodge, whose background-position is the pointer position *dampened* into a
-   narrower range (so the rainbow drifts subtly rather than snapping to the cursor),
-   plus a separate white radial "glare" layer blended with overlay that tracks the
-   pointer position directly (the actual glossy highlight) */
-.tc-shine {
-  position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 4; overflow: hidden;
-  background-image: repeating-linear-gradient(110deg,
-    #ff2ec4 0%, #ffd42e 10%, #2eff8f 20%, #2ecfff 30%, #7d2eff 40%,
-    #ff2ec4 50%, #ffd42e 60%, #2eff8f 70%, #2ecfff 80%, #7d2eff 90%, #ff2ec4 100%);
-  background-size: 300% 300%;
-  background-position: var(--bgx,50%) var(--bgy,50%);
-  filter: brightness(0.85) contrast(2) saturate(0.7);
-  mix-blend-mode: color-dodge;
-  opacity: 0; transition: opacity 0.35s;
-}
-.card:hover .tc-shine { opacity: 0.75; }
-
+/* glare — the white radial "glossy reflection" layer from the reference pokemon-card
+   effect (codepen.io/simeydotme/pen/abYWJdX / github.com/simeydotme/pokemon-cards-css),
+   with its own cyan-white hotspot sub-layer. --mx/--my are the raw pointer position
+   (0-100%) set in attachTilt. The rainbow/holo "shine" layer from that same reference
+   was tried and then explicitly removed — this is glare-only. */
 .tc-glare {
   position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 5; overflow: hidden;
   background-image: radial-gradient(farthest-corner circle at var(--mx,50%) var(--my,50%),
     rgba(255,255,255,0.8) 10%, rgba(255,255,255,0.65) 20%, rgba(0,0,0,0.5) 90%);
+  filter: brightness(0.8) contrast(1.5);
   mix-blend-mode: overlay;
   opacity: 0; transition: opacity 0.35s;
 }
-.card:hover .tc-glare { opacity: 1; }
+.card:hover .tc-glare { opacity: 0.8; }
+.tc-glare::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background-image: radial-gradient(farthest-corner circle at var(--mx,50%) var(--my,50%),
+    hsl(180,100%,95%) 5%, hsla(0,0%,39%,0.25) 55%, hsla(0,0%,0%,0.36) 110%);
+  mix-blend-mode: overlay;
+  filter: brightness(0.6) contrast(3);
+}
 
 .empty { grid-column: 1/-1; min-height: 40vh; display: flex; align-items: center; justify-content: center; }
 .empty-hed { font-style: italic; font-size: 16px; color: var(--paper-dim); }
@@ -408,8 +407,10 @@ body.loading { overflow-y: hidden; }
 @media (max-width: 600px) {
   #view-gallery { padding-left: 12px; padding-right: 12px; }
   .grid { grid-template-columns: 1fr; }
-  /* single-column view only: shallower cover with tighter corners */
-  .binder { padding-top: 16px; padding-bottom: 16px; border-radius: 0 12px 12px 0; }
+  /* single-column view only: tighter corners (top/bottom padding is handled by the
+     --binder-pad override above, which everything else -- .grid-edge, .grid-page,
+     etc -- also reads, so they all stay aligned with #grid's own actual position) */
+  .binder { border-radius: 0 12px 12px 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   .tcard { opacity: 1; animation: none; transition: none; }
@@ -469,7 +470,6 @@ function renderGallery() {
         '<div class="card-img skeleton tc-window">' +
           '<img src="' + img + '" alt="' + esc(p.name) + '">' +
         '</div>' +
-        '<div class="tc-shine"></div>' +
         '<div class="tc-glare"></div>' +
       '</div>' +
       '<div class="pocket-glare"></div>' +
@@ -492,12 +492,6 @@ function renderGallery() {
   attachTilt(g);
 }
 
-// remap a value from one range to another (same helper the reference pen uses to
-// dampen the shine layer's background-position into a much narrower drift range)
-function adjust(value, fromMin, fromMax, toMin, toMax) {
-  return toMin + (toMax - toMin) * (value - fromMin) / (fromMax - fromMin);
-}
-
 // Pointer-tracked holographic tilt — the card stays in its pocket but still
 // catches the light like real foil as the cursor moves across it.
 function attachTilt(scope) {
@@ -511,8 +505,6 @@ function attachTilt(scope) {
       tc.style.setProperty('--rx', ((0.5 - py) * 12).toFixed(2) + 'deg');
       tc.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
       tc.style.setProperty('--my', (py * 100).toFixed(1) + '%');
-      tc.style.setProperty('--bgx', adjust(px * 100, 0, 100, 37, 63).toFixed(1) + '%');
-      tc.style.setProperty('--bgy', adjust(py * 100, 0, 100, 33, 67).toFixed(1) + '%');
       tc.classList.add('tilt');
     });
     tc.addEventListener('pointerleave', function() {
@@ -521,8 +513,6 @@ function attachTilt(scope) {
       tc.style.setProperty('--ry', '0deg');
       tc.style.setProperty('--mx', '50%');
       tc.style.setProperty('--my', '50%');
-      tc.style.setProperty('--bgx', '50%');
-      tc.style.setProperty('--bgy', '50%');
     });
   });
 }
