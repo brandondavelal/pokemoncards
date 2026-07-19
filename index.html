@@ -129,14 +129,18 @@ body.loading { overflow-y: hidden; }
    fanned stack peeking out rather than a single flat sheet. */
 .grid-page {
   position: absolute; left: 0; border-radius: 0 6px 6px 0; pointer-events: none; z-index: 1;
+  /* identical fill/shading/angles to the top sheet on every layer — each is just
+     65% opaque, so where they overlap each other (and the felt behind) the stacked
+     translucency compounds into something more opaque with every added sheet */
   background:
     linear-gradient(180deg, rgba(168,180,189,0.62), rgba(105,114,123,0.34) 55%, rgba(72,80,88,0.5)),
     #050607;
   box-shadow: inset -10px 0 28px rgba(0,0,0,0.45), inset 10px 0 28px rgba(0,0,0,0.45), inset 0 12px 24px -10px rgba(255,255,255,0.05);
+  opacity: 0.65;
 }
-.grid-page-1 { top: calc(var(--binder-pad) - 4px); bottom: calc(var(--binder-pad) - 4px); right: calc(var(--binder-pad) - 6px); opacity: 0.7; }
-.grid-page-2 { top: calc(var(--binder-pad) - 8px); bottom: calc(var(--binder-pad) - 8px); right: calc(var(--binder-pad) - 12px); opacity: 0.48; }
-.grid-page-3 { top: calc(var(--binder-pad) - 12px); bottom: calc(var(--binder-pad) - 12px); right: calc(var(--binder-pad) - 18px); opacity: 0.3; }
+.grid-page-1 { top: calc(var(--binder-pad) - 4px); bottom: calc(var(--binder-pad) - 4px); right: calc(var(--binder-pad) - 6px); }
+.grid-page-2 { top: calc(var(--binder-pad) - 8px); bottom: calc(var(--binder-pad) - 8px); right: calc(var(--binder-pad) - 12px); }
+.grid-page-3 { top: calc(var(--binder-pad) - 12px); bottom: calc(var(--binder-pad) - 12px); right: calc(var(--binder-pad) - 18px); }
 /* the plastic sheet itself keeps running left, past the spine, out to the viewport edge —
    same welded vinyl the pockets sit in. Since #grid's own left padding now carries the
    binder's inset, a plain right:100% here lands exactly on the binder's edge — same
