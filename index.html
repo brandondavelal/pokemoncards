@@ -95,6 +95,9 @@ body.modal-open { overflow-y: hidden; }
 }
 .options-close:hover, .options-close:focus-visible { color: var(--paper); }
 .opt-row { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; text-align: left; }
+.opt-row-split { flex-direction: row; align-items: flex-start; justify-content: space-between; gap: 24px; }
+.opt-col { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+.opt-col-right { align-items: flex-end; text-align: right; }
 .opt-label {
   font-family: var(--f); font-size: 11px; color: var(--paper-dim);
   text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.7;
@@ -112,6 +115,25 @@ body.modal-open { overflow-y: hidden; }
   background-repeat: no-repeat; background-position: right center; background-size: 14px;
   text-align: left;
 }
+.opt-row-toggle { flex-direction: row; align-items: center; justify-content: space-between; gap: 16px; }
+.opt-toggle { position: relative; display: inline-block; width: 38px; height: 22px; flex: none; cursor: pointer; }
+.opt-toggle input {
+  position: absolute; inset: 0; width: 100%; height: 100%; margin: 0;
+  opacity: 0; cursor: pointer;
+}
+.opt-toggle-track {
+  position: absolute; inset: 0; background: rgba(255,255,255,0.14); border-radius: 999px;
+  transition: background 0.2s ease;
+}
+.opt-toggle-thumb {
+  position: absolute; top: 2px; left: 2px; width: 18px; height: 18px; border-radius: 50%;
+  background: var(--paper-dim); transition: transform 0.2s ease, background 0.2s ease;
+}
+.opt-toggle input:checked ~ .opt-toggle-track { background: var(--g3); }
+.opt-toggle input:checked ~ .opt-toggle-track .opt-toggle-thumb { transform: translateX(16px); background: #1c1c1c; }
+.opt-toggle input:focus-visible ~ .opt-toggle-track { box-shadow: 0 0 0 2px rgba(255,255,255,0.3); }
+.opt-totals { display: flex; flex-direction: column; gap: 18px; }
+.opt-totals.hidden { display: none; }
 
 /* ---------- loading scrim: the binder is visible and empty underneath, dimmed with
    a vignette, with a small modal (spinner + text) while images preload ---------- */
@@ -424,7 +446,7 @@ body.loading { overflow-y: hidden; }
   transform: translate(-50%, 8px);
   opacity: 0; transition: opacity 0.25s ease, transform 0.25s ease;
 }
-.card:hover .tc-caption { opacity: 1; transform: translate(-50%, 42px); }
+body.show-grades .card:hover .tc-caption { opacity: 1; transform: translate(-50%, 42px); }
 .tc-grade, .tc-price {
   font-weight: 800; font-size: 12px; letter-spacing: 0.01em; color: #fff; white-space: nowrap;
   background: linear-gradient(180deg, #322f2c, #080706);
@@ -508,9 +530,15 @@ body.loading { overflow-y: hidden; }
 <div id="options-modal" class="options-overlay hidden">
   <div class="options-modal" role="dialog" aria-modal="true" aria-label="Options">
     <button type="button" id="options-close" class="options-close" aria-label="Close">&times;</button>
-    <div class="opt-row">
-      <span class="opt-label">Username</span>
-      <a class="toolbar-user" href="https://app.getcollectr.com/showcase/profile/@brandonlal" target="_blank" rel="noopener noreferrer">@brandonlal</a>
+    <div class="opt-row opt-row-split">
+      <div class="opt-col">
+        <span class="opt-label">Username</span>
+        <a class="toolbar-user" href="https://app.getcollectr.com/showcase/profile/@brandonlal" target="_blank" rel="noopener noreferrer">@brandonlal</a>
+      </div>
+      <div class="opt-col opt-col-right">
+        <span class="opt-label">Total Cards</span>
+        <span id="opt-total-cards" class="opt-value">0</span>
+      </div>
     </div>
     <div class="opt-row">
       <span class="opt-label">Sort</span>
@@ -520,15 +548,21 @@ body.loading { overflow-y: hidden; }
         <option value="name-asc">Name: A to Z</option>
         <option value="name-desc">Name: Z to A</option>
         <option value="set-asc">Set: Oldest to Newest</option>
+        <option value="set-desc">Set: Newest to Oldest</option>
       </select>
     </div>
-    <div class="opt-row">
-      <span class="opt-label">Total Cards</span>
-      <span id="opt-total-cards" class="opt-value">0</span>
+    <div class="opt-row opt-row-toggle">
+      <span class="opt-label">Show Grades and Value</span>
+      <label class="opt-toggle">
+        <input type="checkbox" id="toggle-grades">
+        <span class="opt-toggle-track"><span class="opt-toggle-thumb"></span></span>
+      </label>
     </div>
-    <div class="opt-row">
-      <span class="opt-label">Total Value</span>
-      <span id="opt-total-value" class="opt-value">$0.00</span>
+    <div id="opt-totals" class="opt-totals">
+      <div class="opt-row">
+        <span class="opt-label">Total Value</span>
+        <span id="opt-total-value" class="opt-value">$0.00</span>
+      </div>
     </div>
   </div>
 </div>
@@ -599,6 +633,11 @@ var SORTERS = {
     var oa = SET_ORDER.hasOwnProperty(a.set) ? SET_ORDER[a.set] : 999;
     var ob = SET_ORDER.hasOwnProperty(b.set) ? SET_ORDER[b.set] : 999;
     return oa !== ob ? oa - ob : cardNum(a.cardNumber) - cardNum(b.cardNumber);
+  },
+  'set-desc': function(a, b) {
+    var oa = SET_ORDER.hasOwnProperty(a.set) ? SET_ORDER[a.set] : 999;
+    var ob = SET_ORDER.hasOwnProperty(b.set) ? SET_ORDER[b.set] : 999;
+    return oa !== ob ? ob - oa : cardNum(a.cardNumber) - cardNum(b.cardNumber);
   }
 };
 var currentSort = 'price-desc';
@@ -744,6 +783,18 @@ optionsOverlay.addEventListener('click', function(e) {
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape' && !optionsOverlay.classList.contains('hidden')) closeOptionsModal();
 });
+
+// "Show Grades and Value" toggle — gates both the per-card hover caption (grade +
+// market value) and the Total Cards/Total Value summary. Off by default.
+var gradesToggle = document.getElementById('toggle-grades');
+var optTotals = document.getElementById('opt-totals');
+function applyGradesVisibility() {
+  var shown = gradesToggle.checked;
+  document.body.classList.toggle('show-grades', shown);
+  optTotals.classList.toggle('hidden', !shown);
+}
+gradesToggle.addEventListener('change', applyGradesVisibility);
+applyGradesVisibility();
 </script>
 </body>
 </html>
