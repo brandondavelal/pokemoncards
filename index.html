@@ -46,27 +46,71 @@ body::before {
 
 /* sits in the dark desk area above the binder; horizontal padding matches the exact
    inset from .binder's own box to where the card pockets themselves start/end
-   (5px grid gutter + the binder's own margin), so the username/dropdown line up with
-   the visible grid of cards below, not the wider felt-covered binder box. Username
-   on the left, sort dropdown on the right, both on one row. */
+   (5px grid gutter + the binder's own margin), so the trigger lines up with the
+   visible grid of cards below, not the wider felt-covered binder box. The username
+   and sort dropdown themselves now live in the options modal (below); this row just
+   holds the "..." trigger, right-aligned where the sort dropdown used to sit. */
 .gallery-toolbar {
   /* #view-gallery already contributes 40px of top padding; pull up by the difference
      so the text sits exactly 24px from the true top edge of the page, not 24px on
      top of that 40px */
   max-width: 1230px; margin: -16px auto 0;
   padding: 0 calc(5px + var(--binder-pad)) 24px;
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex; align-items: center; justify-content: flex-end;
 }
+.toolbar-more {
+  font-family: var(--f); font-size: 16px; color: rgba(169, 162, 151, 0.5);
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 50%; cursor: pointer;
+  width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
+  line-height: 1; padding: 0; transition: color 0.2s, background 0.2s, border-color 0.2s;
+}
+.toolbar-more:hover, .toolbar-more:focus-visible {
+  color: var(--paper); background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.16);
+}
+
+/* ---------- options modal: username + sort, opened from the toolbar's "..." trigger.
+   Same visual language as #loading-scrim/.ld-modal below (vignette backdrop, dark
+   translucent panel, 14px radius), but interactive and dismissible. ---------- */
+body.modal-open { overflow-y: hidden; }
+.options-overlay {
+  position: fixed; inset: 0; z-index: 2100;
+  display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 55%, rgba(0,0,0,0.82) 100%);
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+.options-overlay.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.options-modal {
+  position: relative;
+  display: flex; flex-direction: column; align-items: stretch; gap: 18px;
+  background: rgba(10,10,10,0.92); padding: 30px 40px; border-radius: 14px;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08);
+  min-width: 220px;
+}
+.options-close {
+  position: absolute; top: 8px; right: 10px;
+  background: transparent; border: none; cursor: pointer;
+  font-family: var(--f); font-size: 18px; line-height: 1; color: var(--paper-dim);
+  padding: 6px; transition: color 0.2s;
+}
+.options-close:hover, .options-close:focus-visible { color: var(--paper); }
+.opt-row { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; text-align: left; }
+.opt-label {
+  font-family: var(--f); font-size: 11px; color: var(--paper-dim);
+  text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.7;
+}
+.opt-value { font-family: var(--f); font-size: 14px; color: var(--paper); }
 .toolbar-user, .sort-select {
-  font-family: var(--f); font-size: 13px; color: var(--paper-dim);
+  font-family: var(--f); font-size: 14px; color: var(--paper);
 }
 .toolbar-user { text-decoration: none; transition: color 0.2s; }
-.toolbar-user:hover { color: var(--paper); }
+.toolbar-user:hover { color: var(--g2); }
 .sort-select {
   background-color: transparent; border: none; border-radius: 0;
   padding: 0 20px 0 0; margin: 0; cursor: pointer; appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23a9a297'%3E%3Cpath d='M5.5 7.5l4.5 4.5 4.5-4.5' stroke='%23a9a297' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat; background-position: right center; background-size: 14px;
+  text-align: left;
 }
 
 /* ---------- loading scrim: the binder is visible and empty underneath, dimmed with
@@ -461,15 +505,36 @@ body.loading { overflow-y: hidden; }
   </div>
 </div>
 
+<div id="options-modal" class="options-overlay hidden">
+  <div class="options-modal" role="dialog" aria-modal="true" aria-label="Options">
+    <button type="button" id="options-close" class="options-close" aria-label="Close">&times;</button>
+    <div class="opt-row">
+      <span class="opt-label">Username</span>
+      <a class="toolbar-user" href="https://app.getcollectr.com/showcase/profile/@brandonlal" target="_blank" rel="noopener noreferrer">@brandonlal</a>
+    </div>
+    <div class="opt-row">
+      <span class="opt-label">Sort</span>
+      <select id="sort-select" class="sort-select" aria-label="Sort cards">
+        <option value="price-desc">Price: High to Low</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="name-asc">Name: A to Z</option>
+        <option value="name-desc">Name: Z to A</option>
+      </select>
+    </div>
+    <div class="opt-row">
+      <span class="opt-label">Total Cards</span>
+      <span id="opt-total-cards" class="opt-value">0</span>
+    </div>
+    <div class="opt-row">
+      <span class="opt-label">Total Value</span>
+      <span id="opt-total-value" class="opt-value">$0.00</span>
+    </div>
+  </div>
+</div>
+
 <main id="view-gallery">
   <div class="gallery-toolbar">
-    <a class="toolbar-user" href="https://app.getcollectr.com/showcase/profile/@brandonlal" target="_blank" rel="noopener noreferrer">@brandonlal</a>
-    <select id="sort-select" class="sort-select" aria-label="Sort cards">
-      <option value="price-desc">Price: High to Low</option>
-      <option value="price-asc">Price: Low to High</option>
-      <option value="name-asc">Name: A to Z</option>
-      <option value="name-desc">Name: Z to A</option>
-    </select>
+    <button type="button" id="toolbar-more" class="toolbar-more" aria-haspopup="dialog" aria-expanded="false" aria-controls="options-modal" aria-label="Options">&#8943;</button>
   </div>
   <div class="binder">
     <div class="binder-edge"></div>
@@ -499,7 +564,7 @@ var CARD_INTRO_STEP = 80;
 
 function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
-function money(cents) { return '$' + (Number(cents||0) / 100).toFixed(2); }
+function money(cents) { return '$' + (Number(cents||0) / 100).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
 
 var SORTERS = {
   'price-desc': function(a, b) { return (b.priceCents||0) - (a.priceCents||0); },
@@ -509,10 +574,18 @@ var SORTERS = {
 };
 var currentSort = 'price-desc';
 
+function updateOptionsSummary(list) {
+  var countEl = document.getElementById('opt-total-cards');
+  var valueEl = document.getElementById('opt-total-value');
+  if (countEl) countEl.textContent = list.length;
+  if (valueEl) valueEl.textContent = money(list.reduce(function(sum, p) { return sum + (p.priceCents || 0); }, 0));
+}
+
 function renderGallery() {
   var g = document.getElementById('grid');
   var list = S.products.filter(function(p) { return p.status !== 'Draft'; });
   list.sort(SORTERS[currentSort] || SORTERS['price-desc']);
+  updateOptionsSummary(list);
   if (!list.length) { g.innerHTML = '<div class="empty"><div class="empty-hed">This page of the binder is empty.</div></div>'; return; }
   g.innerHTML = list.map(function(p, i) {
     var img = (p.images && p.images.length) ? p.images[0] : fillImgs[0];
@@ -616,6 +689,31 @@ preloadAllImages().then(function() {
 document.getElementById('sort-select').addEventListener('change', function(e) {
   currentSort = e.target.value;
   renderGallery();
+});
+
+// options modal (username + sort), opened from the toolbar's "..." trigger
+var optionsToggle = document.getElementById('toolbar-more');
+var optionsOverlay = document.getElementById('options-modal');
+var optionsClose = document.getElementById('options-close');
+
+function openOptionsModal() {
+  optionsOverlay.classList.remove('hidden');
+  document.body.classList.add('modal-open');
+  optionsToggle.setAttribute('aria-expanded', 'true');
+}
+function closeOptionsModal() {
+  optionsOverlay.classList.add('hidden');
+  document.body.classList.remove('modal-open');
+  optionsToggle.setAttribute('aria-expanded', 'false');
+  optionsToggle.focus();
+}
+optionsToggle.addEventListener('click', openOptionsModal);
+optionsClose.addEventListener('click', closeOptionsModal);
+optionsOverlay.addEventListener('click', function(e) {
+  if (e.target === optionsOverlay) closeOptionsModal();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && !optionsOverlay.classList.contains('hidden')) closeOptionsModal();
 });
 </script>
 </body>
