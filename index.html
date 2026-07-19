@@ -147,25 +147,25 @@ body.loading { overflow-y: hidden; }
 .grid-page-1 { top: calc(var(--binder-pad) - 2px); bottom: calc(var(--binder-pad) - 2px); right: calc(var(--binder-pad) - 6px); }
 .grid-page-2 { top: calc(var(--binder-pad) - 4px); bottom: calc(var(--binder-pad) - 4px); right: calc(var(--binder-pad) - 12px); }
 .grid-page-3 { top: calc(var(--binder-pad) - 6px); bottom: calc(var(--binder-pad) - 6px); right: calc(var(--binder-pad) - 18px); }
-/* mirrored counterpart of the stacked pages: grows past the spine on the left by the
-   same pixel amount .grid-page grows past the free edge on the right (6/12/18px), so
-   the same nested-rectangle "fan" is visible on both sides of the fold — a flat
-   100vw bleed wouldn't show any steps, since it'd be the same width on every layer */
+/* mirrored counterpart of the stacked pages: same width:100vw bleed as .grid::before/
+   .binder::after (reaching the actual browser edge, not stopping at a fixed width),
+   fanned out via height alone — each layer taller (top+bottom) than the one in front
+   of it, exactly mirroring how .grid-page grows on the right */
 .grid-page-bleed {
   /* z-index:1 (matching .grid-page) is required here, not just cosmetic: .binder::after
      (the spine) has no z-index of its own, and generated content with z-index:auto
      paints as if it were the *last* child for stacking purposes — so without this,
      the spine's opaque background paints over these layers and hides them entirely */
-  position: absolute; right: 100%; z-index: 1; pointer-events: none;
+  position: absolute; right: 100%; width: 100vw; z-index: 1; pointer-events: none;
   background:
     linear-gradient(180deg, rgba(168,180,189,0.62), rgba(105,114,123,0.34) 55%, rgba(72,80,88,0.5)),
     #050607;
   box-shadow: inset -10px 0 28px rgba(0,0,0,0.45), inset 10px 0 28px rgba(0,0,0,0.45), inset 0 12px 24px -10px rgba(255,255,255,0.05);
   opacity: 0.65;
 }
-.grid-page-bleed-1 { top: calc(var(--binder-pad) - 2px); bottom: calc(var(--binder-pad) - 2px); width: 6px; }
-.grid-page-bleed-2 { top: calc(var(--binder-pad) - 4px); bottom: calc(var(--binder-pad) - 4px); width: 12px; }
-.grid-page-bleed-3 { top: calc(var(--binder-pad) - 6px); bottom: calc(var(--binder-pad) - 6px); width: 18px; }
+.grid-page-bleed-1 { top: calc(var(--binder-pad) - 2px); bottom: calc(var(--binder-pad) - 2px); }
+.grid-page-bleed-2 { top: calc(var(--binder-pad) - 4px); bottom: calc(var(--binder-pad) - 4px); }
+.grid-page-bleed-3 { top: calc(var(--binder-pad) - 6px); bottom: calc(var(--binder-pad) - 6px); }
 .grid-page-bleed::before {
   content: ""; position: absolute; inset: 0; pointer-events: none;
   mix-blend-mode: overlay;
