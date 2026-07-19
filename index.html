@@ -77,7 +77,9 @@ body.loading { overflow-y: hidden; }
      this box-shadow is just the soft diffuse depth + outer contact shadows */
   box-shadow:
     inset 0 0 40px rgba(0,0,0,0.55),
-    inset 0 0 0 1px rgba(0,0,0,0.6),
+    inset 0 1px 0 0 rgba(0,0,0,0.6),
+    inset -1px 0 0 0 rgba(0,0,0,0.6),
+    inset 0 -1px 0 0 rgba(0,0,0,0.6),
     0 2px 2px rgba(0,0,0,0.4),
     0 3px 40px rgba(0,0,0,0.4),
     0 50px 90px -20px rgba(0,0,0,0.85),
@@ -145,6 +147,36 @@ body.loading { overflow-y: hidden; }
 .grid-page-1 { top: calc(var(--binder-pad) - 2px); bottom: calc(var(--binder-pad) - 2px); right: calc(var(--binder-pad) - 6px); }
 .grid-page-2 { top: calc(var(--binder-pad) - 4px); bottom: calc(var(--binder-pad) - 4px); right: calc(var(--binder-pad) - 12px); }
 .grid-page-3 { top: calc(var(--binder-pad) - 6px); bottom: calc(var(--binder-pad) - 6px); right: calc(var(--binder-pad) - 18px); }
+/* mirrored counterpart of the stacked pages, bleeding out past the spine on the left
+   instead of the free edge on the right — same fill/shading/stroke treatment as
+   .grid-page, just running the opposite direction so the fan reads symmetrically
+   on both sides of the fold */
+.grid-page-bleed {
+  position: absolute; right: 100%; width: 100vw; pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(168,180,189,0.62), rgba(105,114,123,0.34) 55%, rgba(72,80,88,0.5)),
+    #050607;
+  box-shadow: inset -10px 0 28px rgba(0,0,0,0.45), inset 10px 0 28px rgba(0,0,0,0.45), inset 0 12px 24px -10px rgba(255,255,255,0.05);
+  opacity: 0.65;
+}
+.grid-page-bleed-1 { top: calc(var(--binder-pad) - 2px); bottom: calc(var(--binder-pad) - 2px); }
+.grid-page-bleed-2 { top: calc(var(--binder-pad) - 4px); bottom: calc(var(--binder-pad) - 4px); }
+.grid-page-bleed-3 { top: calc(var(--binder-pad) - 6px); bottom: calc(var(--binder-pad) - 6px); }
+.grid-page-bleed::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  mix-blend-mode: overlay;
+  box-shadow: inset -1px 1px 0 0 rgba(255,255,255,0.55), inset 1px -1px 0 0 rgba(0,0,0,0.6);
+}
+/* mirrored angle (245deg = 360-115) to match how .grid::before already mirrors the
+   top sheet's own sheen for its half of the fold */
+.grid-page-bleed::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(245deg, transparent 16%, rgba(255,255,255,0.24) 42%, rgba(255,255,255,0.05) 56%, transparent 80%),
+    linear-gradient(245deg, transparent 55%, rgba(255,255,255,0.09) 78%, transparent 98%),
+    linear-gradient(0deg, rgba(0,0,0,0.18), transparent 30%);
+  mix-blend-mode: screen;
+}
 /* same top-right-lit gradation stroke as the binder cover, shrunk to a 1px edge and
    blended with overlay so it reads as a seam catching the light, not a solid line */
 .grid-page::before {
@@ -198,13 +230,6 @@ body.loading { overflow-y: hidden; }
     linear-gradient(115deg, transparent 55%, rgba(255,255,255,0.09) 78%, transparent 98%),
     linear-gradient(0deg, rgba(0,0,0,0.18), transparent 30%);
   mix-blend-mode: screen;
-}
-/* ultrasonically welded edge of the whole page — same dashed stitch as each pocket,
-   open on the left where the sheet is seamless with its own bleed/extension */
-.grid-stitch {
-  position: absolute; z-index: 4; pointer-events: none;
-  top: var(--binder-pad); bottom: var(--binder-pad); left: 0;
-  border-left: 1.5px dashed rgba(8,9,10,0.3);
 }
 @media (max-width: 900px)  { .grid { grid-template-columns: repeat(2, 1fr); } }
 
@@ -364,10 +389,12 @@ body.loading { overflow-y: hidden; }
 <main id="view-gallery">
   <div class="binder">
     <div class="binder-edge"></div>
+    <div class="grid-page-bleed grid-page-bleed-3"></div>
+    <div class="grid-page-bleed grid-page-bleed-2"></div>
+    <div class="grid-page-bleed grid-page-bleed-1"></div>
     <div class="grid-page grid-page-3"></div>
     <div class="grid-page grid-page-2"></div>
     <div class="grid-page grid-page-1"></div>
-    <div class="grid-stitch"></div>
     <div class="grid" id="grid"></div>
     <div class="grid-edge"></div>
   </div>
