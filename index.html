@@ -93,6 +93,12 @@ body.loading { overflow-y: hidden; }
   position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 5;
   box-shadow: inset -1px 1px 0 0 rgba(255,255,255,0.22), inset 0 -1px 0 0 rgba(0,0,0,0.3);
 }
+/* mirrored counterpart of .binder-edge, sitting over .binder::after's own spine bleed
+   (same box, same standard low-opacity blending, not overlay) */
+.binder-edge-bleed {
+  position: absolute; top: 0; bottom: 0; right: 100%; width: 100vw; pointer-events: none; z-index: 5;
+  box-shadow: inset -1px 1px 0 0 rgba(255,255,255,0.22), inset 0 -1px 0 0 rgba(0,0,0,0.3);
+}
 /* fibrous felt texture across the cover — matte, no gloss */
 .binder::before {
   content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0.8; mix-blend-mode: overlay;
@@ -205,6 +211,15 @@ body.loading { overflow-y: hidden; }
   position: absolute; z-index: 3; pointer-events: none;
   top: var(--binder-pad); bottom: var(--binder-pad); left: 0; right: var(--binder-pad);
   border-radius: 0 6px 6px 0;
+  mix-blend-mode: overlay;
+  box-shadow: inset -1px 1px 0 0 rgba(255,255,255,0.55), inset 0 -1px 0 0 rgba(0,0,0,0.6);
+}
+/* .grid-edge only covers #grid's own visible box — this is its mirrored counterpart,
+   sitting over .grid::before's bleed (the same sheet continuing past the fold) so
+   the top sheet's stroke doesn't just stop at the seam like the others don't */
+.grid-edge-bleed {
+  position: absolute; z-index: 3; pointer-events: none;
+  top: var(--binder-pad); bottom: var(--binder-pad); right: 100%; width: 100vw;
   mix-blend-mode: overlay;
   box-shadow: inset -1px 1px 0 0 rgba(255,255,255,0.55), inset 0 -1px 0 0 rgba(0,0,0,0.6);
 }
@@ -393,6 +408,7 @@ body.loading { overflow-y: hidden; }
 <main id="view-gallery">
   <div class="binder">
     <div class="binder-edge"></div>
+    <div class="binder-edge-bleed"></div>
     <div class="grid-page-bleed grid-page-bleed-3"></div>
     <div class="grid-page-bleed grid-page-bleed-2"></div>
     <div class="grid-page-bleed grid-page-bleed-1"></div>
@@ -401,6 +417,7 @@ body.loading { overflow-y: hidden; }
     <div class="grid-page grid-page-1"></div>
     <div class="grid" id="grid"></div>
     <div class="grid-edge"></div>
+    <div class="grid-edge-bleed"></div>
   </div>
 </main>
 
