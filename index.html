@@ -152,7 +152,11 @@ body.loading { overflow-y: hidden; }
    the same nested-rectangle "fan" is visible on both sides of the fold — a flat
    100vw bleed wouldn't show any steps, since it'd be the same width on every layer */
 .grid-page-bleed {
-  position: absolute; right: 100%; pointer-events: none;
+  /* z-index:1 (matching .grid-page) is required here, not just cosmetic: .binder::after
+     (the spine) has no z-index of its own, and generated content with z-index:auto
+     paints as if it were the *last* child for stacking purposes — so without this,
+     the spine's opaque background paints over these layers and hides them entirely */
+  position: absolute; right: 100%; z-index: 1; pointer-events: none;
   background:
     linear-gradient(180deg, rgba(168,180,189,0.62), rgba(105,114,123,0.34) 55%, rgba(72,80,88,0.5)),
     #050607;
