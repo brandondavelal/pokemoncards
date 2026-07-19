@@ -44,6 +44,19 @@ body::before {
 
 #view-gallery { min-height: 100vh; position: relative; z-index: 1; padding: 40px; }
 
+/* sits in the dark desk area above the binder, left-aligned with its own left edge
+   (same max-width + auto margin as .binder, so the two share a common left edge
+   regardless of viewport width) */
+.gallery-toolbar { max-width: 1230px; margin: 0 auto; padding-bottom: 16px; }
+.sort-select {
+  font-family: var(--f); font-size: 13px; color: var(--paper);
+  background: #1c1c1c; border: 1px solid rgba(255,255,255,0.14); border-radius: 8px;
+  padding: 8px 30px 8px 12px; cursor: pointer; appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23a9a297'%3E%3Cpath d='M5.5 7.5l4.5 4.5 4.5-4.5' stroke='%23a9a297' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 8px center; background-size: 14px;
+}
+.sort-select:hover { border-color: rgba(255,255,255,0.28); }
+
 /* ---------- loading scrim: the binder is visible and empty underneath, dimmed with
    a vignette, with a small modal (spinner + text) while images preload ---------- */
 body.loading { overflow-y: hidden; }
@@ -437,6 +450,14 @@ body.loading { overflow-y: hidden; }
 </div>
 
 <main id="view-gallery">
+  <div class="gallery-toolbar">
+    <select id="sort-select" class="sort-select" aria-label="Sort cards">
+      <option value="price-desc">Price: High to Low</option>
+      <option value="price-asc">Price: Low to High</option>
+      <option value="name-asc">Name: A to Z</option>
+      <option value="name-desc">Name: Z to A</option>
+    </select>
+  </div>
   <div class="binder">
     <div class="binder-edge"></div>
     <div class="binder-edge-bleed"></div>
@@ -467,10 +488,18 @@ function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;'
 
 function money(cents) { return '$' + (Number(cents||0) / 100).toFixed(2); }
 
+var SORTERS = {
+  'price-desc': function(a, b) { return (b.priceCents||0) - (a.priceCents||0); },
+  'price-asc': function(a, b) { return (a.priceCents||0) - (b.priceCents||0); },
+  'name-asc': function(a, b) { return String(a.name||'').localeCompare(String(b.name||'')); },
+  'name-desc': function(a, b) { return String(b.name||'').localeCompare(String(a.name||'')); }
+};
+var currentSort = 'price-desc';
+
 function renderGallery() {
   var g = document.getElementById('grid');
   var list = S.products.filter(function(p) { return p.status !== 'Draft'; });
-  list.sort(function(a, b) { return (b.priceCents||0) - (a.priceCents||0); });
+  list.sort(SORTERS[currentSort] || SORTERS['price-desc']);
   if (!list.length) { g.innerHTML = '<div class="empty"><div class="empty-hed">This page of the binder is empty.</div></div>'; return; }
   g.innerHTML = list.map(function(p, i) {
     var img = (p.images && p.images.length) ? p.images[0] : fillImgs[0];
@@ -565,6 +594,15 @@ preloadAllImages().then(function() {
   setTimeout(function() {
     document.getElementById('grid').classList.add('intro');
   }, CARD_INTRO_WAIT);
+});
+
+// changing the sort re-renders the grid in the new order — since #grid already has
+// .intro by this point, the freshly-inserted .tcard elements pick up the cardIn
+// animation immediately (the CSS selector matches on insert, no need to toggle
+// .intro off/on), so the cards fall back into place exactly like a fresh page load.
+document.getElementById('sort-select').addEventListener('change', function(e) {
+  currentSort = e.target.value;
+  renderGallery();
 });
 </script>
 </body>
