@@ -153,6 +153,14 @@ body.loading { overflow-y: hidden; }
     #050607;
   box-shadow: inset -10px 0 28px rgba(0,0,0,0.45), inset 10px 0 28px rgba(0,0,0,0.45), inset 0 12px 24px -10px rgba(255,255,255,0.05), 2px 3px 6px rgba(0,0,0,0.35);
 }
+/* .grid-edge (z-index:3) and .binder-edge (z-index:5) are siblings of #grid, not
+   descendants — so a hovered .card inside #grid raising its OWN z-index to 5 only
+   wins comparisons against other things inside #grid's own stacking context. Against
+   outside siblings like .grid-edge, what actually gets compared is #grid's own
+   z-index (2), which loses to .grid-edge's (3) — so the stroke painted over the
+   whole raised card instead of being covered by it. Bump #grid's own z-index above
+   both siblings while anything inside it is hovered. */
+#grid:has(.card:hover) { z-index: 6; }
 /* a few more plastic pages stacked directly behind this one — same fill/shading as
    the top sheet, just progressively darker/more transparent with distance. Each is
    taller (top+bottom) and wider (right) than the sheet in front of it, but flush on
@@ -306,10 +314,12 @@ body.loading { overflow-y: hidden; }
 /* the pocket's own front plastic layer — sits over the card at rest, catching light across the whole cell */
 .pocket-glare {
   position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  /* linear-gradient angles mirrored horizontally (360-122=238, 360-165=195) from
+     what they were */
   background:
     radial-gradient(130% 90% at 50% -10%, rgba(255,255,255,0.4), transparent 55%),
-    linear-gradient(122deg, transparent 14%, rgba(255,255,255,0.32) 38%, rgba(255,255,255,0.08) 50%, transparent 66%),
-    linear-gradient(165deg, rgba(210,220,226,0.22) 0%, transparent 40% 65%, rgba(60,66,73,0.32) 100%);
+    linear-gradient(238deg, transparent 14%, rgba(255,255,255,0.32) 38%, rgba(255,255,255,0.08) 50%, transparent 66%),
+    linear-gradient(195deg, rgba(210,220,226,0.22) 0%, transparent 40% 65%, rgba(60,66,73,0.32) 100%);
   mix-blend-mode: screen;
   transition: opacity 0.3s;
 }
@@ -387,18 +397,18 @@ body.loading { overflow-y: hidden; }
 .tc-glare {
   position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 5; overflow: hidden;
   background-image: radial-gradient(farthest-corner circle at var(--mx,50%) var(--my,50%),
-    rgba(255,255,255,0.8) 10%, rgba(255,255,255,0.65) 20%, rgba(0,0,0,0.5) 90%);
-  filter: brightness(0.8) contrast(1.5);
+    rgba(255,255,255,0.8) 10%, rgba(255,255,255,0.65) 20%, rgba(0,0,0,0.25) 90%);
+  filter: brightness(0.9) contrast(1.15);
   mix-blend-mode: overlay;
   opacity: 0; transition: opacity 0.35s;
 }
-.card:hover .tc-glare { opacity: 0.8; }
+.card:hover .tc-glare { opacity: 0.55; }
 .tc-glare::after {
   content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
   background-image: radial-gradient(farthest-corner circle at var(--mx,50%) var(--my,50%),
-    hsl(180,100%,95%) 5%, hsla(0,0%,39%,0.25) 55%, hsla(0,0%,0%,0.36) 110%);
+    hsl(180,100%,95%) 5%, hsla(0,0%,39%,0.15) 55%, hsla(0,0%,0%,0.18) 110%);
   mix-blend-mode: overlay;
-  filter: brightness(0.6) contrast(3);
+  filter: brightness(0.85) contrast(1.4);
 }
 
 .empty { grid-column: 1/-1; min-height: 40vh; display: flex; align-items: center; justify-content: center; }
@@ -474,8 +484,8 @@ function renderGallery() {
       '</div>' +
       '<div class="pocket-glare"></div>' +
       '<div class="tc-caption">' +
-        '<span class="tc-grade">' + esc(gradeLine) + '</span>' +
-        '<span class="tc-price">' + esc(money(p.priceCents)) + '</span>' +
+        '<span class="tc-grade">Grade: ' + esc(gradeLine) + '</span>' +
+        '<span class="tc-price">Market Value: ' + esc(money(p.priceCents)) + '</span>' +
       '</div>' +
     '</div>';
   }).join('');
