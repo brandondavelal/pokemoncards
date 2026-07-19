@@ -281,17 +281,33 @@ body.loading { overflow-y: hidden; }
 .card-img img.loaded { opacity: 1; }
 @keyframes skeletonPulse { 0%, 100% { background-color: #d8cdb2; } 50% { background-color: #c7bb9c; } }
 
-/* holographic foil sweep */
-.tc-foil {
-  position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 4;
-  background:
-    linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.55) 46%, rgba(255,255,255,0.15) 52%, transparent 66%),
-    repeating-linear-gradient(115deg, rgba(255,0,90,0.10) 0 12px, rgba(255,196,0,0.10) 12px 24px, rgba(0,224,150,0.10) 24px 36px, rgba(0,150,255,0.10) 36px 48px, rgba(170,60,255,0.10) 48px 60px);
-  background-size: 220% 220%, 220% 220%;
-  background-position: var(--mx,50%) var(--my,50%), var(--mx,50%) var(--my,50%);
-  mix-blend-mode: color-dodge; opacity: 0; transition: opacity 0.35s;
+/* holographic shine + glare — same two-layer technique as the reference pokemon-card
+   effect (codepen.io/simeydotme/pen/abYWJdX): a rainbow "shine" layer blended with
+   color-dodge, whose background-position is the pointer position *dampened* into a
+   narrower range (so the rainbow drifts subtly rather than snapping to the cursor),
+   plus a separate white radial "glare" layer blended with overlay that tracks the
+   pointer position directly (the actual glossy highlight) */
+.tc-shine {
+  position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 4; overflow: hidden;
+  background-image: repeating-linear-gradient(110deg,
+    #ff2ec4 0%, #ffd42e 10%, #2eff8f 20%, #2ecfff 30%, #7d2eff 40%,
+    #ff2ec4 50%, #ffd42e 60%, #2eff8f 70%, #2ecfff 80%, #7d2eff 90%, #ff2ec4 100%);
+  background-size: 300% 300%;
+  background-position: var(--bgx,50%) var(--bgy,50%);
+  filter: brightness(0.85) contrast(2) saturate(0.7);
+  mix-blend-mode: color-dodge;
+  opacity: 0; transition: opacity 0.35s;
 }
-.card:hover .tc-foil { opacity: 0.6; }
+.card:hover .tc-shine { opacity: 0.75; }
+
+.tc-glare {
+  position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 5; overflow: hidden;
+  background-image: radial-gradient(farthest-corner circle at var(--mx,50%) var(--my,50%),
+    rgba(255,255,255,0.8) 10%, rgba(255,255,255,0.65) 20%, rgba(0,0,0,0.5) 90%);
+  mix-blend-mode: overlay;
+  opacity: 0; transition: opacity 0.35s;
+}
+.card:hover .tc-glare { opacity: 1; }
 
 .empty { grid-column: 1/-1; min-height: 40vh; display: flex; align-items: center; justify-content: center; }
 .empty-hed { font-style: italic; font-size: 16px; color: var(--paper-dim); }
@@ -352,7 +368,8 @@ function renderGallery() {
         '<div class="card-img skeleton tc-window">' +
           '<img src="' + img + '" alt="' + esc(p.name) + '">' +
         '</div>' +
-        '<div class="tc-foil"></div>' +
+        '<div class="tc-shine"></div>' +
+        '<div class="tc-glare"></div>' +
       '</div>' +
       '<div class="pocket-glare"></div>' +
       '<div class="tc-caption">' +
@@ -374,6 +391,12 @@ function renderGallery() {
   attachTilt(g);
 }
 
+// remap a value from one range to another (same helper the reference pen uses to
+// dampen the shine layer's background-position into a much narrower drift range)
+function adjust(value, fromMin, fromMax, toMin, toMax) {
+  return toMin + (toMax - toMin) * (value - fromMin) / (fromMax - fromMin);
+}
+
 // Pointer-tracked holographic tilt — the card stays in its pocket but still
 // catches the light like real foil as the cursor moves across it.
 function attachTilt(scope) {
@@ -387,6 +410,8 @@ function attachTilt(scope) {
       tc.style.setProperty('--rx', ((0.5 - py) * 12).toFixed(2) + 'deg');
       tc.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
       tc.style.setProperty('--my', (py * 100).toFixed(1) + '%');
+      tc.style.setProperty('--bgx', adjust(px * 100, 0, 100, 37, 63).toFixed(1) + '%');
+      tc.style.setProperty('--bgy', adjust(py * 100, 0, 100, 33, 67).toFixed(1) + '%');
       tc.classList.add('tilt');
     });
     tc.addEventListener('pointerleave', function() {
@@ -395,6 +420,8 @@ function attachTilt(scope) {
       tc.style.setProperty('--ry', '0deg');
       tc.style.setProperty('--mx', '50%');
       tc.style.setProperty('--my', '50%');
+      tc.style.setProperty('--bgx', '50%');
+      tc.style.setProperty('--bgy', '50%');
     });
   });
 }
