@@ -2,6 +2,8 @@ var GALLERY_DATA = [
   {
     "id": "89164",
     "name": "Shining Gyarados",
+    "set": "Neo Revelation",
+    "cardNumber": "65",
     "priceCents": 107966,
     "graded": true,
     "grade": "6",
@@ -14,6 +16,8 @@ var GALLERY_DATA = [
   {
     "id": "147229",
     "name": "Pikachu (Red Cheeks)",
+    "set": "Base Set (1st Edition & Shadowless)",
+    "cardNumber": "58",
     "priceCents": 78500,
     "graded": true,
     "grade": "6",
@@ -26,6 +30,8 @@ var GALLERY_DATA = [
   {
     "id": "86903",
     "name": "Lugia",
+    "set": "Neo Genesis",
+    "cardNumber": "9",
     "priceCents": 61667,
     "graded": true,
     "grade": "6",
@@ -38,6 +44,8 @@ var GALLERY_DATA = [
   {
     "id": "90137",
     "name": "Umbreon",
+    "set": "Neo Discovery",
+    "cardNumber": "13",
     "priceCents": 59646,
     "graded": true,
     "grade": "6",
@@ -50,6 +58,8 @@ var GALLERY_DATA = [
   {
     "id": "89166",
     "name": "Shining Magikarp",
+    "set": "Neo Revelation",
+    "cardNumber": "66",
     "priceCents": 54950,
     "graded": true,
     "grade": "6",
@@ -62,6 +72,8 @@ var GALLERY_DATA = [
   {
     "id": "42382",
     "name": "Charizard",
+    "set": "Base Set (Unlimited)",
+    "cardNumber": "4",
     "priceCents": 54234,
     "graded": true,
     "grade": "6",
@@ -74,6 +86,8 @@ var GALLERY_DATA = [
   {
     "id": "517045",
     "name": "Charizard ex",
+    "set": "SV: 151",
+    "cardNumber": "199/165",
     "priceCents": 41587,
     "graded": true,
     "grade": "9",
@@ -86,6 +100,8 @@ var GALLERY_DATA = [
   {
     "id": "90784",
     "name": "______'s Pikachu",
+    "set": "WoTC Promo",
+    "cardNumber": "24/53",
     "priceCents": 29995,
     "graded": true,
     "grade": "6",
@@ -98,6 +114,8 @@ var GALLERY_DATA = [
   {
     "id": "517270",
     "name": "Snorlax (Pokemon Center Exclusive)",
+    "set": "Scarlet & Violet Promo",
+    "cardNumber": "051",
     "priceCents": 28772,
     "graded": true,
     "grade": "9",
@@ -110,6 +128,8 @@ var GALLERY_DATA = [
   {
     "id": "86118",
     "name": "Ho-oh",
+    "set": "Neo Revelation",
+    "cardNumber": "7",
     "priceCents": 25289,
     "graded": true,
     "grade": "6",
@@ -122,6 +142,8 @@ var GALLERY_DATA = [
   {
     "id": "88777",
     "name": "Rocket's Mewtwo",
+    "set": "Gym Challenge",
+    "cardNumber": "14",
     "priceCents": 23750,
     "graded": true,
     "grade": "6",
@@ -134,6 +156,8 @@ var GALLERY_DATA = [
   {
     "id": "85316",
     "name": "Espeon",
+    "set": "Neo Discovery",
+    "cardNumber": "1",
     "priceCents": 23002,
     "graded": true,
     "grade": "6",
@@ -146,6 +170,8 @@ var GALLERY_DATA = [
   {
     "id": "517046",
     "name": "Blastoise ex",
+    "set": "SV: 151",
+    "cardNumber": "200/165",
     "priceCents": 16261,
     "graded": true,
     "grade": "9",
@@ -158,6 +184,8 @@ var GALLERY_DATA = [
   {
     "id": "42360",
     "name": "Blastoise",
+    "set": "Base Set (Unlimited)",
+    "cardNumber": "2",
     "priceCents": 15255,
     "graded": true,
     "grade": "6",
@@ -170,6 +198,8 @@ var GALLERY_DATA = [
   {
     "id": "106521",
     "name": "Gengar",
+    "set": "Fossil",
+    "cardNumber": "5",
     "priceCents": 14093,
     "graded": true,
     "grade": "6",
@@ -182,6 +212,8 @@ var GALLERY_DATA = [
   {
     "id": "502556",
     "name": "Charmander",
+    "set": "SV: 151",
+    "cardNumber": "168/165",
     "priceCents": 12732,
     "graded": true,
     "grade": "9",
@@ -194,6 +226,8 @@ var GALLERY_DATA = [
   {
     "id": "106520",
     "name": "Dragonite",
+    "set": "Fossil",
+    "cardNumber": "4",
     "priceCents": 12692,
     "graded": true,
     "grade": "6",
@@ -206,6 +240,8 @@ var GALLERY_DATA = [
   {
     "id": "513721",
     "name": "Pikachu",
+    "set": "SV: 151",
+    "cardNumber": "173/165",
     "priceCents": 12459,
     "graded": true,
     "grade": "9",
@@ -218,6 +254,8 @@ var GALLERY_DATA = [
   {
     "id": "42355",
     "name": "Venusaur",
+    "set": "Base Set (Unlimited)",
+    "cardNumber": "15",
     "priceCents": 12214,
     "graded": true,
     "grade": "6",
@@ -230,6 +268,8 @@ var GALLERY_DATA = [
   {
     "id": "45122",
     "name": "Snorlax",
+    "set": "Jungle",
+    "cardNumber": "11",
     "priceCents": 12000,
     "graded": true,
     "grade": "6",
@@ -242,6 +282,8 @@ var GALLERY_DATA = [
   {
     "id": "517048",
     "name": "Zapdos ex",
+    "set": "SV: 151",
+    "cardNumber": "202/165",
     "priceCents": 11948,
     "graded": true,
     "grade": "9",
@@ -254,6 +296,8 @@ var GALLERY_DATA = [
   {
     "id": "517044",
     "name": "Venusaur ex",
+    "set": "SV: 151",
+    "cardNumber": "198/165",
     "priceCents": 11877,
     "graded": true,
     "grade": "9",
@@ -266,6 +310,8 @@ var GALLERY_DATA = [
   {
     "id": "84647",
     "name": "Dark Raichu",
+    "set": "Team Rocket",
+    "cardNumber": "83",
     "priceCents": 11780,
     "graded": true,
     "grade": "6",
@@ -278,6 +324,8 @@ var GALLERY_DATA = [
   {
     "id": "87395",
     "name": "Mew (9)",
+    "set": "WoTC Promo",
+    "cardNumber": "09/53",
     "priceCents": 11696,
     "graded": true,
     "grade": "6",
@@ -290,6 +338,8 @@ var GALLERY_DATA = [
   {
     "id": "518871",
     "name": "Mew ex",
+    "set": "Scarlet & Violet Promo",
+    "cardNumber": "053",
     "priceCents": 11695,
     "graded": true,
     "grade": "9",
@@ -302,6 +352,8 @@ var GALLERY_DATA = [
   {
     "id": "502549",
     "name": "Squirtle",
+    "set": "SV: 151",
+    "cardNumber": "170/165",
     "priceCents": 11255,
     "graded": true,
     "grade": "9",
@@ -314,6 +366,8 @@ var GALLERY_DATA = [
   {
     "id": "108589",
     "name": "Ancient Mew [2000]",
+    "set": "Miscellaneous Cards & Products",
+    "cardNumber": "1",
     "priceCents": 10683,
     "graded": true,
     "grade": "6",
@@ -326,6 +380,8 @@ var GALLERY_DATA = [
   {
     "id": "517018",
     "name": "Charmeleon",
+    "set": "SV: 151",
+    "cardNumber": "169/165",
     "priceCents": 9524,
     "graded": true,
     "grade": "9",
@@ -338,6 +394,8 @@ var GALLERY_DATA = [
   {
     "id": "516997",
     "name": "Bulbasaur",
+    "set": "SV: 151",
+    "cardNumber": "166/165",
     "priceCents": 8836,
     "graded": true,
     "grade": "9",
@@ -350,6 +408,8 @@ var GALLERY_DATA = [
   {
     "id": "518872",
     "name": "Mewtwo",
+    "set": "Scarlet & Violet Promo",
+    "cardNumber": "052",
     "priceCents": 8709,
     "graded": true,
     "grade": "9",
@@ -362,6 +422,8 @@ var GALLERY_DATA = [
   {
     "id": "517035",
     "name": "Psyduck",
+    "set": "SV: 151",
+    "cardNumber": "175/165",
     "priceCents": 8602,
     "graded": true,
     "grade": "9",
@@ -374,6 +436,8 @@ var GALLERY_DATA = [
   {
     "id": "517047",
     "name": "Alakazam ex",
+    "set": "SV: 151",
+    "cardNumber": "201/165",
     "priceCents": 8527,
     "graded": true,
     "grade": "9",
@@ -386,6 +450,8 @@ var GALLERY_DATA = [
   {
     "id": "517038",
     "name": "Wartortle",
+    "set": "SV: 151",
+    "cardNumber": "171/165",
     "priceCents": 7614,
     "graded": true,
     "grade": "9",
@@ -398,6 +464,8 @@ var GALLERY_DATA = [
   {
     "id": "516998",
     "name": "Ivysaur",
+    "set": "SV: 151",
+    "cardNumber": "167/165",
     "priceCents": 6774,
     "graded": true,
     "grade": "9",
@@ -410,6 +478,8 @@ var GALLERY_DATA = [
   {
     "id": "42354",
     "name": "Raichu",
+    "set": "Base Set (Unlimited)",
+    "cardNumber": "14",
     "priceCents": 6600,
     "graded": true,
     "grade": "6",
@@ -422,6 +492,8 @@ var GALLERY_DATA = [
   {
     "id": "42347",
     "name": "Mewtwo",
+    "set": "Base Set (Unlimited)",
+    "cardNumber": "10",
     "priceCents": 6520,
     "graded": true,
     "grade": "6",
@@ -434,6 +506,8 @@ var GALLERY_DATA = [
   {
     "id": "517034",
     "name": "Poliwhirl",
+    "set": "SV: 151",
+    "cardNumber": "176/165",
     "priceCents": 6274,
     "graded": true,
     "grade": "9",
@@ -446,6 +520,8 @@ var GALLERY_DATA = [
   {
     "id": "519481",
     "name": "Mew ex (151 Metal Card)",
+    "set": "Miscellaneous Cards & Products",
+    "cardNumber": "205/165",
     "priceCents": 6200,
     "graded": true,
     "grade": "9",
@@ -458,6 +534,8 @@ var GALLERY_DATA = [
   {
     "id": "42346",
     "name": "Alakazam",
+    "set": "Base Set (Unlimited)",
+    "cardNumber": "1",
     "priceCents": 5966,
     "graded": true,
     "grade": "6",
@@ -470,6 +548,8 @@ var GALLERY_DATA = [
   {
     "id": "45126",
     "name": "Vileplume",
+    "set": "Jungle",
+    "cardNumber": "15",
     "priceCents": 5500,
     "graded": true,
     "grade": "6",
@@ -482,6 +562,8 @@ var GALLERY_DATA = [
   {
     "id": "106519",
     "name": "Ditto",
+    "set": "Fossil",
+    "cardNumber": "3",
     "priceCents": 5499,
     "graded": true,
     "grade": "6",
@@ -494,6 +576,8 @@ var GALLERY_DATA = [
   {
     "id": "45129",
     "name": "Flareon",
+    "set": "Jungle",
+    "cardNumber": "3",
     "priceCents": 5485,
     "graded": true,
     "grade": "6",
@@ -506,6 +590,8 @@ var GALLERY_DATA = [
   {
     "id": "517051",
     "name": "Mew ex",
+    "set": "SV: 151",
+    "cardNumber": "205/165",
     "priceCents": 5470,
     "graded": true,
     "grade": "9",
@@ -518,6 +604,8 @@ var GALLERY_DATA = [
   {
     "id": "517020",
     "name": "Dragonair",
+    "set": "SV: 151",
+    "cardNumber": "181/165",
     "priceCents": 5378,
     "graded": true,
     "grade": "9",
@@ -530,6 +618,8 @@ var GALLERY_DATA = [
   {
     "id": "42353",
     "name": "Poliwrath",
+    "set": "Base Set (Unlimited)",
+    "cardNumber": "13",
     "priceCents": 5078,
     "graded": true,
     "grade": "6",
@@ -542,6 +632,8 @@ var GALLERY_DATA = [
   {
     "id": "45130",
     "name": "Jolteon",
+    "set": "Jungle",
+    "cardNumber": "4",
     "priceCents": 4721,
     "graded": true,
     "grade": "6",
@@ -554,6 +646,8 @@ var GALLERY_DATA = [
   {
     "id": "42371",
     "name": "Chansey",
+    "set": "Base Set (Unlimited)",
+    "cardNumber": "3",
     "priceCents": 4650,
     "graded": true,
     "grade": "6",
@@ -566,6 +660,8 @@ var GALLERY_DATA = [
   {
     "id": "42425",
     "name": "Machamp",
+    "set": "Deck Exclusives",
+    "cardNumber": "008/102",
     "priceCents": 4493,
     "graded": true,
     "grade": "6",
@@ -578,6 +674,8 @@ var GALLERY_DATA = [
   {
     "id": "44421",
     "name": "Moltres (12)",
+    "set": "Fossil",
+    "cardNumber": "12",
     "priceCents": 4400,
     "graded": true,
     "grade": "6",
@@ -590,6 +688,8 @@ var GALLERY_DATA = [
   {
     "id": "42433",
     "name": "Magneton",
+    "set": "Base Set (Unlimited)",
+    "cardNumber": "9",
     "priceCents": 4397,
     "graded": true,
     "grade": "6",
@@ -602,6 +702,8 @@ var GALLERY_DATA = [
   {
     "id": "45121",
     "name": "Scyther",
+    "set": "Jungle",
+    "cardNumber": "10",
     "priceCents": 4369,
     "graded": true,
     "grade": "6",
@@ -614,6 +716,8 @@ var GALLERY_DATA = [
   {
     "id": "42356",
     "name": "Zapdos",
+    "set": "Base Set (Unlimited)",
+    "cardNumber": "16",
     "priceCents": 4294,
     "graded": true,
     "grade": "6",
@@ -626,6 +730,8 @@ var GALLERY_DATA = [
   {
     "id": "42404",
     "name": "Gyarados",
+    "set": "Base Set (Unlimited)",
+    "cardNumber": "6",
     "priceCents": 4258,
     "graded": true,
     "grade": "6",
@@ -638,6 +744,8 @@ var GALLERY_DATA = [
   {
     "id": "106523",
     "name": "Hitmonlee",
+    "set": "Fossil",
+    "cardNumber": "7",
     "priceCents": 4000,
     "graded": true,
     "grade": "6",
@@ -650,6 +758,8 @@ var GALLERY_DATA = [
   {
     "id": "42351",
     "name": "Nidoking",
+    "set": "Base Set (Unlimited)",
+    "cardNumber": "11",
     "priceCents": 3999,
     "graded": true,
     "grade": "6",
@@ -662,6 +772,8 @@ var GALLERY_DATA = [
   {
     "id": "45134",
     "name": "Pidgeot",
+    "set": "Jungle",
+    "cardNumber": "8",
     "priceCents": 3859,
     "graded": true,
     "grade": "6",
@@ -674,6 +786,8 @@ var GALLERY_DATA = [
   {
     "id": "517025",
     "name": "Machoke",
+    "set": "SV: 151",
+    "cardNumber": "177/165",
     "priceCents": 3626,
     "graded": true,
     "grade": "9",
@@ -686,6 +800,8 @@ var GALLERY_DATA = [
   {
     "id": "45125",
     "name": "Victreebel",
+    "set": "Jungle",
+    "cardNumber": "14",
     "priceCents": 3531,
     "graded": true,
     "grade": "6",
@@ -698,6 +814,8 @@ var GALLERY_DATA = [
   {
     "id": "106518",
     "name": "Articuno",
+    "set": "Fossil",
+    "cardNumber": "2",
     "priceCents": 3518,
     "graded": true,
     "grade": "6",
@@ -710,6 +828,8 @@ var GALLERY_DATA = [
   {
     "id": "45124",
     "name": "Venomoth",
+    "set": "Jungle",
+    "cardNumber": "13",
     "priceCents": 3499,
     "graded": true,
     "grade": "6",
@@ -722,6 +842,8 @@ var GALLERY_DATA = [
   {
     "id": "44423",
     "name": "Raichu (14)",
+    "set": "Fossil",
+    "cardNumber": "14",
     "priceCents": 3457,
     "graded": true,
     "grade": "6",
@@ -734,6 +856,8 @@ var GALLERY_DATA = [
   {
     "id": "106522",
     "name": "Haunter",
+    "set": "Fossil",
+    "cardNumber": "6",
     "priceCents": 3456,
     "graded": true,
     "grade": "6",
@@ -746,6 +870,8 @@ var GALLERY_DATA = [
   {
     "id": "517029",
     "name": "Nidoking",
+    "set": "SV: 151",
+    "cardNumber": "174/165",
     "priceCents": 3416,
     "graded": true,
     "grade": "9",
@@ -758,6 +884,8 @@ var GALLERY_DATA = [
   {
     "id": "45133",
     "name": "Nidoqueen",
+    "set": "Jungle",
+    "cardNumber": "7",
     "priceCents": 3383,
     "graded": true,
     "grade": "6",
@@ -770,6 +898,8 @@ var GALLERY_DATA = [
   {
     "id": "106524",
     "name": "Hypno",
+    "set": "Fossil",
+    "cardNumber": "8",
     "priceCents": 3360,
     "graded": true,
     "grade": "6",
@@ -782,6 +912,8 @@ var GALLERY_DATA = [
   {
     "id": "45123",
     "name": "Vaporeon",
+    "set": "Jungle",
+    "cardNumber": "12",
     "priceCents": 3318,
     "graded": true,
     "grade": "6",
@@ -794,6 +926,8 @@ var GALLERY_DATA = [
   {
     "id": "45132",
     "name": "Mr. Mime",
+    "set": "Jungle",
+    "cardNumber": "6",
     "priceCents": 3300,
     "graded": true,
     "grade": "6",
@@ -806,6 +940,8 @@ var GALLERY_DATA = [
   {
     "id": "517050",
     "name": "Giovanni's Charisma",
+    "set": "SV: 151",
+    "cardNumber": "204/165",
     "priceCents": 3288,
     "graded": true,
     "grade": "9",
@@ -818,6 +954,8 @@ var GALLERY_DATA = [
   {
     "id": "44419",
     "name": "Lapras (10)",
+    "set": "Fossil",
+    "cardNumber": "10",
     "priceCents": 3279,
     "graded": true,
     "grade": "6",
@@ -830,6 +968,8 @@ var GALLERY_DATA = [
   {
     "id": "44418",
     "name": "Aerodactyl",
+    "set": "Fossil",
+    "cardNumber": "1",
     "priceCents": 3137,
     "graded": true,
     "grade": "6",
@@ -842,6 +982,8 @@ var GALLERY_DATA = [
   {
     "id": "44424",
     "name": "Zapdos (15)",
+    "set": "Fossil",
+    "cardNumber": "15",
     "priceCents": 3099,
     "graded": true,
     "grade": "6",
@@ -854,6 +996,8 @@ var GALLERY_DATA = [
   {
     "id": "517016",
     "name": "Caterpie",
+    "set": "SV: 151",
+    "cardNumber": "172/165",
     "priceCents": 3090,
     "graded": true,
     "grade": "9",
@@ -866,6 +1010,8 @@ var GALLERY_DATA = [
   {
     "id": "45135",
     "name": "Pinsir",
+    "set": "Jungle",
+    "cardNumber": "9",
     "priceCents": 3026,
     "graded": true,
     "grade": "6",
@@ -878,6 +1024,8 @@ var GALLERY_DATA = [
   {
     "id": "42352",
     "name": "Ninetales",
+    "set": "Base Set (Unlimited)",
+    "cardNumber": "12",
     "priceCents": 2939,
     "graded": true,
     "grade": "6",
@@ -890,6 +1038,8 @@ var GALLERY_DATA = [
   {
     "id": "517036",
     "name": "Tangela",
+    "set": "SV: 151",
+    "cardNumber": "178/165",
     "priceCents": 2867,
     "graded": true,
     "grade": "9",
@@ -902,6 +1052,8 @@ var GALLERY_DATA = [
   {
     "id": "42415",
     "name": "Hitmonchan",
+    "set": "Base Set (Unlimited)",
+    "cardNumber": "7",
     "priceCents": 2800,
     "graded": true,
     "grade": "6",
@@ -914,6 +1066,8 @@ var GALLERY_DATA = [
   {
     "id": "517031",
     "name": "Omanyte",
+    "set": "SV: 151",
+    "cardNumber": "180/165",
     "priceCents": 2755,
     "graded": true,
     "grade": "9",
@@ -926,6 +1080,8 @@ var GALLERY_DATA = [
   {
     "id": "517053",
     "name": "Basic Psychic Energy",
+    "set": "SV: 151",
+    "cardNumber": "207/165",
     "priceCents": 2670,
     "graded": true,
     "grade": "9",
@@ -938,6 +1094,8 @@ var GALLERY_DATA = [
   {
     "id": "517028",
     "name": "Mr. Mime",
+    "set": "SV: 151",
+    "cardNumber": "179/165",
     "priceCents": 2658,
     "graded": true,
     "grade": "9",
@@ -950,6 +1108,8 @@ var GALLERY_DATA = [
   {
     "id": "45127",
     "name": "Wigglytuff",
+    "set": "Jungle",
+    "cardNumber": "16",
     "priceCents": 2600,
     "graded": true,
     "grade": "6",
@@ -962,6 +1122,8 @@ var GALLERY_DATA = [
   {
     "id": "106525",
     "name": "Kabutops",
+    "set": "Fossil",
+    "cardNumber": "9",
     "priceCents": 2500,
     "graded": true,
     "grade": "6",
@@ -974,6 +1136,8 @@ var GALLERY_DATA = [
   {
     "id": "517049",
     "name": "Erika's Invitation",
+    "set": "SV: 151",
+    "cardNumber": "203/165",
     "priceCents": 2459,
     "graded": true,
     "grade": "9",
@@ -986,6 +1150,8 @@ var GALLERY_DATA = [
   {
     "id": "45120",
     "name": "Clefable",
+    "set": "Jungle",
+    "cardNumber": "1",
     "priceCents": 2433,
     "graded": true,
     "grade": "6",
@@ -998,6 +1164,8 @@ var GALLERY_DATA = [
   {
     "id": "45131",
     "name": "Kangaskhan",
+    "set": "Jungle",
+    "cardNumber": "5",
     "priceCents": 2248,
     "graded": true,
     "grade": "6",
@@ -1010,6 +1178,8 @@ var GALLERY_DATA = [
   {
     "id": "45128",
     "name": "Electrode",
+    "set": "Jungle",
+    "cardNumber": "2",
     "priceCents": 2215,
     "graded": true,
     "grade": "6",
@@ -1022,6 +1192,8 @@ var GALLERY_DATA = [
   {
     "id": "44420",
     "name": "Magneton (11)",
+    "set": "Fossil",
+    "cardNumber": "11",
     "priceCents": 2135,
     "graded": true,
     "grade": "6",
@@ -1034,6 +1206,8 @@ var GALLERY_DATA = [
   {
     "id": "44422",
     "name": "Muk (13)",
+    "set": "Fossil",
+    "cardNumber": "13",
     "priceCents": 1897,
     "graded": true,
     "grade": "6",
@@ -1046,6 +1220,8 @@ var GALLERY_DATA = [
   {
     "id": "42393",
     "name": "Clefairy",
+    "set": "Base Set (Unlimited)",
+    "cardNumber": "5",
     "priceCents": 1750,
     "graded": true,
     "grade": "6",
@@ -1058,6 +1234,8 @@ var GALLERY_DATA = [
   {
     "id": "517052",
     "name": "Switch",
+    "set": "SV: 151",
+    "cardNumber": "206/165",
     "priceCents": 1054,
     "graded": true,
     "grade": "9",

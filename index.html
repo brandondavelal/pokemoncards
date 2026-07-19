@@ -519,6 +519,7 @@ body.loading { overflow-y: hidden; }
         <option value="price-asc">Price: Low to High</option>
         <option value="name-asc">Name: A to Z</option>
         <option value="name-desc">Name: Z to A</option>
+        <option value="set-asc">Set: Oldest to Newest</option>
       </select>
     </div>
     <div class="opt-row">
@@ -566,11 +567,39 @@ function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;'
 
 function money(cents) { return '$' + (Number(cents||0) / 100).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
 
+// real-world Pokemon TCG set release order, oldest first. "Deck Exclusives" and "WoTC
+// Promo" are bundled with the Base Set era they actually shipped alongside; "Miscellaneous
+// Cards & Products" spans multiple eras (it's Collectr's catch-all bucket) so it's placed
+// by its more prominent member card rather than any single true release date.
+var SET_ORDER = [
+  'Base Set (1st Edition & Shadowless)',
+  'Base Set (Unlimited)',
+  'Deck Exclusives',
+  'WoTC Promo',
+  'Jungle',
+  'Fossil',
+  'Team Rocket',
+  'Gym Challenge',
+  'Neo Genesis',
+  'Neo Discovery',
+  'Neo Revelation',
+  'Miscellaneous Cards & Products',
+  'Scarlet & Violet Promo',
+  'SV: 151'
+].reduce(function(map, name, i) { map[name] = i; return map; }, {});
+
+function cardNum(s) { var m = /\d+/.exec(String(s||'')); return m ? parseInt(m[0], 10) : 0; }
+
 var SORTERS = {
   'price-desc': function(a, b) { return (b.priceCents||0) - (a.priceCents||0); },
   'price-asc': function(a, b) { return (a.priceCents||0) - (b.priceCents||0); },
   'name-asc': function(a, b) { return String(a.name||'').localeCompare(String(b.name||'')); },
-  'name-desc': function(a, b) { return String(b.name||'').localeCompare(String(a.name||'')); }
+  'name-desc': function(a, b) { return String(b.name||'').localeCompare(String(a.name||'')); },
+  'set-asc': function(a, b) {
+    var oa = SET_ORDER.hasOwnProperty(a.set) ? SET_ORDER[a.set] : 999;
+    var ob = SET_ORDER.hasOwnProperty(b.set) ? SET_ORDER[b.set] : 999;
+    return oa !== ob ? oa - ob : cardNum(a.cardNumber) - cardNum(b.cardNumber);
+  }
 };
 var currentSort = 'price-desc';
 
