@@ -72,20 +72,24 @@ body.loading { overflow-y: hidden; }
   padding: var(--binder-pad) var(--binder-pad) var(--binder-pad) 0;
   border-radius: 0 18px 18px 0;
   background: radial-gradient(140% 100% at 50% 0%, #322f2b 0%, #201e1b 55%, #131211 100%);
-  /* edge lit from the top-right, built as three concentric inset layers so it always
-     follows the actual corner radius (box-shadow inset, unlike border-image, clips
-     to border-radius correctly): a crisp highlight stroke closest to the edge, a
-     crisp shadow stroke just inside it, then a soft diffuse shadow deeper in for
-     overall depth. The felt fill itself is untouched. */
+  /* the top-right-lit edge stroke itself lives on the .binder-edge sibling below
+     (a dedicated 1px overlay-blended layer, same technique as the plastic pages) —
+     this box-shadow is just the soft diffuse depth + outer contact shadows */
   box-shadow:
-    inset -3px 3px 0 0 rgba(255,255,255,0.55),
-    inset 3px -3px 0 0 rgba(0,0,0,0.6),
     inset 0 0 40px rgba(0,0,0,0.55),
     inset 0 0 0 1px rgba(0,0,0,0.6),
     0 2px 2px rgba(0,0,0,0.4),
     0 3px 40px rgba(0,0,0,0.4),
     0 50px 90px -20px rgba(0,0,0,0.85),
     0 80px 130px -40px rgba(0,0,0,0.9);
+}
+/* 1px top-right-lit gradation stroke, same thickness/technique as the plastic pages'
+   own edge stroke — but standard (normal) blending here, not overlay: the felt is
+   dark enough that overlay crushes the highlight down to invisible, so this is a
+   plain low-opacity stroke instead */
+.binder-edge {
+  position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 5;
+  box-shadow: inset -1px 1px 0 0 rgba(255,255,255,0.22), inset 1px -1px 0 0 rgba(0,0,0,0.3);
 }
 /* fibrous felt texture across the cover — matte, no gloss */
 .binder::before {
@@ -138,9 +142,36 @@ body.loading { overflow-y: hidden; }
   box-shadow: inset -10px 0 28px rgba(0,0,0,0.45), inset 10px 0 28px rgba(0,0,0,0.45), inset 0 12px 24px -10px rgba(255,255,255,0.05), 2px 3px 6px rgba(0,0,0,0.35);
   opacity: 0.65;
 }
-.grid-page-1 { top: calc(var(--binder-pad) - 4px); bottom: calc(var(--binder-pad) - 4px); right: calc(var(--binder-pad) - 6px); }
-.grid-page-2 { top: calc(var(--binder-pad) - 8px); bottom: calc(var(--binder-pad) - 8px); right: calc(var(--binder-pad) - 12px); }
-.grid-page-3 { top: calc(var(--binder-pad) - 12px); bottom: calc(var(--binder-pad) - 12px); right: calc(var(--binder-pad) - 18px); }
+.grid-page-1 { top: calc(var(--binder-pad) - 2px); bottom: calc(var(--binder-pad) - 2px); right: calc(var(--binder-pad) - 6px); }
+.grid-page-2 { top: calc(var(--binder-pad) - 4px); bottom: calc(var(--binder-pad) - 4px); right: calc(var(--binder-pad) - 12px); }
+.grid-page-3 { top: calc(var(--binder-pad) - 6px); bottom: calc(var(--binder-pad) - 6px); right: calc(var(--binder-pad) - 18px); }
+/* same top-right-lit gradation stroke as the binder cover, shrunk to a 1px edge and
+   blended with overlay so it reads as a seam catching the light, not a solid line */
+.grid-page::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  mix-blend-mode: overlay;
+  box-shadow: inset -1px 1px 0 0 rgba(255,255,255,0.55), inset 1px -1px 0 0 rgba(0,0,0,0.6);
+}
+/* same diagonal sheen as the top sheet's own ::after, so every layer in the stack
+   reads as the identical material catching the light at the identical angle */
+.grid-page::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background:
+    linear-gradient(115deg, transparent 16%, rgba(255,255,255,0.24) 42%, rgba(255,255,255,0.05) 56%, transparent 80%),
+    linear-gradient(115deg, transparent 55%, rgba(255,255,255,0.09) 78%, transparent 98%),
+    linear-gradient(0deg, rgba(0,0,0,0.18), transparent 30%);
+  mix-blend-mode: screen;
+}
+/* the top sheet (#grid) already uses both its own ::before/::after for the bleed and
+   sheen, so its matching edge stroke lives on this sibling instead, aligned to sit
+   exactly over #grid's own box */
+.grid-edge {
+  position: absolute; z-index: 3; pointer-events: none;
+  top: var(--binder-pad); bottom: var(--binder-pad); left: 0; right: var(--binder-pad);
+  border-radius: 0 6px 6px 0;
+  mix-blend-mode: overlay;
+  box-shadow: inset -1px 1px 0 0 rgba(255,255,255,0.55), inset 1px -1px 0 0 rgba(0,0,0,0.6);
+}
 /* the plastic sheet itself keeps running left, past the spine, out to the viewport edge —
    same welded vinyl the pockets sit in. Since #grid's own left padding now carries the
    binder's inset, a plain right:100% here lands exactly on the binder's edge — same
@@ -197,7 +228,7 @@ body.loading { overflow-y: hidden; }
 /* ultrasonically welded stitch outline around each pocket — open at the top, since that's
    where a card would actually slide in and out of the sleeve */
 .card::before {
-  content: ""; position: absolute; inset: 3px; z-index: 0; pointer-events: none; border-radius: 0 0 4px 4px;
+  content: ""; position: absolute; inset: 3px; z-index: 0; pointer-events: none;
   border-left: 1.5px dashed rgba(8,9,10,0.55);
   border-right: 1.5px dashed rgba(8,9,10,0.55);
   border-bottom: 1.5px dashed rgba(8,9,10,0.55);
@@ -207,7 +238,7 @@ body.loading { overflow-y: hidden; }
 
 /* the pocket's own front plastic layer — sits over the card at rest, catching light across the whole cell */
 .pocket-glare {
-  position: absolute; inset: 0; z-index: 2; pointer-events: none; border-radius: 4px;
+  position: absolute; inset: 0; z-index: 2; pointer-events: none;
   background:
     radial-gradient(130% 90% at 50% -10%, rgba(255,255,255,0.4), transparent 55%),
     linear-gradient(122deg, transparent 14%, rgba(255,255,255,0.32) 38%, rgba(255,255,255,0.08) 50%, transparent 66%),
@@ -332,11 +363,13 @@ body.loading { overflow-y: hidden; }
 
 <main id="view-gallery">
   <div class="binder">
+    <div class="binder-edge"></div>
     <div class="grid-page grid-page-3"></div>
     <div class="grid-page grid-page-2"></div>
     <div class="grid-page grid-page-1"></div>
     <div class="grid-stitch"></div>
     <div class="grid" id="grid"></div>
+    <div class="grid-edge"></div>
   </div>
 </main>
 
