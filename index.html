@@ -657,11 +657,48 @@ function updateOptionsSummary(list) {
   if (valueEl) valueEl.textContent = money(list.reduce(function(sum, p) { return sum + (p.priceCents || 0); }, 0));
 }
 
+// how many cards were in the last real render — resize needs this to recompute
+// how many empty pockets fill out the last row at the new column count.
+var lastCardCount = 0;
+
+function currentColumnCount() {
+  var g = document.getElementById('grid');
+  var cols = getComputedStyle(g).gridTemplateColumns.split(' ').filter(Boolean);
+  return cols.length || 1;
+}
+
+// pads the last row out to a full row with empty pockets (never a whole extra row),
+// so the binder never ends mid-row. Re-run on resize since the column count changes
+// at each breakpoint; the real cards are untouched, only trailing .card-empty
+// placeholders are added/removed.
+function syncEmptyPockets() {
+  var g = document.getElementById('grid');
+  g.querySelectorAll('.card-empty').forEach(function(el) { el.remove(); });
+  if (!lastCardCount) return;
+  var cols = currentColumnCount();
+  var remainder = lastCardCount % cols;
+  var needed = remainder === 0 ? 0 : cols - remainder;
+  for (var i = 0; i < needed; i++) {
+    var el = document.createElement('div');
+    el.className = 'card card-empty';
+    el.setAttribute('aria-hidden', 'true');
+    el.innerHTML = '<div class="pocket-glare"></div>';
+    g.appendChild(el);
+  }
+}
+
+var pocketResizeRaf = null;
+window.addEventListener('resize', function() {
+  if (pocketResizeRaf) cancelAnimationFrame(pocketResizeRaf);
+  pocketResizeRaf = requestAnimationFrame(syncEmptyPockets);
+});
+
 function renderGallery() {
   var g = document.getElementById('grid');
   var list = S.products.filter(function(p) { return p.status !== 'Draft'; });
   list.sort(SORTERS[currentSort] || SORTERS['price-desc']);
   updateOptionsSummary(list);
+  lastCardCount = list.length;
   if (!list.length) { g.innerHTML = '<div class="empty"><div class="empty-hed">This page of the binder is empty.</div></div>'; return; }
   g.innerHTML = list.map(function(p, i) {
     var img = (p.images && p.images.length) ? p.images[0] : fillImgs[0];
@@ -691,6 +728,7 @@ function renderGallery() {
     else { img.addEventListener('load', reveal); img.addEventListener('error', reveal); }
   });
   attachTilt(g);
+  syncEmptyPockets();
 }
 
 // Pointer-tracked holographic tilt — the card stays in its pocket but still
