@@ -56,20 +56,6 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
-    "id": "42360",
-    "name": "Blastoise",
-    "set": "Base Set (Unlimited)",
-    "cardNumber": "2",
-    "priceCents": 15255,
-    "graded": true,
-    "grade": "6",
-    "gradingCompany": "PSA",
-    "images": [
-      "../../images/pokemon/42360.jpg"
-    ],
-    "status": "Public"
-  },
-  {
     "id": "10032229",
     "name": "Snorlax (No Symbol)",
     "set": "Jungle (No Symbol)",
@@ -80,6 +66,20 @@ var GALLERY_DATA = [
     "gradingCompany": "",
     "images": [
       "../../images/pokemon/10032229.jpg"
+    ],
+    "status": "Public"
+  },
+  {
+    "id": "42360",
+    "name": "Blastoise",
+    "set": "Base Set (Unlimited)",
+    "cardNumber": "2",
+    "priceCents": 14818,
+    "graded": true,
+    "grade": "6",
+    "gradingCompany": "PSA",
+    "images": [
+      "../../images/pokemon/42360.jpg"
     ],
     "status": "Public"
   },
@@ -122,20 +122,6 @@ var GALLERY_DATA = [
     "gradingCompany": "",
     "images": [
       "../../images/pokemon/45132.jpg"
-    ],
-    "status": "Public"
-  },
-  {
-    "id": "45134",
-    "name": "Pidgeot",
-    "set": "Jungle",
-    "cardNumber": "8",
-    "priceCents": 10813,
-    "graded": true,
-    "grade": "6",
-    "gradingCompany": "PSA",
-    "images": [
-      "../../images/pokemon/45134.jpg"
     ],
     "status": "Public"
   },
@@ -192,6 +178,20 @@ var GALLERY_DATA = [
     "gradingCompany": "PSA",
     "images": [
       "../../images/pokemon/107011.webp"
+    ],
+    "status": "Public"
+  },
+  {
+    "id": "45134",
+    "name": "Pidgeot",
+    "set": "Jungle",
+    "cardNumber": "8",
+    "priceCents": 8386,
+    "graded": true,
+    "grade": "6",
+    "gradingCompany": "PSA",
+    "images": [
+      "../../images/pokemon/45134.jpg"
     ],
     "status": "Public"
   },
@@ -270,7 +270,7 @@ var GALLERY_DATA = [
     "name": "Moltres & Zapdos & Articuno GX (Secret)",
     "set": "Hidden Fates",
     "cardNumber": "69/68",
-    "priceCents": 5436,
+    "priceCents": 5530,
     "graded": true,
     "grade": "9",
     "gradingCompany": "PSA",
@@ -592,7 +592,7 @@ var GALLERY_DATA = [
     "name": "Pikachu",
     "set": "McDonald's Promo (2025)",
     "cardNumber": "020/M-P",
-    "priceCents": 2891,
+    "priceCents": 2993,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
