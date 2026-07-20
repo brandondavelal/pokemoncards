@@ -101,6 +101,12 @@ async function scrapeAll() {
   const browser = await chromium.launch({ headless: false });
   const page = await browser.newPage({ viewport: { width: 1400, height: 900 } });
 
+  // a fresh about:blank page can't reliably fetch() a cross-origin API, so navigate
+  // to the first profile's showcase before fetching anything.
+  log(`${profiles[0].handle}: navigating to showcase page...`);
+  await page.goto(`https://app.getcollectr.com/showcase/profile/${profiles[0].handle}`, { waitUntil: "load", timeout: 30000 });
+  await page.waitForTimeout(2000);
+
   log("fetching grading scales...");
   const gradeMap = await page.evaluate(async ({ base }) => {
     const r = await fetch(`${base}/data/grading-scales`);
@@ -112,10 +118,12 @@ async function scrapeAll() {
 
   const changedPaths = [];
 
-  for (const { handle, outDir } of profiles) {
-    log(`${handle}: navigating to showcase page...`);
-    await page.goto(`https://app.getcollectr.com/showcase/profile/${handle}`, { waitUntil: "load", timeout: 30000 });
-    await page.waitForTimeout(2000);
+  for (const [i, { handle, outDir }] of profiles.entries()) {
+    if (i > 0) {
+      log(`${handle}: navigating to showcase page...`);
+      await page.goto(`https://app.getcollectr.com/showcase/profile/${handle}`, { waitUntil: "load", timeout: 30000 });
+      await page.waitForTimeout(2000);
+    }
 
     const rawProducts = await fetchProducts(page, handle);
     // cards only — sealed products and other non-card items are excluded from the binder.
