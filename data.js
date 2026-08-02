@@ -196,20 +196,6 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
-    "id": "42360",
-    "name": "Blastoise",
-    "set": "Base Set (Unlimited)",
-    "cardNumber": "2",
-    "priceCents": 14829,
-    "graded": true,
-    "grade": "6",
-    "gradingCompany": "PSA",
-    "images": [
-      "images/pokemon/42360.jpg"
-    ],
-    "status": "Public"
-  },
-  {
     "id": "42355",
     "name": "Venusaur",
     "set": "Base Set (Unlimited)",
@@ -220,6 +206,20 @@ var GALLERY_DATA = [
     "gradingCompany": "PSA",
     "images": [
       "images/pokemon/42355.jpg"
+    ],
+    "status": "Public"
+  },
+  {
+    "id": "42360",
+    "name": "Blastoise",
+    "set": "Base Set (Unlimited)",
+    "cardNumber": "2",
+    "priceCents": 13529,
+    "graded": true,
+    "grade": "6",
+    "gradingCompany": "PSA",
+    "images": [
+      "images/pokemon/42360.jpg"
     ],
     "status": "Public"
   },
@@ -252,6 +252,20 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
+    "id": "517044",
+    "name": "Venusaur ex",
+    "set": "SV: 151",
+    "cardNumber": "198/165",
+    "priceCents": 12545,
+    "graded": true,
+    "grade": "9",
+    "gradingCompany": "PSA",
+    "images": [
+      "images/pokemon/517044.jpg"
+    ],
+    "status": "Public"
+  },
+  {
     "id": "502549",
     "name": "Squirtle",
     "set": "SV: 151",
@@ -262,20 +276,6 @@ var GALLERY_DATA = [
     "gradingCompany": "PSA",
     "images": [
       "images/pokemon/502549.jpg"
-    ],
-    "status": "Public"
-  },
-  {
-    "id": "517044",
-    "name": "Venusaur ex",
-    "set": "SV: 151",
-    "cardNumber": "198/165",
-    "priceCents": 12124,
-    "graded": true,
-    "grade": "9",
-    "gradingCompany": "PSA",
-    "images": [
-      "images/pokemon/517044.jpg"
     ],
     "status": "Public"
   },
@@ -294,25 +294,11 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
-    "id": "108589",
-    "name": "Ancient Mew [2000]",
-    "set": "Miscellaneous Cards & Products",
-    "cardNumber": "1",
-    "priceCents": 11271,
-    "graded": true,
-    "grade": "6",
-    "gradingCompany": "PSA",
-    "images": [
-      "images/pokemon/108589.png"
-    ],
-    "status": "Public"
-  },
-  {
     "id": "518871",
     "name": "Mew ex",
     "set": "Scarlet & Violet Promo",
     "cardNumber": "053",
-    "priceCents": 10980,
+    "priceCents": 11078,
     "graded": true,
     "grade": "9",
     "gradingCompany": "PSA",
@@ -392,6 +378,20 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
+    "id": "108589",
+    "name": "Ancient Mew [2000]",
+    "set": "Miscellaneous Cards & Products",
+    "cardNumber": "1",
+    "priceCents": 9548,
+    "graded": true,
+    "grade": "6",
+    "gradingCompany": "PSA",
+    "images": [
+      "images/pokemon/108589.png"
+    ],
+    "status": "Public"
+  },
+  {
     "id": "517018",
     "name": "Charmeleon",
     "set": "SV: 151",
@@ -452,7 +452,7 @@ var GALLERY_DATA = [
     "name": "Wartortle",
     "set": "SV: 151",
     "cardNumber": "171/165",
-    "priceCents": 7824,
+    "priceCents": 7454,
     "graded": true,
     "grade": "9",
     "gradingCompany": "PSA",
