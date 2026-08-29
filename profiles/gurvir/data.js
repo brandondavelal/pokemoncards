@@ -32,7 +32,7 @@ var GALLERY_DATA = [
     "name": "Magneton (11)",
     "set": "Fossil",
     "cardNumber": "11",
-    "priceCents": 17424,
+    "priceCents": 17669,
     "graded": true,
     "grade": "9",
     "gradingCompany": "PSA",
@@ -56,6 +56,20 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
+    "id": "42360",
+    "name": "Blastoise",
+    "set": "Base Set (Unlimited)",
+    "cardNumber": "2",
+    "priceCents": 14643,
+    "graded": true,
+    "grade": "6",
+    "gradingCompany": "PSA",
+    "images": [
+      "../../images/pokemon/42360.jpg"
+    ],
+    "status": "Public"
+  },
+  {
     "id": "87395",
     "name": "Mew (9)",
     "set": "WoTC Promo",
@@ -66,20 +80,6 @@ var GALLERY_DATA = [
     "gradingCompany": "",
     "images": [
       "../../images/pokemon/87395.jpg"
-    ],
-    "status": "Public"
-  },
-  {
-    "id": "42360",
-    "name": "Blastoise",
-    "set": "Base Set (Unlimited)",
-    "cardNumber": "2",
-    "priceCents": 14243,
-    "graded": true,
-    "grade": "6",
-    "gradingCompany": "PSA",
-    "images": [
-      "../../images/pokemon/42360.jpg"
     ],
     "status": "Public"
   },
@@ -196,6 +196,20 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
+    "id": "107011",
+    "name": "Zapdos",
+    "set": "Base Set (1st Edition & Shadowless)",
+    "cardNumber": "16",
+    "priceCents": 8001,
+    "graded": true,
+    "grade": "4",
+    "gradingCompany": "PSA",
+    "images": [
+      "../../images/pokemon/107011.webp"
+    ],
+    "status": "Public"
+  },
+  {
     "id": "42354",
     "name": "Raichu",
     "set": "Base Set (Unlimited)",
@@ -220,20 +234,6 @@ var GALLERY_DATA = [
     "gradingCompany": "",
     "images": [
       "../../images/pokemon/42347.jpg"
-    ],
-    "status": "Public"
-  },
-  {
-    "id": "107011",
-    "name": "Zapdos",
-    "set": "Base Set (1st Edition & Shadowless)",
-    "cardNumber": "16",
-    "priceCents": 7093,
-    "graded": true,
-    "grade": "4",
-    "gradingCompany": "PSA",
-    "images": [
-      "../../images/pokemon/107011.webp"
     ],
     "status": "Public"
   },
@@ -294,6 +294,20 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
+    "id": "197728",
+    "name": "Moltres & Zapdos & Articuno GX (Secret)",
+    "set": "Hidden Fates",
+    "cardNumber": "69/68",
+    "priceCents": 5246,
+    "graded": true,
+    "grade": "9",
+    "gradingCompany": "PSA",
+    "images": [
+      "../../images/pokemon/197728.jpg"
+    ],
+    "status": "Public"
+  },
+  {
     "id": "45123",
     "name": "Vaporeon",
     "set": "Jungle",
@@ -304,20 +318,6 @@ var GALLERY_DATA = [
     "gradingCompany": "",
     "images": [
       "../../images/pokemon/45123.webp"
-    ],
-    "status": "Public"
-  },
-  {
-    "id": "197728",
-    "name": "Moltres & Zapdos & Articuno GX (Secret)",
-    "set": "Hidden Fates",
-    "cardNumber": "69/68",
-    "priceCents": 5047,
-    "graded": true,
-    "grade": "9",
-    "gradingCompany": "PSA",
-    "images": [
-      "../../images/pokemon/197728.jpg"
     ],
     "status": "Public"
   },
@@ -654,6 +654,20 @@ var GALLERY_DATA = [
     "gradingCompany": "",
     "images": [
       "../../images/pokemon/684461.jpg"
+    ],
+    "status": "Public"
+  },
+  {
+    "id": "87417",
+    "name": "Mewtwo (14)",
+    "set": "WoTC Promo",
+    "cardNumber": "14/53",
+    "priceCents": 2791,
+    "graded": false,
+    "grade": "",
+    "gradingCompany": "",
+    "images": [
+      "../../images/pokemon/87417.jpg"
     ],
     "status": "Public"
   },
