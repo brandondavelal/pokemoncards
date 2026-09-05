@@ -5,8 +5,12 @@
   <key>Label</key>
   <string>com.brandonlal.pokemongallery.scrapecollectr</string>
 
+  <!-- invoked via /bin/bash explicitly (rather than relying on run-scrape.sh's
+       own shebang) because launchd's TCC access to ~/Desktop is granted per the
+       interpreter binary, not the script it's running. -->
   <key>ProgramArguments</key>
   <array>
+    <string>/bin/bash</string>
     <string>/Users/brandon/Desktop/pokemon-gallery-cms/scripts/run-scrape.sh</string>
   </array>
 
@@ -29,10 +33,14 @@
   <key>StartInterval</key>
   <integer>21600</integer>
 
+  <!-- Deliberately NOT under ~/Desktop: launchd itself opens these paths before
+       spawning the job, and (unlike the job's own process) launchd doesn't have
+       TCC access to the Desktop folder, so a log path there makes the whole job
+       fail to spawn (EX_CONFIG) even though the script itself is fine. -->
   <key>StandardOutPath</key>
-  <string>/Users/brandon/Desktop/pokemon-gallery-cms/scripts/logs/scrape.log</string>
+  <string>/Users/brandon/Library/Logs/pokemongallery/scrape.log</string>
   <key>StandardErrorPath</key>
-  <string>/Users/brandon/Desktop/pokemon-gallery-cms/scripts/logs/scrape.err.log</string>
+  <string>/Users/brandon/Library/Logs/pokemongallery/scrape.err.log</string>
 
   <key>WorkingDirectory</key>
   <string>/Users/brandon/Desktop/pokemon-gallery-cms/scripts</string>
