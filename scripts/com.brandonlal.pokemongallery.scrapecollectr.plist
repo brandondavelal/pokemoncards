@@ -18,10 +18,12 @@
     <string>1</string>
   </dict>
 
-  <!-- runs once as soon as it's loaded, then every 6 hours after that while
+  <!-- fires on load (i.e. on login) and every 6 hours after that while
        you're logged in (LaunchAgents don't run when logged out / machine off,
        so this is "as fresh as your Mac being awake and logged in", not truly
-       every 6 hours on the dot if the machine sleeps through one) -->
+       every 6 hours on the dot if the machine sleeps through one).
+       run-scrape.sh itself skips the actual scrape if a prior run succeeded
+       less than 6h ago, so a login right after a scheduled run is a no-op. -->
   <key>RunAtLoad</key>
   <true/>
   <key>StartInterval</key>
