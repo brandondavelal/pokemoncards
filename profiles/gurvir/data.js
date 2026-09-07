@@ -42,20 +42,6 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
-    "id": "45129",
-    "name": "Flareon",
-    "set": "Jungle",
-    "cardNumber": "3",
-    "priceCents": 15077,
-    "graded": true,
-    "grade": "6",
-    "gradingCompany": "PSA",
-    "images": [
-      "../../images/pokemon/45129.jpg"
-    ],
-    "status": "Public"
-  },
-  {
     "id": "42360",
     "name": "Blastoise",
     "set": "Base Set (Unlimited)",
@@ -94,6 +80,20 @@ var GALLERY_DATA = [
     "gradingCompany": "TAG",
     "images": [
       "../../images/pokemon/106518.webp"
+    ],
+    "status": "Public"
+  },
+  {
+    "id": "45129",
+    "name": "Flareon",
+    "set": "Jungle",
+    "cardNumber": "3",
+    "priceCents": 13643,
+    "graded": true,
+    "grade": "6",
+    "gradingCompany": "PSA",
+    "images": [
+      "../../images/pokemon/45129.jpg"
     ],
     "status": "Public"
   },
@@ -574,6 +574,20 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
+    "id": "10030009",
+    "name": "Pikachu",
+    "set": "McDonald's Promo (2025)",
+    "cardNumber": "020/M-P",
+    "priceCents": 3241,
+    "graded": false,
+    "grade": "",
+    "gradingCompany": "",
+    "images": [
+      "../../images/pokemon/10030009.png"
+    ],
+    "status": "Public"
+  },
+  {
     "id": "45135",
     "name": "Pinsir",
     "set": "Jungle",
@@ -640,20 +654,6 @@ var GALLERY_DATA = [
     "gradingCompany": "",
     "images": [
       "../../images/pokemon/684461.jpg"
-    ],
-    "status": "Public"
-  },
-  {
-    "id": "10030009",
-    "name": "Pikachu",
-    "set": "McDonald's Promo (2025)",
-    "cardNumber": "020/M-P",
-    "priceCents": 2861,
-    "graded": false,
-    "grade": "",
-    "gradingCompany": "",
-    "images": [
-      "../../images/pokemon/10030009.png"
     ],
     "status": "Public"
   },
