@@ -102,7 +102,7 @@ var GALLERY_DATA = [
     "name": "Charizard ex",
     "set": "SV: 151",
     "cardNumber": "199/165",
-    "priceCents": 38399,
+    "priceCents": 39019,
     "graded": true,
     "grade": "9",
     "gradingCompany": "PSA",
@@ -256,7 +256,7 @@ var GALLERY_DATA = [
     "name": "Blastoise",
     "set": "Base Set (Unlimited)",
     "cardNumber": "2",
-    "priceCents": 14966,
+    "priceCents": 14118,
     "graded": true,
     "grade": "6",
     "gradingCompany": "PSA",
@@ -340,7 +340,7 @@ var GALLERY_DATA = [
     "name": "Squirtle",
     "set": "SV: 151",
     "cardNumber": "170/165",
-    "priceCents": 11182,
+    "priceCents": 11243,
     "graded": true,
     "grade": "9",
     "gradingCompany": "PSA",
@@ -350,30 +350,44 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
-    "id": "87395",
-    "name": "Mew (9)",
-    "set": "WoTC Promo",
-    "cardNumber": "09/53",
-    "priceCents": 10768,
-    "graded": true,
-    "grade": "6",
-    "gradingCompany": "PSA",
-    "images": [
-      "images/pokemon/87395.jpg"
-    ],
-    "status": "Public"
-  },
-  {
     "id": "108589",
     "name": "Ancient Mew [2000]",
     "set": "Miscellaneous Cards & Products",
     "cardNumber": "1",
-    "priceCents": 10217,
+    "priceCents": 10585,
     "graded": true,
     "grade": "6",
     "gradingCompany": "PSA",
     "images": [
       "images/pokemon/108589.png"
+    ],
+    "status": "Public"
+  },
+  {
+    "id": "518871",
+    "name": "Mew ex",
+    "set": "Scarlet & Violet Promo",
+    "cardNumber": "053",
+    "priceCents": 10435,
+    "graded": true,
+    "grade": "9",
+    "gradingCompany": "PSA",
+    "images": [
+      "images/pokemon/518871.jpg"
+    ],
+    "status": "Public"
+  },
+  {
+    "id": "87395",
+    "name": "Mew (9)",
+    "set": "WoTC Promo",
+    "cardNumber": "09/53",
+    "priceCents": 10311,
+    "graded": true,
+    "grade": "6",
+    "gradingCompany": "PSA",
+    "images": [
+      "images/pokemon/87395.jpg"
     ],
     "status": "Public"
   },
@@ -416,20 +430,6 @@ var GALLERY_DATA = [
     "gradingCompany": "PSA",
     "images": [
       "images/pokemon/84647.webp"
-    ],
-    "status": "Public"
-  },
-  {
-    "id": "518871",
-    "name": "Mew ex",
-    "set": "Scarlet & Violet Promo",
-    "cardNumber": "053",
-    "priceCents": 10091,
-    "graded": true,
-    "grade": "9",
-    "gradingCompany": "PSA",
-    "images": [
-      "images/pokemon/518871.jpg"
     ],
     "status": "Public"
   },
@@ -480,12 +480,26 @@ var GALLERY_DATA = [
     "name": "Psyduck",
     "set": "SV: 151",
     "cardNumber": "175/165",
-    "priceCents": 8494,
+    "priceCents": 9136,
     "graded": true,
     "grade": "9",
     "gradingCompany": "PSA",
     "images": [
       "images/pokemon/517035.jpg"
+    ],
+    "status": "Public"
+  },
+  {
+    "id": "518872",
+    "name": "Mewtwo",
+    "set": "Scarlet & Violet Promo",
+    "cardNumber": "052",
+    "priceCents": 8454,
+    "graded": true,
+    "grade": "9",
+    "gradingCompany": "PSA",
+    "images": [
+      "images/pokemon/518872.jpg"
     ],
     "status": "Public"
   },
@@ -504,25 +518,11 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
-    "id": "518872",
-    "name": "Mewtwo",
-    "set": "Scarlet & Violet Promo",
-    "cardNumber": "052",
-    "priceCents": 7935,
-    "graded": true,
-    "grade": "9",
-    "gradingCompany": "PSA",
-    "images": [
-      "images/pokemon/518872.jpg"
-    ],
-    "status": "Public"
-  },
-  {
     "id": "517038",
     "name": "Wartortle",
     "set": "SV: 151",
     "cardNumber": "171/165",
-    "priceCents": 7451,
+    "priceCents": 7328,
     "graded": true,
     "grade": "9",
     "gradingCompany": "PSA",
@@ -542,20 +542,6 @@ var GALLERY_DATA = [
     "gradingCompany": "PSA",
     "images": [
       "images/pokemon/42347.jpg"
-    ],
-    "status": "Public"
-  },
-  {
-    "id": "517034",
-    "name": "Poliwhirl",
-    "set": "SV: 151",
-    "cardNumber": "176/165",
-    "priceCents": 6524,
-    "graded": true,
-    "grade": "9",
-    "gradingCompany": "PSA",
-    "images": [
-      "images/pokemon/517034.jpg"
     ],
     "status": "Public"
   },
@@ -584,6 +570,20 @@ var GALLERY_DATA = [
     "gradingCompany": "PSA",
     "images": [
       "images/pokemon/42354.jpg"
+    ],
+    "status": "Public"
+  },
+  {
+    "id": "517034",
+    "name": "Poliwhirl",
+    "set": "SV: 151",
+    "cardNumber": "176/165",
+    "priceCents": 6132,
+    "graded": true,
+    "grade": "9",
+    "gradingCompany": "PSA",
+    "images": [
+      "images/pokemon/517034.jpg"
     ],
     "status": "Public"
   },
@@ -896,6 +896,20 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
+    "id": "684463",
+    "name": "Squirtle",
+    "set": "Mega Evolution Promos",
+    "cardNumber": "039",
+    "priceCents": 3762,
+    "graded": true,
+    "grade": "9",
+    "gradingCompany": "PSA",
+    "images": [
+      "images/pokemon/684463.jpg"
+    ],
+    "status": "Public"
+  },
+  {
     "id": "44423",
     "name": "Raichu (14)",
     "set": "Fossil",
@@ -1032,20 +1046,6 @@ var GALLERY_DATA = [
     "gradingCompany": "PSA",
     "images": [
       "images/pokemon/517029.jpg"
-    ],
-    "status": "Public"
-  },
-  {
-    "id": "684463",
-    "name": "Squirtle",
-    "set": "Mega Evolution Promos",
-    "cardNumber": "039",
-    "priceCents": 3460,
-    "graded": true,
-    "grade": "9",
-    "gradingCompany": "PSA",
-    "images": [
-      "images/pokemon/684463.jpg"
     ],
     "status": "Public"
   },
@@ -1236,7 +1236,7 @@ var GALLERY_DATA = [
     "name": "Omanyte",
     "set": "SV: 151",
     "cardNumber": "180/165",
-    "priceCents": 2480,
+    "priceCents": 2504,
     "graded": true,
     "grade": "9",
     "gradingCompany": "PSA",
