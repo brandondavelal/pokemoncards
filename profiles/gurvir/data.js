@@ -28,20 +28,6 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
-    "id": "45129",
-    "name": "Flareon",
-    "set": "Jungle",
-    "cardNumber": "3",
-    "priceCents": 17431,
-    "graded": true,
-    "grade": "6",
-    "gradingCompany": "PSA",
-    "images": [
-      "../../images/pokemon/45129.jpg"
-    ],
-    "status": "Public"
-  },
-  {
     "id": "44420",
     "name": "Magneton (11)",
     "set": "Fossil",
@@ -56,6 +42,34 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
+    "id": "42360",
+    "name": "Blastoise",
+    "set": "Base Set (Unlimited)",
+    "cardNumber": "2",
+    "priceCents": 16547,
+    "graded": true,
+    "grade": "6",
+    "gradingCompany": "PSA",
+    "images": [
+      "../../images/pokemon/42360.jpg"
+    ],
+    "status": "Public"
+  },
+  {
+    "id": "45129",
+    "name": "Flareon",
+    "set": "Jungle",
+    "cardNumber": "3",
+    "priceCents": 16352,
+    "graded": true,
+    "grade": "6",
+    "gradingCompany": "PSA",
+    "images": [
+      "../../images/pokemon/45129.jpg"
+    ],
+    "status": "Public"
+  },
+  {
     "id": "87395",
     "name": "Mew (9)",
     "set": "WoTC Promo",
@@ -66,20 +80,6 @@ var GALLERY_DATA = [
     "gradingCompany": "",
     "images": [
       "../../images/pokemon/87395.jpg"
-    ],
-    "status": "Public"
-  },
-  {
-    "id": "42360",
-    "name": "Blastoise",
-    "set": "Base Set (Unlimited)",
-    "cardNumber": "2",
-    "priceCents": 15092,
-    "graded": true,
-    "grade": "6",
-    "gradingCompany": "PSA",
-    "images": [
-      "../../images/pokemon/42360.jpg"
     ],
     "status": "Public"
   },
@@ -284,7 +284,7 @@ var GALLERY_DATA = [
     "name": "Moltres & Zapdos & Articuno GX (Secret)",
     "set": "Hidden Fates",
     "cardNumber": "69/68",
-    "priceCents": 5305,
+    "priceCents": 5304,
     "graded": true,
     "grade": "9",
     "gradingCompany": "PSA",
@@ -728,6 +728,20 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
+    "id": "629051",
+    "name": "Kangaskhan",
+    "set": "Glory of Team Rocket",
+    "cardNumber": "110/098",
+    "priceCents": 2410,
+    "graded": true,
+    "grade": "10",
+    "gradingCompany": "CGC",
+    "images": [
+      "../../images/pokemon/629051.jpg"
+    ],
+    "status": "Public"
+  },
+  {
     "id": "42471",
     "name": "Chansey",
     "set": "Base Set 2",
@@ -738,20 +752,6 @@ var GALLERY_DATA = [
     "gradingCompany": "",
     "images": [
       "../../images/pokemon/42471.jpg"
-    ],
-    "status": "Public"
-  },
-  {
-    "id": "629051",
-    "name": "Kangaskhan",
-    "set": "Glory of Team Rocket",
-    "cardNumber": "110/098",
-    "priceCents": 2146,
-    "graded": true,
-    "grade": "10",
-    "gradingCompany": "CGC",
-    "images": [
-      "../../images/pokemon/629051.jpg"
     ],
     "status": "Public"
   },
