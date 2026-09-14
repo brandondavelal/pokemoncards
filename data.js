@@ -228,7 +228,7 @@ var GALLERY_DATA = [
     "name": "Gengar",
     "set": "Fossil",
     "cardNumber": "5",
-    "priceCents": 16087,
+    "priceCents": 15613,
     "graded": true,
     "grade": "6",
     "gradingCompany": "PSA",
