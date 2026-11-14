@@ -4,7 +4,7 @@ var GALLERY_DATA = [
     "name": "Charizard",
     "set": "Base Set (Unlimited)",
     "cardNumber": "4",
-    "priceCents": 52977,
+    "priceCents": 52720,
     "graded": true,
     "grade": "6",
     "gradingCompany": "PSA",
@@ -18,7 +18,7 @@ var GALLERY_DATA = [
     "name": "Magneton (11)",
     "set": "Fossil",
     "cardNumber": "11",
-    "priceCents": 23863,
+    "priceCents": 20499,
     "graded": true,
     "grade": "9",
     "gradingCompany": "PSA",
@@ -60,12 +60,26 @@ var GALLERY_DATA = [
     "name": "Snorlax",
     "set": "Jungle",
     "cardNumber": "11",
-    "priceCents": 17371,
+    "priceCents": 17485,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
     "images": [
       "../../images/pokemon/45122.webp"
+    ],
+    "status": "Public"
+  },
+  {
+    "id": "42360",
+    "name": "Blastoise",
+    "set": "Base Set (Unlimited)",
+    "cardNumber": "2",
+    "priceCents": 16804,
+    "graded": true,
+    "grade": "6",
+    "gradingCompany": "PSA",
+    "images": [
+      "../../images/pokemon/42360.jpg"
     ],
     "status": "Public"
   },
@@ -80,20 +94,6 @@ var GALLERY_DATA = [
     "gradingCompany": "",
     "images": [
       "../../images/pokemon/45132.jpg"
-    ],
-    "status": "Public"
-  },
-  {
-    "id": "42360",
-    "name": "Blastoise",
-    "set": "Base Set (Unlimited)",
-    "cardNumber": "2",
-    "priceCents": 16249,
-    "graded": true,
-    "grade": "6",
-    "gradingCompany": "PSA",
-    "images": [
-      "../../images/pokemon/42360.jpg"
     ],
     "status": "Public"
   },
@@ -130,7 +130,7 @@ var GALLERY_DATA = [
     "name": "Mew (9)",
     "set": "WoTC Promo",
     "cardNumber": "09/53",
-    "priceCents": 14839,
+    "priceCents": 14891,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -200,7 +200,7 @@ var GALLERY_DATA = [
     "name": "Alakazam",
     "set": "Base Set (Unlimited)",
     "cardNumber": "1",
-    "priceCents": 9859,
+    "priceCents": 9831,
     "graded": true,
     "grade": "7",
     "gradingCompany": "PSA",
@@ -224,11 +224,25 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
+    "id": "726574",
+    "name": "Raikou ex",
+    "set": "Delta Reign",
+    "cardNumber": "136/103",
+    "priceCents": 9026,
+    "graded": false,
+    "grade": "",
+    "gradingCompany": "",
+    "images": [
+      "../../images/pokemon/726574.jpg"
+    ],
+    "status": "Public"
+  },
+  {
     "id": "42347",
     "name": "Mewtwo",
     "set": "Base Set (Unlimited)",
     "cardNumber": "10",
-    "priceCents": 8737,
+    "priceCents": 8525,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -270,7 +284,7 @@ var GALLERY_DATA = [
     "name": "Raichu",
     "set": "Base Set (Unlimited)",
     "cardNumber": "14",
-    "priceCents": 6239,
+    "priceCents": 6261,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -280,30 +294,30 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
-    "id": "42404",
-    "name": "Gyarados",
-    "set": "Base Set (Unlimited)",
-    "cardNumber": "6",
-    "priceCents": 5663,
-    "graded": false,
-    "grade": "",
-    "gradingCompany": "",
-    "images": [
-      "../../images/pokemon/42404.jpg"
-    ],
-    "status": "Public"
-  },
-  {
     "id": "45123",
     "name": "Vaporeon",
     "set": "Jungle",
     "cardNumber": "12",
-    "priceCents": 5522,
+    "priceCents": 5570,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
     "images": [
       "../../images/pokemon/45123.webp"
+    ],
+    "status": "Public"
+  },
+  {
+    "id": "45121",
+    "name": "Scyther",
+    "set": "Jungle",
+    "cardNumber": "10",
+    "priceCents": 5484,
+    "graded": false,
+    "grade": "",
+    "gradingCompany": "",
+    "images": [
+      "../../images/pokemon/45121.webp"
     ],
     "status": "Public"
   },
@@ -322,16 +336,16 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
-    "id": "45121",
-    "name": "Scyther",
-    "set": "Jungle",
-    "cardNumber": "10",
-    "priceCents": 5436,
+    "id": "42404",
+    "name": "Gyarados",
+    "set": "Base Set (Unlimited)",
+    "cardNumber": "6",
+    "priceCents": 5414,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
     "images": [
-      "../../images/pokemon/45121.webp"
+      "../../images/pokemon/42404.jpg"
     ],
     "status": "Public"
   },
@@ -368,7 +382,7 @@ var GALLERY_DATA = [
     "name": "Haunter",
     "set": "Fossil",
     "cardNumber": "6",
-    "priceCents": 5267,
+    "priceCents": 5256,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -392,11 +406,25 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
+    "id": "42462",
+    "name": "Venusaur",
+    "set": "Base Set 2",
+    "cardNumber": "18",
+    "priceCents": 4762,
+    "graded": true,
+    "grade": "3",
+    "gradingCompany": "PSA",
+    "images": [
+      "../../images/pokemon/42462.jpg"
+    ],
+    "status": "Public"
+  },
+  {
     "id": "717610",
     "name": "Gengar ex",
     "set": "30th Celebration",
     "cardNumber": "154/128",
-    "priceCents": 4852,
+    "priceCents": 4634,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -410,7 +438,7 @@ var GALLERY_DATA = [
     "name": "Clefairy",
     "set": "Base Set (Unlimited)",
     "cardNumber": "5",
-    "priceCents": 4631,
+    "priceCents": 4627,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -438,7 +466,7 @@ var GALLERY_DATA = [
     "name": "Pinsir",
     "set": "Jungle",
     "cardNumber": "9",
-    "priceCents": 4312,
+    "priceCents": 4415,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -452,7 +480,7 @@ var GALLERY_DATA = [
     "name": "Pikachu (1)",
     "set": "WoTC Promo",
     "cardNumber": "01/53",
-    "priceCents": 4276,
+    "priceCents": 4313,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -466,7 +494,7 @@ var GALLERY_DATA = [
     "name": "Nidoking",
     "set": "Base Set (Unlimited)",
     "cardNumber": "11",
-    "priceCents": 4182,
+    "priceCents": 4144,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -480,7 +508,7 @@ var GALLERY_DATA = [
     "name": "Kabutops",
     "set": "Fossil",
     "cardNumber": "9",
-    "priceCents": 4149,
+    "priceCents": 4130,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -500,20 +528,6 @@ var GALLERY_DATA = [
     "gradingCompany": "",
     "images": [
       "../../images/pokemon/44424.webp"
-    ],
-    "status": "Public"
-  },
-  {
-    "id": "42462",
-    "name": "Venusaur",
-    "set": "Base Set 2",
-    "cardNumber": "18",
-    "priceCents": 4091,
-    "graded": true,
-    "grade": "3",
-    "gradingCompany": "PSA",
-    "images": [
-      "../../images/pokemon/42462.jpg"
     ],
     "status": "Public"
   },
@@ -578,12 +592,26 @@ var GALLERY_DATA = [
     "name": "Aerodactyl",
     "set": "Fossil",
     "cardNumber": "1",
-    "priceCents": 3791,
+    "priceCents": 3818,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
     "images": [
       "../../images/pokemon/44418.webp"
+    ],
+    "status": "Public"
+  },
+  {
+    "id": "42352",
+    "name": "Ninetales",
+    "set": "Base Set (Unlimited)",
+    "cardNumber": "12",
+    "priceCents": 3817,
+    "graded": false,
+    "grade": "",
+    "gradingCompany": "",
+    "images": [
+      "../../images/pokemon/42352.jpg"
     ],
     "status": "Public"
   },
@@ -620,26 +648,12 @@ var GALLERY_DATA = [
     "name": "Vileplume",
     "set": "Jungle",
     "cardNumber": "15",
-    "priceCents": 3588,
+    "priceCents": 3597,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
     "images": [
       "../../images/pokemon/45126.webp"
-    ],
-    "status": "Public"
-  },
-  {
-    "id": "42352",
-    "name": "Ninetales",
-    "set": "Base Set (Unlimited)",
-    "cardNumber": "12",
-    "priceCents": 3569,
-    "graded": false,
-    "grade": "",
-    "gradingCompany": "",
-    "images": [
-      "../../images/pokemon/42352.jpg"
     ],
     "status": "Public"
   },
@@ -662,7 +676,7 @@ var GALLERY_DATA = [
     "name": "Poliwrath",
     "set": "Base Set (Unlimited)",
     "cardNumber": "13",
-    "priceCents": 3459,
+    "priceCents": 3449,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -676,7 +690,7 @@ var GALLERY_DATA = [
     "name": "Chansey",
     "set": "Base Set 2",
     "cardNumber": "3",
-    "priceCents": 3302,
+    "priceCents": 3341,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -690,7 +704,7 @@ var GALLERY_DATA = [
     "name": "Mewtwo (14)",
     "set": "WoTC Promo",
     "cardNumber": "14/53",
-    "priceCents": 3182,
+    "priceCents": 3339,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -704,7 +718,7 @@ var GALLERY_DATA = [
     "name": "Magneton",
     "set": "Base Set (Unlimited)",
     "cardNumber": "9",
-    "priceCents": 3132,
+    "priceCents": 3148,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -718,12 +732,26 @@ var GALLERY_DATA = [
     "name": "Electrode",
     "set": "Jungle",
     "cardNumber": "2",
-    "priceCents": 2870,
+    "priceCents": 2855,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
     "images": [
       "../../images/pokemon/45128.webp"
+    ],
+    "status": "Public"
+  },
+  {
+    "id": "42483",
+    "name": "Clefairy",
+    "set": "Base Set 2",
+    "cardNumber": "6",
+    "priceCents": 2649,
+    "graded": false,
+    "grade": "",
+    "gradingCompany": "",
+    "images": [
+      "../../images/pokemon/42483.jpg"
     ],
     "status": "Public"
   },
@@ -742,25 +770,11 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
-    "id": "42483",
-    "name": "Clefairy",
-    "set": "Base Set 2",
-    "cardNumber": "6",
-    "priceCents": 2625,
-    "graded": false,
-    "grade": "",
-    "gradingCompany": "",
-    "images": [
-      "../../images/pokemon/42483.jpg"
-    ],
-    "status": "Public"
-  },
-  {
     "id": "42425",
     "name": "Machamp",
     "set": "Deck Exclusives",
     "cardNumber": "008/102",
-    "priceCents": 2595,
+    "priceCents": 2549,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -774,7 +788,7 @@ var GALLERY_DATA = [
     "name": "Pikachu",
     "set": "McDonald's Promo (2025)",
     "cardNumber": "020/M-P",
-    "priceCents": 2417,
+    "priceCents": 2497,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -788,7 +802,7 @@ var GALLERY_DATA = [
     "name": "Kangaskhan",
     "set": "Jungle",
     "cardNumber": "5",
-    "priceCents": 2158,
+    "priceCents": 2175,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -802,7 +816,7 @@ var GALLERY_DATA = [
     "name": "Charmander",
     "set": "Mega Evolution Promos",
     "cardNumber": "038",
-    "priceCents": 2126,
+    "priceCents": 2162,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -816,7 +830,7 @@ var GALLERY_DATA = [
     "name": "Magneton (11)",
     "set": "Fossil",
     "cardNumber": "11",
-    "priceCents": 2092,
+    "priceCents": 2100,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -830,7 +844,7 @@ var GALLERY_DATA = [
     "name": "Squirtle",
     "set": "Mega Evolution Promos",
     "cardNumber": "039",
-    "priceCents": 2022,
+    "priceCents": 2071,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -844,7 +858,7 @@ var GALLERY_DATA = [
     "name": "Hitmonchan",
     "set": "Base Set (Unlimited)",
     "cardNumber": "7",
-    "priceCents": 1948,
+    "priceCents": 1964,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -858,7 +872,7 @@ var GALLERY_DATA = [
     "name": "Bulbasaur",
     "set": "Mega Evolution Promos",
     "cardNumber": "037",
-    "priceCents": 1870,
+    "priceCents": 1849,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -872,7 +886,7 @@ var GALLERY_DATA = [
     "name": "Rayquaza EX",
     "set": "30th Celebration: Classic Collection",
     "cardNumber": "85/124",
-    "priceCents": 1857,
+    "priceCents": 1774,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -900,7 +914,7 @@ var GALLERY_DATA = [
     "name": "M Gardevoir EX",
     "set": "30th Celebration: Classic Collection",
     "cardNumber": "106/160",
-    "priceCents": 967,
+    "priceCents": 834,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -914,7 +928,7 @@ var GALLERY_DATA = [
     "name": "Gardevoir",
     "set": "Astral Radiance Trainer Gallery",
     "cardNumber": "TG05/TG30",
-    "priceCents": 674,
+    "priceCents": 729,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -924,53 +938,11 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
-    "id": "716228",
-    "name": "Maushold",
-    "set": "30th Celebration",
-    "cardNumber": "146/128",
-    "priceCents": 549,
-    "graded": false,
-    "grade": "",
-    "gradingCompany": "",
-    "images": [
-      "../../images/pokemon/716228.jpg"
-    ],
-    "status": "Public"
-  },
-  {
-    "id": "716209",
-    "name": "Zacian V",
-    "set": "30th Celebration: Classic Collection",
-    "cardNumber": "138/202",
-    "priceCents": 494,
-    "graded": false,
-    "grade": "",
-    "gradingCompany": "",
-    "images": [
-      "../../images/pokemon/716209.jpg"
-    ],
-    "status": "Public"
-  },
-  {
-    "id": "709975",
-    "name": "Sprigatito - 061",
-    "set": "Mega Evolution Promos",
-    "cardNumber": "061",
-    "priceCents": 472,
-    "graded": false,
-    "grade": "",
-    "gradingCompany": "",
-    "images": [
-      "../../images/pokemon/709975.jpg"
-    ],
-    "status": "Public"
-  },
-  {
     "id": "250305",
     "name": "Flying Pikachu VMAX",
     "set": "Celebrations",
     "cardNumber": "007/025",
-    "priceCents": 461,
+    "priceCents": 481,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -984,7 +956,7 @@ var GALLERY_DATA = [
     "name": "Oshawott",
     "set": "Mega Evolution Promos",
     "cardNumber": "051",
-    "priceCents": 448,
+    "priceCents": 465,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -994,11 +966,53 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
+    "id": "716228",
+    "name": "Maushold",
+    "set": "30th Celebration",
+    "cardNumber": "146/128",
+    "priceCents": 462,
+    "graded": false,
+    "grade": "",
+    "gradingCompany": "",
+    "images": [
+      "../../images/pokemon/716228.jpg"
+    ],
+    "status": "Public"
+  },
+  {
+    "id": "716209",
+    "name": "Zacian V",
+    "set": "30th Celebration: Classic Collection",
+    "cardNumber": "138/202",
+    "priceCents": 446,
+    "graded": false,
+    "grade": "",
+    "gradingCompany": "",
+    "images": [
+      "../../images/pokemon/716209.jpg"
+    ],
+    "status": "Public"
+  },
+  {
+    "id": "709975",
+    "name": "Sprigatito - 061",
+    "set": "Mega Evolution Promos",
+    "cardNumber": "061",
+    "priceCents": 422,
+    "graded": false,
+    "grade": "",
+    "gradingCompany": "",
+    "images": [
+      "../../images/pokemon/709975.jpg"
+    ],
+    "status": "Public"
+  },
+  {
     "id": "709974",
     "name": "Froakie - 060",
     "set": "Mega Evolution Promos",
     "cardNumber": "060",
-    "priceCents": 385,
+    "priceCents": 386,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -1012,7 +1026,7 @@ var GALLERY_DATA = [
     "name": "Ampharos",
     "set": "Chaos Rising",
     "cardNumber": "090/086",
-    "priceCents": 357,
+    "priceCents": 367,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -1026,7 +1040,7 @@ var GALLERY_DATA = [
     "name": "Lapras",
     "set": "30th Celebration",
     "cardNumber": "131/128",
-    "priceCents": 332,
+    "priceCents": 301,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -1040,7 +1054,7 @@ var GALLERY_DATA = [
     "name": "Snivy",
     "set": "Mega Evolution Promos",
     "cardNumber": "049",
-    "priceCents": 303,
+    "priceCents": 298,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -1054,7 +1068,7 @@ var GALLERY_DATA = [
     "name": "Moltres",
     "set": "30th Celebration",
     "cardNumber": "130/128",
-    "priceCents": 303,
+    "priceCents": 272,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -1064,30 +1078,30 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
-    "id": "699874",
-    "name": "Tepig",
-    "set": "Mega Evolution Promos",
-    "cardNumber": "050",
-    "priceCents": 281,
-    "graded": false,
-    "grade": "",
-    "gradingCompany": "",
-    "images": [
-      "../../images/pokemon/699874.jpg"
-    ],
-    "status": "Public"
-  },
-  {
     "id": "709973",
     "name": "Fennekin - 059",
     "set": "Mega Evolution Promos",
     "cardNumber": "059",
-    "priceCents": 271,
+    "priceCents": 269,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
     "images": [
       "../../images/pokemon/709973.jpg"
+    ],
+    "status": "Public"
+  },
+  {
+    "id": "699874",
+    "name": "Tepig",
+    "set": "Mega Evolution Promos",
+    "cardNumber": "050",
+    "priceCents": 259,
+    "graded": false,
+    "grade": "",
+    "gradingCompany": "",
+    "images": [
+      "../../images/pokemon/699874.jpg"
     ],
     "status": "Public"
   },
@@ -1110,7 +1124,7 @@ var GALLERY_DATA = [
     "name": "Pikachu (Cosmo Holo)",
     "set": "Miscellaneous Cards & Products",
     "cardNumber": "051/162",
-    "priceCents": 235,
+    "priceCents": 237,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -1120,25 +1134,11 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
-    "id": "696684",
-    "name": "Drifloon",
-    "set": "30th Celebration",
-    "cardNumber": "136/128",
-    "priceCents": 210,
-    "graded": false,
-    "grade": "",
-    "gradingCompany": "",
-    "images": [
-      "../../images/pokemon/696684.jpg"
-    ],
-    "status": "Public"
-  },
-  {
     "id": "712944",
     "name": "Pikachu",
     "set": "30th Celebration",
     "cardNumber": "040/128",
-    "priceCents": 210,
+    "priceCents": 175,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -1148,11 +1148,25 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
+    "id": "696684",
+    "name": "Drifloon",
+    "set": "30th Celebration",
+    "cardNumber": "136/128",
+    "priceCents": 172,
+    "graded": false,
+    "grade": "",
+    "gradingCompany": "",
+    "images": [
+      "../../images/pokemon/696684.jpg"
+    ],
+    "status": "Public"
+  },
+  {
     "id": "716465",
     "name": "Mew ex",
     "set": "30th Celebration",
     "cardNumber": "066/128",
-    "priceCents": 125,
+    "priceCents": 146,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -1166,7 +1180,7 @@ var GALLERY_DATA = [
     "name": "Alolan Exeggutor",
     "set": "30th Celebration",
     "cardNumber": "129/128",
-    "priceCents": 114,
+    "priceCents": 106,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -1180,7 +1194,7 @@ var GALLERY_DATA = [
     "name": "Kommo-o",
     "set": "30th Celebration",
     "cardNumber": "143/128",
-    "priceCents": 89,
+    "priceCents": 92,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -1190,25 +1204,11 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
-    "id": "712939",
-    "name": "Pikachu",
-    "set": "30th Celebration",
-    "cardNumber": "032/128",
-    "priceCents": 81,
-    "graded": false,
-    "grade": "",
-    "gradingCompany": "",
-    "images": [
-      "../../images/pokemon/712939.jpg"
-    ],
-    "status": "Public"
-  },
-  {
     "id": "712952",
     "name": "Pikachu ex",
     "set": "30th Celebration",
     "cardNumber": "054/128",
-    "priceCents": 75,
+    "priceCents": 85,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -1222,7 +1222,7 @@ var GALLERY_DATA = [
     "name": "Pikachu ex",
     "set": "30th Celebration",
     "cardNumber": "053/128",
-    "priceCents": 71,
+    "priceCents": 70,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -1236,7 +1236,7 @@ var GALLERY_DATA = [
     "name": "Sylveon ex",
     "set": "30th Celebration",
     "cardNumber": "071/128",
-    "priceCents": 66,
+    "priceCents": 69,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -1246,53 +1246,11 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
-    "id": "696834",
-    "name": "Espeon ex",
-    "set": "30th Celebration",
-    "cardNumber": "070/128",
-    "priceCents": 66,
-    "graded": false,
-    "grade": "",
-    "gradingCompany": "",
-    "images": [
-      "../../images/pokemon/696834.jpg"
-    ],
-    "status": "Public"
-  },
-  {
-    "id": "712941",
-    "name": "Pikachu",
-    "set": "30th Celebration",
-    "cardNumber": "034/128",
-    "priceCents": 62,
-    "graded": false,
-    "grade": "",
-    "gradingCompany": "",
-    "images": [
-      "../../images/pokemon/712941.jpg"
-    ],
-    "status": "Public"
-  },
-  {
-    "id": "712937",
-    "name": "Pikachu",
-    "set": "30th Celebration",
-    "cardNumber": "028/128",
-    "priceCents": 61,
-    "graded": false,
-    "grade": "",
-    "gradingCompany": "",
-    "images": [
-      "../../images/pokemon/712937.jpg"
-    ],
-    "status": "Public"
-  },
-  {
     "id": "716463",
     "name": "Mewtwo ex",
     "set": "30th Celebration",
     "cardNumber": "064/128",
-    "priceCents": 59,
+    "priceCents": 65,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -1302,16 +1260,72 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
-    "id": "712934",
+    "id": "712939",
     "name": "Pikachu",
     "set": "30th Celebration",
-    "cardNumber": "023/128",
-    "priceCents": 54,
+    "cardNumber": "032/128",
+    "priceCents": 63,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
     "images": [
-      "../../images/pokemon/712934.jpg"
+      "../../images/pokemon/712939.jpg"
+    ],
+    "status": "Public"
+  },
+  {
+    "id": "696834",
+    "name": "Espeon ex",
+    "set": "30th Celebration",
+    "cardNumber": "070/128",
+    "priceCents": 59,
+    "graded": false,
+    "grade": "",
+    "gradingCompany": "",
+    "images": [
+      "../../images/pokemon/696834.jpg"
+    ],
+    "status": "Public"
+  },
+  {
+    "id": "712937",
+    "name": "Pikachu",
+    "set": "30th Celebration",
+    "cardNumber": "028/128",
+    "priceCents": 55,
+    "graded": false,
+    "grade": "",
+    "gradingCompany": "",
+    "images": [
+      "../../images/pokemon/712937.jpg"
+    ],
+    "status": "Public"
+  },
+  {
+    "id": "712941",
+    "name": "Pikachu",
+    "set": "30th Celebration",
+    "cardNumber": "034/128",
+    "priceCents": 53,
+    "graded": false,
+    "grade": "",
+    "gradingCompany": "",
+    "images": [
+      "../../images/pokemon/712941.jpg"
+    ],
+    "status": "Public"
+  },
+  {
+    "id": "712949",
+    "name": "Pikachu",
+    "set": "30th Celebration",
+    "cardNumber": "049/128",
+    "priceCents": 51,
+    "graded": false,
+    "grade": "",
+    "gradingCompany": "",
+    "images": [
+      "../../images/pokemon/712949.jpg"
     ],
     "status": "Public"
   },
@@ -1320,7 +1334,7 @@ var GALLERY_DATA = [
     "name": "Pikachu",
     "set": "30th Celebration",
     "cardNumber": "048/128",
-    "priceCents": 54,
+    "priceCents": 50,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -1334,7 +1348,7 @@ var GALLERY_DATA = [
     "name": "Pikachu",
     "set": "30th Celebration",
     "cardNumber": "044/128",
-    "priceCents": 54,
+    "priceCents": 48,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -1348,7 +1362,7 @@ var GALLERY_DATA = [
     "name": "Pikachu",
     "set": "30th Celebration",
     "cardNumber": "029/128",
-    "priceCents": 51,
+    "priceCents": 46,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -1358,44 +1372,16 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
-    "id": "696682",
+    "id": "712934",
     "name": "Pikachu",
     "set": "30th Celebration",
-    "cardNumber": "047/128",
-    "priceCents": 46,
+    "cardNumber": "023/128",
+    "priceCents": 43,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
     "images": [
-      "../../images/pokemon/696682.jpg"
-    ],
-    "status": "Public"
-  },
-  {
-    "id": "716312",
-    "name": "Pikachu",
-    "set": "30th Celebration",
-    "cardNumber": "031/128",
-    "priceCents": 45,
-    "graded": false,
-    "grade": "",
-    "gradingCompany": "",
-    "images": [
-      "../../images/pokemon/716312.jpg"
-    ],
-    "status": "Public"
-  },
-  {
-    "id": "712949",
-    "name": "Pikachu",
-    "set": "30th Celebration",
-    "cardNumber": "049/128",
-    "priceCents": 42,
-    "graded": false,
-    "grade": "",
-    "gradingCompany": "",
-    "images": [
-      "../../images/pokemon/712949.jpg"
+      "../../images/pokemon/712934.jpg"
     ],
     "status": "Public"
   },
@@ -1404,7 +1390,7 @@ var GALLERY_DATA = [
     "name": "Pikachu",
     "set": "30th Celebration",
     "cardNumber": "033/128",
-    "priceCents": 41,
+    "priceCents": 40,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
@@ -1414,11 +1400,39 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
+    "id": "716312",
+    "name": "Pikachu",
+    "set": "30th Celebration",
+    "cardNumber": "031/128",
+    "priceCents": 39,
+    "graded": false,
+    "grade": "",
+    "gradingCompany": "",
+    "images": [
+      "../../images/pokemon/716312.jpg"
+    ],
+    "status": "Public"
+  },
+  {
+    "id": "696682",
+    "name": "Pikachu",
+    "set": "30th Celebration",
+    "cardNumber": "047/128",
+    "priceCents": 39,
+    "graded": false,
+    "grade": "",
+    "gradingCompany": "",
+    "images": [
+      "../../images/pokemon/696682.jpg"
+    ],
+    "status": "Public"
+  },
+  {
     "id": "716448",
     "name": "Fuecoco ex",
     "set": "30th Celebration",
     "cardNumber": "015/128",
-    "priceCents": 34,
+    "priceCents": 32,
     "graded": false,
     "grade": "",
     "gradingCompany": "",
