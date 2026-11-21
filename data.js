@@ -42,11 +42,25 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
+    "id": "89166",
+    "name": "Shining Magikarp",
+    "set": "Neo Revelation",
+    "cardNumber": "66",
+    "priceCents": 57115,
+    "graded": true,
+    "grade": "6",
+    "gradingCompany": "PSA",
+    "images": [
+      "images/pokemon/89166.webp"
+    ],
+    "status": "Public"
+  },
+  {
     "id": "42382",
     "name": "Charizard",
     "set": "Base Set (Unlimited)",
     "cardNumber": "4",
-    "priceCents": 53832,
+    "priceCents": 55522,
     "graded": true,
     "grade": "6",
     "gradingCompany": "PSA",
@@ -66,20 +80,6 @@ var GALLERY_DATA = [
     "gradingCompany": "PSA",
     "images": [
       "images/pokemon/90137.webp"
-    ],
-    "status": "Public"
-  },
-  {
-    "id": "89166",
-    "name": "Shining Magikarp",
-    "set": "Neo Revelation",
-    "cardNumber": "66",
-    "priceCents": 48098,
-    "graded": true,
-    "grade": "6",
-    "gradingCompany": "PSA",
-    "images": [
-      "images/pokemon/89166.webp"
     ],
     "status": "Public"
   },

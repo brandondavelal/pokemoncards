@@ -4,7 +4,7 @@ var GALLERY_DATA = [
     "name": "Charizard",
     "set": "Base Set (Unlimited)",
     "cardNumber": "4",
-    "priceCents": 53832,
+    "priceCents": 55522,
     "graded": true,
     "grade": "6",
     "gradingCompany": "PSA",
