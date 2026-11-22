@@ -4,7 +4,7 @@ var GALLERY_DATA = [
     "name": "Charizard",
     "set": "Base Set (Unlimited)",
     "cardNumber": "4",
-    "priceCents": 55522,
+    "priceCents": 58728,
     "graded": true,
     "grade": "6",
     "gradingCompany": "PSA",
@@ -18,7 +18,7 @@ var GALLERY_DATA = [
     "name": "Magneton (11)",
     "set": "Fossil",
     "cardNumber": "11",
-    "priceCents": 24313,
+    "priceCents": 25926,
     "graded": true,
     "grade": "9",
     "gradingCompany": "PSA",
@@ -714,20 +714,6 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
-    "id": "10030009",
-    "name": "Pikachu",
-    "set": "McDonald's Promo (2025)",
-    "cardNumber": "020/M-P",
-    "priceCents": 3328,
-    "graded": false,
-    "grade": "",
-    "gradingCompany": "",
-    "images": [
-      "../../images/pokemon/10030009.png"
-    ],
-    "status": "Public"
-  },
-  {
     "id": "42433",
     "name": "Magneton",
     "set": "Base Set (Unlimited)",
@@ -794,6 +780,20 @@ var GALLERY_DATA = [
     "gradingCompany": "",
     "images": [
       "../../images/pokemon/42425.png"
+    ],
+    "status": "Public"
+  },
+  {
+    "id": "10030009",
+    "name": "Pikachu",
+    "set": "McDonald's Promo (2025)",
+    "cardNumber": "020/M-P",
+    "priceCents": 2428,
+    "graded": false,
+    "grade": "",
+    "gradingCompany": "",
+    "images": [
+      "../../images/pokemon/10030009.png"
     ],
     "status": "Public"
   },

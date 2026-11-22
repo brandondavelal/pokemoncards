@@ -42,6 +42,20 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
+    "id": "42382",
+    "name": "Charizard",
+    "set": "Base Set (Unlimited)",
+    "cardNumber": "4",
+    "priceCents": 58728,
+    "graded": true,
+    "grade": "6",
+    "gradingCompany": "PSA",
+    "images": [
+      "images/pokemon/42382.jpg"
+    ],
+    "status": "Public"
+  },
+  {
     "id": "89166",
     "name": "Shining Magikarp",
     "set": "Neo Revelation",
@@ -52,20 +66,6 @@ var GALLERY_DATA = [
     "gradingCompany": "PSA",
     "images": [
       "images/pokemon/89166.webp"
-    ],
-    "status": "Public"
-  },
-  {
-    "id": "42382",
-    "name": "Charizard",
-    "set": "Base Set (Unlimited)",
-    "cardNumber": "4",
-    "priceCents": 55522,
-    "graded": true,
-    "grade": "6",
-    "gradingCompany": "PSA",
-    "images": [
-      "images/pokemon/42382.jpg"
     ],
     "status": "Public"
   },
@@ -144,7 +144,7 @@ var GALLERY_DATA = [
     "name": "Charizard ex",
     "set": "SV: 151",
     "cardNumber": "199/165",
-    "priceCents": 31032,
+    "priceCents": 30804,
     "graded": true,
     "grade": "9",
     "gradingCompany": "PSA",
@@ -284,7 +284,7 @@ var GALLERY_DATA = [
     "name": "Dragonite",
     "set": "Fossil",
     "cardNumber": "4",
-    "priceCents": 12175,
+    "priceCents": 11866,
     "graded": true,
     "grade": "6",
     "gradingCompany": "PSA",
@@ -294,25 +294,11 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
-    "id": "45122",
-    "name": "Snorlax",
-    "set": "Jungle",
-    "cardNumber": "11",
-    "priceCents": 12139,
-    "graded": true,
-    "grade": "6",
-    "gradingCompany": "PSA",
-    "images": [
-      "images/pokemon/45122.webp"
-    ],
-    "status": "Public"
-  },
-  {
     "id": "517046",
     "name": "Blastoise ex",
     "set": "SV: 151",
     "cardNumber": "200/165",
-    "priceCents": 11134,
+    "priceCents": 11772,
     "graded": true,
     "grade": "9",
     "gradingCompany": "PSA",
@@ -336,16 +322,16 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
-    "id": "518871",
-    "name": "Mew ex",
-    "set": "Scarlet & Violet Promo",
-    "cardNumber": "053",
-    "priceCents": 9541,
+    "id": "502556",
+    "name": "Charmander",
+    "set": "SV: 151",
+    "cardNumber": "168/165",
+    "priceCents": 9753,
     "graded": true,
     "grade": "9",
     "gradingCompany": "PSA",
     "images": [
-      "images/pokemon/518871.jpg"
+      "images/pokemon/502556.jpg"
     ],
     "status": "Public"
   },
@@ -368,7 +354,7 @@ var GALLERY_DATA = [
     "name": "Venusaur ex",
     "set": "SV: 151",
     "cardNumber": "198/165",
-    "priceCents": 9454,
+    "priceCents": 9448,
     "graded": true,
     "grade": "9",
     "gradingCompany": "PSA",
@@ -378,16 +364,16 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
-    "id": "502549",
-    "name": "Squirtle",
-    "set": "SV: 151",
-    "cardNumber": "170/165",
-    "priceCents": 9336,
+    "id": "45122",
+    "name": "Snorlax",
+    "set": "Jungle",
+    "cardNumber": "11",
+    "priceCents": 9194,
     "graded": true,
-    "grade": "9",
+    "grade": "6",
     "gradingCompany": "PSA",
     "images": [
-      "images/pokemon/502549.jpg"
+      "images/pokemon/45122.webp"
     ],
     "status": "Public"
   },
@@ -406,16 +392,44 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
-    "id": "502556",
-    "name": "Charmander",
+    "id": "502549",
+    "name": "Squirtle",
     "set": "SV: 151",
-    "cardNumber": "168/165",
-    "priceCents": 8929,
+    "cardNumber": "170/165",
+    "priceCents": 8884,
     "graded": true,
     "grade": "9",
     "gradingCompany": "PSA",
     "images": [
-      "images/pokemon/502556.jpg"
+      "images/pokemon/502549.jpg"
+    ],
+    "status": "Public"
+  },
+  {
+    "id": "518871",
+    "name": "Mew ex",
+    "set": "Scarlet & Violet Promo",
+    "cardNumber": "053",
+    "priceCents": 8725,
+    "graded": true,
+    "grade": "9",
+    "gradingCompany": "PSA",
+    "images": [
+      "images/pokemon/518871.jpg"
+    ],
+    "status": "Public"
+  },
+  {
+    "id": "517048",
+    "name": "Zapdos ex",
+    "set": "SV: 151",
+    "cardNumber": "202/165",
+    "priceCents": 8528,
+    "graded": true,
+    "grade": "9",
+    "gradingCompany": "PSA",
+    "images": [
+      "images/pokemon/517048.jpg"
     ],
     "status": "Public"
   },
@@ -430,34 +444,6 @@ var GALLERY_DATA = [
     "gradingCompany": "PSA",
     "images": [
       "images/pokemon/520796.jpg"
-    ],
-    "status": "Public"
-  },
-  {
-    "id": "517048",
-    "name": "Zapdos ex",
-    "set": "SV: 151",
-    "cardNumber": "202/165",
-    "priceCents": 8171,
-    "graded": true,
-    "grade": "9",
-    "gradingCompany": "PSA",
-    "images": [
-      "images/pokemon/517048.jpg"
-    ],
-    "status": "Public"
-  },
-  {
-    "id": "517018",
-    "name": "Charmeleon",
-    "set": "SV: 151",
-    "cardNumber": "169/165",
-    "priceCents": 8068,
-    "graded": true,
-    "grade": "9",
-    "gradingCompany": "PSA",
-    "images": [
-      "images/pokemon/517018.jpg"
     ],
     "status": "Public"
   },
@@ -490,30 +476,30 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
+    "id": "517018",
+    "name": "Charmeleon",
+    "set": "SV: 151",
+    "cardNumber": "169/165",
+    "priceCents": 7128,
+    "graded": true,
+    "grade": "9",
+    "gradingCompany": "PSA",
+    "images": [
+      "images/pokemon/517018.jpg"
+    ],
+    "status": "Public"
+  },
+  {
     "id": "518872",
     "name": "Mewtwo",
     "set": "Scarlet & Violet Promo",
     "cardNumber": "052",
-    "priceCents": 7395,
+    "priceCents": 7078,
     "graded": true,
     "grade": "9",
     "gradingCompany": "PSA",
     "images": [
       "images/pokemon/518872.jpg"
-    ],
-    "status": "Public"
-  },
-  {
-    "id": "45129",
-    "name": "Flareon",
-    "set": "Jungle",
-    "cardNumber": "3",
-    "priceCents": 6951,
-    "graded": true,
-    "grade": "6",
-    "gradingCompany": "PSA",
-    "images": [
-      "images/pokemon/45129.webp"
     ],
     "status": "Public"
   },
@@ -560,20 +546,6 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
-    "id": "517034",
-    "name": "Poliwhirl",
-    "set": "SV: 151",
-    "cardNumber": "176/165",
-    "priceCents": 6458,
-    "graded": true,
-    "grade": "9",
-    "gradingCompany": "PSA",
-    "images": [
-      "images/pokemon/517034.jpg"
-    ],
-    "status": "Public"
-  },
-  {
     "id": "45130",
     "name": "Jolteon",
     "set": "Jungle",
@@ -616,6 +588,20 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
+    "id": "517034",
+    "name": "Poliwhirl",
+    "set": "SV: 151",
+    "cardNumber": "176/165",
+    "priceCents": 5722,
+    "graded": true,
+    "grade": "9",
+    "gradingCompany": "PSA",
+    "images": [
+      "images/pokemon/517034.jpg"
+    ],
+    "status": "Public"
+  },
+  {
     "id": "106519",
     "name": "Ditto",
     "set": "Fossil",
@@ -630,11 +616,25 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
+    "id": "45129",
+    "name": "Flareon",
+    "set": "Jungle",
+    "cardNumber": "3",
+    "priceCents": 5570,
+    "graded": true,
+    "grade": "6",
+    "gradingCompany": "PSA",
+    "images": [
+      "images/pokemon/45129.webp"
+    ],
+    "status": "Public"
+  },
+  {
     "id": "516997",
     "name": "Bulbasaur",
     "set": "SV: 151",
     "cardNumber": "166/165",
-    "priceCents": 5604,
+    "priceCents": 5475,
     "graded": true,
     "grade": "9",
     "gradingCompany": "PSA",
@@ -704,7 +704,7 @@ var GALLERY_DATA = [
     "name": "Mew ex (151 Metal Card)",
     "set": "Miscellaneous Cards & Products",
     "cardNumber": "205/165",
-    "priceCents": 5028,
+    "priceCents": 5095,
     "graded": true,
     "grade": "9",
     "gradingCompany": "PSA",
@@ -980,34 +980,6 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
-    "id": "106525",
-    "name": "Kabutops",
-    "set": "Fossil",
-    "cardNumber": "9",
-    "priceCents": 3888,
-    "graded": true,
-    "grade": "6",
-    "gradingCompany": "PSA",
-    "images": [
-      "images/pokemon/106525.webp"
-    ],
-    "status": "Public"
-  },
-  {
-    "id": "684463",
-    "name": "Squirtle",
-    "set": "Mega Evolution Promos",
-    "cardNumber": "039",
-    "priceCents": 3832,
-    "graded": true,
-    "grade": "9",
-    "gradingCompany": "PSA",
-    "images": [
-      "images/pokemon/684463.jpg"
-    ],
-    "status": "Public"
-  },
-  {
     "id": "42352",
     "name": "Ninetales",
     "set": "Base Set (Unlimited)",
@@ -1018,6 +990,20 @@ var GALLERY_DATA = [
     "gradingCompany": "PSA",
     "images": [
       "images/pokemon/42352.jpg"
+    ],
+    "status": "Public"
+  },
+  {
+    "id": "106525",
+    "name": "Kabutops",
+    "set": "Fossil",
+    "cardNumber": "9",
+    "priceCents": 3649,
+    "graded": true,
+    "grade": "6",
+    "gradingCompany": "PSA",
+    "images": [
+      "images/pokemon/106525.webp"
     ],
     "status": "Public"
   },
@@ -1110,7 +1096,7 @@ var GALLERY_DATA = [
     "name": "Nidoking",
     "set": "SV: 151",
     "cardNumber": "174/165",
-    "priceCents": 3188,
+    "priceCents": 3273,
     "graded": true,
     "grade": "9",
     "gradingCompany": "PSA",
@@ -1130,6 +1116,20 @@ var GALLERY_DATA = [
     "gradingCompany": "PSA",
     "images": [
       "images/pokemon/517016.jpg"
+    ],
+    "status": "Public"
+  },
+  {
+    "id": "684463",
+    "name": "Squirtle",
+    "set": "Mega Evolution Promos",
+    "cardNumber": "039",
+    "priceCents": 3146,
+    "graded": true,
+    "grade": "9",
+    "gradingCompany": "PSA",
+    "images": [
+      "images/pokemon/684463.jpg"
     ],
     "status": "Public"
   },
@@ -1190,34 +1190,6 @@ var GALLERY_DATA = [
     "status": "Public"
   },
   {
-    "id": "517025",
-    "name": "Machoke",
-    "set": "SV: 151",
-    "cardNumber": "177/165",
-    "priceCents": 2825,
-    "graded": true,
-    "grade": "9",
-    "gradingCompany": "PSA",
-    "images": [
-      "images/pokemon/517025.jpg"
-    ],
-    "status": "Public"
-  },
-  {
-    "id": "45128",
-    "name": "Electrode",
-    "set": "Jungle",
-    "cardNumber": "2",
-    "priceCents": 2791,
-    "graded": true,
-    "grade": "6",
-    "gradingCompany": "PSA",
-    "images": [
-      "images/pokemon/45128.webp"
-    ],
-    "status": "Public"
-  },
-  {
     "id": "684462",
     "name": "Charmander",
     "set": "Mega Evolution Promos",
@@ -1242,6 +1214,20 @@ var GALLERY_DATA = [
     "gradingCompany": "PSA",
     "images": [
       "images/pokemon/517050.jpg"
+    ],
+    "status": "Public"
+  },
+  {
+    "id": "517025",
+    "name": "Machoke",
+    "set": "SV: 151",
+    "cardNumber": "177/165",
+    "priceCents": 2588,
+    "graded": true,
+    "grade": "9",
+    "gradingCompany": "PSA",
+    "images": [
+      "images/pokemon/517025.jpg"
     ],
     "status": "Public"
   },
@@ -1326,6 +1312,20 @@ var GALLERY_DATA = [
     "gradingCompany": "PSA",
     "images": [
       "images/pokemon/517036.jpg"
+    ],
+    "status": "Public"
+  },
+  {
+    "id": "45128",
+    "name": "Electrode",
+    "set": "Jungle",
+    "cardNumber": "2",
+    "priceCents": 2171,
+    "graded": true,
+    "grade": "6",
+    "gradingCompany": "PSA",
+    "images": [
+      "images/pokemon/45128.webp"
     ],
     "status": "Public"
   },
